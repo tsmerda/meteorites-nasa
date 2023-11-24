@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MeteoritesNASAApp: App {
+    private var viewModel = MeteoritesListViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MeteoritesListView(viewModel: viewModel)
         }
     }
 }
