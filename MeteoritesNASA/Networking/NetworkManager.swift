@@ -21,7 +21,7 @@ class NetworkManager: NetworkManagerProtocol {
             throw NetworkError.invalidURL
         }
         
-        // Wait for network access permission
+        // Wait for network access
         let config = URLSession.shared.configuration
         config.waitsForConnectivity = true
         

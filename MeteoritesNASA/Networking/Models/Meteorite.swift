@@ -19,3 +19,23 @@ struct Meteorite: Identifiable, Codable {
     let reclong: String?
     let geolocation: Geolocation?
 }
+
+// MARK: - Meteorite example
+#if DEBUG
+extension Meteorite {
+    static var example: Meteorite {
+        Meteorite(
+            name: "Aachen",
+            id: "1",
+            nametype: "Valid",
+            recclass: "L5",
+            mass: "21",
+            fall: "Fell",
+            year: "1880-01-01T00:00:00.000",
+            reclat: "50.775000",
+            reclong: "6.083330",
+            geolocation: Geolocation.example
+        )
+    }
+}
+#endif

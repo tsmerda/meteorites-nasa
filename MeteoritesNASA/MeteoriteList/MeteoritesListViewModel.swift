@@ -14,6 +14,22 @@ final class MeteoritesListViewModel: ObservableObject {
     init() {
         getAllMeteorites()
     }
+    
+    func formattedMass(_ mass: String?) -> String? {
+        guard let massStr = mass, let massValue = Double(massStr) else {
+            return nil
+        }
+        if massValue >= 1000 {
+            let kgValue = massValue / 1000.0
+            if floor(kgValue) == kgValue {
+                return "\(Int(kgValue)) kg"
+            } else {
+                return String(format: "%.2f kg", kgValue)
+            }
+        } else {
+            return "\(Int(massValue)) g"
+        }
+    }
 }
 
 // MARK: -- Network methods

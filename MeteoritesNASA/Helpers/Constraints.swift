@@ -25,7 +25,7 @@ enum Spacing {
 
 enum CornerRadius {
     static let smaller: CGFloat = 4.0
-    static let standard: CGFloat = 5.0
+    static let standard: CGFloat = 6.0
     static let medium: CGFloat = 8.0
     static let big: CGFloat = 10.0
 }

@@ -19,6 +19,12 @@
 		B527BF612B110FD100806578 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF602B110FD100806578 /* NetworkError.swift */; };
 		B527BF632B11141C00806578 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF622B11141C00806578 /* Constraints.swift */; };
 		B527BF652B11169600806578 /* Geolocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF642B11169600806578 /* Geolocation.swift */; };
+		B527BF672B111CB700806578 /* MeteoriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF662B111CB700806578 /* MeteoriteRowView.swift */; };
+		B527BF692B1121A000806578 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF682B1121A000806578 /* Fonts.swift */; };
+		B527BF6B2B11238600806578 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF6A2B11238600806578 /* Colors.swift */; };
+		B527BF702B112C2D00806578 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF6F2B112C2D00806578 /* String+Ext.swift */; };
+		B527BF742B11DA7100806578 /* MeteoriteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF732B11DA7100806578 /* MeteoriteDetailView.swift */; };
+		B527BF762B11DA7B00806578 /* MeteoriteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF752B11DA7B00806578 /* MeteoriteDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		B527BF602B110FD100806578 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		B527BF622B11141C00806578 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		B527BF642B11169600806578 /* Geolocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geolocation.swift; sourceTree = "<group>"; };
+		B527BF662B111CB700806578 /* MeteoriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteRowView.swift; sourceTree = "<group>"; };
+		B527BF682B1121A000806578 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		B527BF6A2B11238600806578 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B527BF6F2B112C2D00806578 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		B527BF732B11DA7100806578 /* MeteoriteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteDetailView.swift; sourceTree = "<group>"; };
+		B527BF752B11DA7B00806578 /* MeteoriteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,10 +83,11 @@
 				B527BF532B110BEF00806578 /* Helpers */,
 				B527BF522B110BD800806578 /* Errors */,
 				B527BF512B110BC200806578 /* Networking */,
-				B527BF432B10EDD300806578 /* MeteoritesListView.swift */,
-				B527BF4F2B11099400806578 /* MeteoritesListViewModel.swift */,
+				B527BF712B11D90000806578 /* MeteoriteList */,
+				B527BF722B11D91200806578 /* MeteoriteDetail */,
 				B527BF452B10EDD400806578 /* Assets.xcassets */,
 				B527BF472B10EDD400806578 /* Preview Content */,
+				B527BF6E2B112AE800806578 /* Extensions */,
 			);
 			path = MeteoritesNASA;
 			sourceTree = "<group>";
@@ -109,6 +122,8 @@
 			children = (
 				B527BF5A2B110ECB00806578 /* ProgressHUDHelper.swift */,
 				B527BF622B11141C00806578 /* Constraints.swift */,
+				B527BF682B1121A000806578 /* Fonts.swift */,
+				B527BF6A2B11238600806578 /* Colors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -120,6 +135,33 @@
 				B527BF642B11169600806578 /* Geolocation.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B527BF6E2B112AE800806578 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B527BF6F2B112C2D00806578 /* String+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B527BF712B11D90000806578 /* MeteoriteList */ = {
+			isa = PBXGroup;
+			children = (
+				B527BF432B10EDD300806578 /* MeteoritesListView.swift */,
+				B527BF4F2B11099400806578 /* MeteoritesListViewModel.swift */,
+				B527BF662B111CB700806578 /* MeteoriteRowView.swift */,
+			);
+			path = MeteoriteList;
+			sourceTree = "<group>";
+		};
+		B527BF722B11D91200806578 /* MeteoriteDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B527BF732B11DA7100806578 /* MeteoriteDetailView.swift */,
+				B527BF752B11DA7B00806578 /* MeteoriteDetailViewModel.swift */,
+			);
+			path = MeteoriteDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,14 +240,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B527BF762B11DA7B00806578 /* MeteoriteDetailViewModel.swift in Sources */,
 				B527BF5D2B110F5800806578 /* NetworkManager.swift in Sources */,
+				B527BF6B2B11238600806578 /* Colors.swift in Sources */,
 				B527BF612B110FD100806578 /* NetworkError.swift in Sources */,
+				B527BF702B112C2D00806578 /* String+Ext.swift in Sources */,
 				B527BF552B110C7300806578 /* Meteorite.swift in Sources */,
 				B527BF442B10EDD300806578 /* MeteoritesListView.swift in Sources */,
 				B527BF632B11141C00806578 /* Constraints.swift in Sources */,
 				B527BF422B10EDD300806578 /* MeteoritesNASAApp.swift in Sources */,
+				B527BF742B11DA7100806578 /* MeteoriteDetailView.swift in Sources */,
 				B527BF502B11099400806578 /* MeteoritesListViewModel.swift in Sources */,
 				B527BF652B11169600806578 /* Geolocation.swift in Sources */,
+				B527BF692B1121A000806578 /* Fonts.swift in Sources */,
+				B527BF672B111CB700806578 /* MeteoriteRowView.swift in Sources */,
 				B527BF5B2B110ECB00806578 /* ProgressHUDHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

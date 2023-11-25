@@ -16,11 +16,11 @@ struct MeteoritesListView: View {
         self.progressHudBinding = ProgressHudBinding(state: viewModel.$progressHudState)
     }
 
-    
     var body: some View {
         VStack {
             list
         }
+        .padding()
     }
 }
 
@@ -29,7 +29,12 @@ private extension MeteoritesListView {
         ScrollView {
             LazyVStack(spacing: Spacing.standard) {
                 ForEach(viewModel.meteoritesList) { meteorite in
-                    Text(meteorite.name)
+                    MeteoriteRowView(
+                        recclass: meteorite.recclass,
+                        name: meteorite.name,
+                        year: meteorite.year,
+                        mass: viewModel.formattedMass(meteorite.mass)
+                    )
                 }
             }
         }
