@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B52111922B122C7300D957BB /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B52111892B122C7200D957BB /* Montserrat-SemiBold.ttf */; };
+		B52111932B122C7300D957BB /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B521118A2B122C7200D957BB /* Montserrat-Regular.ttf */; };
+		B52111942B122C7300D957BB /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B521118B2B122C7200D957BB /* Montserrat-Light.ttf */; };
+		B52111952B122C7300D957BB /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B521118C2B122C7200D957BB /* Montserrat-ExtraBold.ttf */; };
+		B52111962B122C7300D957BB /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B521118D2B122C7200D957BB /* Montserrat-Medium.ttf */; };
+		B52111972B122C7300D957BB /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B521118E2B122C7200D957BB /* Montserrat-Black.ttf */; };
+		B52111982B122C7300D957BB /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B521118F2B122C7300D957BB /* Montserrat-ExtraLight.ttf */; };
+		B52111992B122C7300D957BB /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B52111902B122C7300D957BB /* Montserrat-Bold.ttf */; };
+		B521119A2B122C7300D957BB /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B52111912B122C7300D957BB /* Montserrat-Thin.ttf */; };
+		B521119D2B12362300D957BB /* MeteoriteInfoModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521119C2B12362300D957BB /* MeteoriteInfoModalView.swift */; };
+		B52111A02B12365B00D957BB /* MeteoriteInfoModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521119F2B12365B00D957BB /* MeteoriteInfoModalViewModel.swift */; };
 		B527BF422B10EDD300806578 /* MeteoritesNASAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */; };
 		B527BF442B10EDD300806578 /* MeteoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF432B10EDD300806578 /* MeteoritesListView.swift */; };
 		B527BF462B10EDD400806578 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B527BF452B10EDD400806578 /* Assets.xcassets */; };
@@ -25,9 +36,24 @@
 		B527BF702B112C2D00806578 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF6F2B112C2D00806578 /* String+Ext.swift */; };
 		B527BF742B11DA7100806578 /* MeteoriteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF732B11DA7100806578 /* MeteoriteDetailView.swift */; };
 		B527BF762B11DA7B00806578 /* MeteoriteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF752B11DA7B00806578 /* MeteoriteDetailViewModel.swift */; };
+		B527BF7B2B11E4AB00806578 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7A2B11E4AB00806578 /* NavigationManager.swift */; };
+		B527BF7D2B11EC3E00806578 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7C2B11EC3E00806578 /* MapView.swift */; };
+		B527BF7F2B11EC6800806578 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7E2B11EC6800806578 /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B52111892B122C7200D957BB /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		B521118A2B122C7200D957BB /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		B521118B2B122C7200D957BB /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		B521118C2B122C7200D957BB /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		B521118D2B122C7200D957BB /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		B521118E2B122C7200D957BB /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		B521118F2B122C7300D957BB /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		B52111902B122C7300D957BB /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		B52111912B122C7300D957BB /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		B521119B2B122CC500D957BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B521119C2B12362300D957BB /* MeteoriteInfoModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteInfoModalView.swift; sourceTree = "<group>"; };
+		B521119F2B12365B00D957BB /* MeteoriteInfoModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteInfoModalViewModel.swift; sourceTree = "<group>"; };
 		B527BF3E2B10EDD300806578 /* MeteoritesNASA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeteoritesNASA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesNASAApp.swift; sourceTree = "<group>"; };
 		B527BF432B10EDD300806578 /* MeteoritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesListView.swift; sourceTree = "<group>"; };
@@ -46,6 +72,9 @@
 		B527BF6F2B112C2D00806578 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		B527BF732B11DA7100806578 /* MeteoriteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteDetailView.swift; sourceTree = "<group>"; };
 		B527BF752B11DA7B00806578 /* MeteoriteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteDetailViewModel.swift; sourceTree = "<group>"; };
+		B527BF7A2B11E4AB00806578 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		B527BF7C2B11EC3E00806578 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		B527BF7E2B11EC6800806578 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +89,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B52111882B122C4A00D957BB /* CustomFont */ = {
+			isa = PBXGroup;
+			children = (
+				B521118E2B122C7200D957BB /* Montserrat-Black.ttf */,
+				B52111902B122C7300D957BB /* Montserrat-Bold.ttf */,
+				B521118C2B122C7200D957BB /* Montserrat-ExtraBold.ttf */,
+				B521118F2B122C7300D957BB /* Montserrat-ExtraLight.ttf */,
+				B521118B2B122C7200D957BB /* Montserrat-Light.ttf */,
+				B521118D2B122C7200D957BB /* Montserrat-Medium.ttf */,
+				B521118A2B122C7200D957BB /* Montserrat-Regular.ttf */,
+				B52111892B122C7200D957BB /* Montserrat-SemiBold.ttf */,
+				B52111912B122C7300D957BB /* Montserrat-Thin.ttf */,
+			);
+			path = CustomFont;
+			sourceTree = "<group>";
+		};
+		B521119E2B12363600D957BB /* MeteoriteInfoModal */ = {
+			isa = PBXGroup;
+			children = (
+				B521119C2B12362300D957BB /* MeteoriteInfoModalView.swift */,
+				B521119F2B12365B00D957BB /* MeteoriteInfoModalViewModel.swift */,
+			);
+			path = MeteoriteInfoModal;
+			sourceTree = "<group>";
+		};
+		B52111A12B12369300D957BB /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				B527BF7C2B11EC3E00806578 /* MapView.swift */,
+				B527BF7E2B11EC6800806578 /* MapViewModel.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
 		B527BF352B10EDD300806578 = {
 			isa = PBXGroup;
 			children = (
@@ -79,15 +142,20 @@
 		B527BF402B10EDD300806578 /* MeteoritesNASA */ = {
 			isa = PBXGroup;
 			children = (
+				B521119B2B122CC500D957BB /* Info.plist */,
+				B52111882B122C4A00D957BB /* CustomFont */,
+				B527BF792B11E49800806578 /* Utilities */,
 				B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */,
 				B527BF532B110BEF00806578 /* Helpers */,
 				B527BF522B110BD800806578 /* Errors */,
 				B527BF512B110BC200806578 /* Networking */,
 				B527BF712B11D90000806578 /* MeteoriteList */,
 				B527BF722B11D91200806578 /* MeteoriteDetail */,
+				B52111A12B12369300D957BB /* MapView */,
+				B521119E2B12363600D957BB /* MeteoriteInfoModal */,
+				B527BF6E2B112AE800806578 /* Extensions */,
 				B527BF452B10EDD400806578 /* Assets.xcassets */,
 				B527BF472B10EDD400806578 /* Preview Content */,
-				B527BF6E2B112AE800806578 /* Extensions */,
 			);
 			path = MeteoritesNASA;
 			sourceTree = "<group>";
@@ -164,6 +232,14 @@
 			path = MeteoriteDetail;
 			sourceTree = "<group>";
 		};
+		B527BF792B11E49800806578 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B527BF7A2B11E4AB00806578 /* NavigationManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -228,6 +304,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52111992B122C7300D957BB /* Montserrat-Bold.ttf in Resources */,
+				B52111942B122C7300D957BB /* Montserrat-Light.ttf in Resources */,
+				B52111972B122C7300D957BB /* Montserrat-Black.ttf in Resources */,
+				B52111952B122C7300D957BB /* Montserrat-ExtraBold.ttf in Resources */,
+				B52111932B122C7300D957BB /* Montserrat-Regular.ttf in Resources */,
+				B52111982B122C7300D957BB /* Montserrat-ExtraLight.ttf in Resources */,
+				B52111962B122C7300D957BB /* Montserrat-Medium.ttf in Resources */,
+				B521119A2B122C7300D957BB /* Montserrat-Thin.ttf in Resources */,
+				B52111922B122C7300D957BB /* Montserrat-SemiBold.ttf in Resources */,
 				B527BF492B10EDD400806578 /* Preview Assets.xcassets in Resources */,
 				B527BF462B10EDD400806578 /* Assets.xcassets in Resources */,
 			);
@@ -249,12 +334,17 @@
 				B527BF442B10EDD300806578 /* MeteoritesListView.swift in Sources */,
 				B527BF632B11141C00806578 /* Constraints.swift in Sources */,
 				B527BF422B10EDD300806578 /* MeteoritesNASAApp.swift in Sources */,
+				B52111A02B12365B00D957BB /* MeteoriteInfoModalViewModel.swift in Sources */,
+				B527BF7D2B11EC3E00806578 /* MapView.swift in Sources */,
+				B521119D2B12362300D957BB /* MeteoriteInfoModalView.swift in Sources */,
 				B527BF742B11DA7100806578 /* MeteoriteDetailView.swift in Sources */,
+				B527BF7B2B11E4AB00806578 /* NavigationManager.swift in Sources */,
 				B527BF502B11099400806578 /* MeteoritesListViewModel.swift in Sources */,
 				B527BF652B11169600806578 /* Geolocation.swift in Sources */,
 				B527BF692B1121A000806578 /* Fonts.swift in Sources */,
 				B527BF672B111CB700806578 /* MeteoriteRowView.swift in Sources */,
 				B527BF5B2B110ECB00806578 /* ProgressHUDHelper.swift in Sources */,
+				B527BF7F2B11EC6800806578 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +481,7 @@
 				DEVELOPMENT_TEAM = 925K52UM4K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MeteoritesNASA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -420,6 +511,7 @@
 				DEVELOPMENT_TEAM = 925K52UM4K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MeteoritesNASA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

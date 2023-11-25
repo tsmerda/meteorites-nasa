@@ -8,7 +8,11 @@
 import SwiftUI
 
 enum Fonts {
-    static let headline1 = Font.system(size: 20, weight: .bold)
-    static let body1 = Font.system(size: 15, weight: .regular)
-    static let captions = Font.system(size: 12, weight: .bold)
+    static let headline1 = Font.custom("Montserrat-Bold", size: 20)
+    static let headline2 = Font.custom("Montserrat-SemiBold", size: 17)
+    
+    static let body1 = Font.custom("Montserrat-SemiBold", size: 15)
+    static let body2 = Font.custom("Montserrat-Regular", size: 14)
+    
+    static let captions = Font.custom("Montserrat-Medium", size: 12)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Meteorite: Identifiable, Codable {
+struct Meteorite: Identifiable, Codable, Hashable {
     let name: String
     let id: String
     let nametype: String

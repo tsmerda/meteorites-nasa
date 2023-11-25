@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Geolocation: Codable {
+struct Geolocation: Codable, Hashable {
     let type: String
     let coordinates: [Double]
 }

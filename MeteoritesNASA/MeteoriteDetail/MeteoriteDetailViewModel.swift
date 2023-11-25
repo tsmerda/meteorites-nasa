@@ -14,6 +14,4 @@ final class MeteoriteDetailViewModel: ObservableObject {
     init(meteorite: Meteorite) {
         self.meteorite = meteorite
     }
-    
-    
 }

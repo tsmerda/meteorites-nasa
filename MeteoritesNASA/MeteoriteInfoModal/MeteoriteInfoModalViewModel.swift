@@ -1,0 +1,41 @@
+//
+//  MeteoriteInfoModalViewModel.swift
+//  MeteoritesNASA
+//
+//  Created by Tomáš Šmerda on 25.11.2023.
+//
+
+import Foundation
+
+final class MeteoriteInfoModalViewModel: ObservableObject {
+    let meteorite: Meteorite
+    
+    init(meteorite: Meteorite) {
+        self.meteorite = meteorite
+    }
+    
+    func formattedMass(_ mass: String?) -> String? {
+        guard let massStr = mass, let massValue = Double(massStr) else {
+            return nil
+        }
+        if massValue >= 1000 {
+            let kgValue = massValue / 1000.0
+            if floor(kgValue) == kgValue {
+                return "\(Int(kgValue)) kilogramů"
+            } else {
+                return String(format: "%.2f kilogramů", kgValue)
+            }
+        } else {
+            return "\(Int(massValue)) gramů"
+        }
+    }
+    
+    func getCoordinates() -> String? {
+        if let latitude = meteorite.reclat,
+           let longitude = meteorite.reclong {
+            return "\(latitude), \(longitude)"
+        } else {
+            return nil
+        }
+    }
+}
