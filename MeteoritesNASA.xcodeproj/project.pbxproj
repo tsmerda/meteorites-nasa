@@ -39,6 +39,7 @@
 		B527BF7B2B11E4AB00806578 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7A2B11E4AB00806578 /* NavigationManager.swift */; };
 		B527BF7D2B11EC3E00806578 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7C2B11EC3E00806578 /* MapView.swift */; };
 		B527BF7F2B11EC6800806578 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7E2B11EC6800806578 /* MapViewModel.swift */; };
+		B59A16992B13365B005BA2FF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A16982B13365B005BA2FF /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		B527BF7A2B11E4AB00806578 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		B527BF7C2B11EC3E00806578 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		B527BF7E2B11EC6800806578 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		B59A16982B13365B005BA2FF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,10 +144,9 @@
 		B527BF402B10EDD300806578 /* MeteoritesNASA */ = {
 			isa = PBXGroup;
 			children = (
-				B521119B2B122CC500D957BB /* Info.plist */,
+				B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */,
 				B52111882B122C4A00D957BB /* CustomFont */,
 				B527BF792B11E49800806578 /* Utilities */,
-				B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */,
 				B527BF532B110BEF00806578 /* Helpers */,
 				B527BF522B110BD800806578 /* Errors */,
 				B527BF512B110BC200806578 /* Networking */,
@@ -154,6 +155,7 @@
 				B52111A12B12369300D957BB /* MapView */,
 				B521119E2B12363600D957BB /* MeteoriteInfoModal */,
 				B527BF6E2B112AE800806578 /* Extensions */,
+				B521119B2B122CC500D957BB /* Info.plist */,
 				B527BF452B10EDD400806578 /* Assets.xcassets */,
 				B527BF472B10EDD400806578 /* Preview Content */,
 			);
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				B527BF7A2B11E4AB00806578 /* NavigationManager.swift */,
+				B59A16982B13365B005BA2FF /* LocationManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				B527BF502B11099400806578 /* MeteoritesListViewModel.swift in Sources */,
 				B527BF652B11169600806578 /* Geolocation.swift in Sources */,
 				B527BF692B1121A000806578 /* Fonts.swift in Sources */,
+				B59A16992B13365B005BA2FF /* LocationManager.swift in Sources */,
 				B527BF672B111CB700806578 /* MeteoriteRowView.swift in Sources */,
 				B527BF5B2B110ECB00806578 /* ProgressHUDHelper.swift in Sources */,
 				B527BF7F2B11EC6800806578 /* MapViewModel.swift in Sources */,
@@ -482,6 +486,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeteoritesNASA/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For detailed information the map needs to target your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -512,6 +517,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeteoritesNASA/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For detailed information the map needs to target your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -36,31 +36,17 @@ struct MeteoriteRowView: View {
 private extension MeteoriteRowView {
     @ViewBuilder
     var imageView: some View {
-        AsyncImage(url: URL(string: "https://preview.free3d.com/img/2016/02/2174859935194547685/zinjv08j.jpg")) { phase in
-            switch phase {
-            case .empty:
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(CornerRadius.standard)
-            case .failure:
-                Image(systemName: "photo")
-                    .foregroundColor(Colors.textLight)
-            @unknown default:
-                EmptyView()
-            }
-        }
-        .frame(width: 80, height: 80)
-        .cornerRadius(CornerRadius.standard)
-        .padding(Padding.small)
-        .overlay(
-            RoundedRectangle(cornerRadius: CornerRadius.big)
-                .stroke(Colors.textLight, lineWidth: 1)
-                .opacity(0.4)
-        )
+        Image("meteorite-icon")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 60, height: 60)
+            .cornerRadius(CornerRadius.standard)
+            .padding(Padding.small)
+            .overlay(
+                RoundedRectangle(cornerRadius: CornerRadius.big)
+                    .stroke(Colors.textLight, lineWidth: 1)
+                    .opacity(0.4)
+            )
     }
     var infoView: some View {
         VStack(alignment: .leading, spacing: Spacing.small) {

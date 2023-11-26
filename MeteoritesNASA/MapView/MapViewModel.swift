@@ -6,11 +6,26 @@
 //
 
 import Foundation
+import MapKit
 
 final class MapViewModel: ObservableObject {
+    let title: String
     let geolocation: Geolocation
+    let goBackAction: () -> Void
     
-    init(geolocation: Geolocation) {
+    init(
+        title: String,
+        geolocation: Geolocation,
+        goBackAction: @escaping () -> Void
+    ) {
+        self.title = title
         self.geolocation = geolocation
+        self.goBackAction = goBackAction
+    }
+    
+    func createMapItemForMeteorite(latitude: Double, longitude: Double) -> MKMapItem {
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let placemark = MKPlacemark(coordinate: coordinate)
+        return MKMapItem(placemark: placemark)
     }
 }

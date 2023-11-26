@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class MeteoriteInfoModalViewModel: ObservableObject {
     let meteorite: Meteorite
@@ -37,5 +38,18 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
         } else {
             return nil
         }
+    }
+    
+    func getUserDistanceFromMeteorite() -> String {
+        guard let userCoordinates = LocationManager.shared.userLocation,
+              let meteoriteCoordinates = meteorite.geolocation?.coordinates else {
+            return "Unknown distance"
+        }
+        
+        let userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
+        let meteoriteLocation = CLLocation(latitude: meteoriteCoordinates[1], longitude: meteoriteCoordinates[0])
+        
+        let distanceInKilometers = userLocation.distance(from: meteoriteLocation) / 1000
+        return String(format: "%.2f kilometrů", distanceInKilometers)
     }
 }

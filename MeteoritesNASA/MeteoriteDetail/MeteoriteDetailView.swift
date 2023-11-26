@@ -23,40 +23,22 @@ struct MeteoriteDetailView: View {
         VStack {
             mapView
         }
-        .edgesIgnoringSafeArea(.all)
         .navigationBarBackButtonHidden()
-        .overlay(
-            actionRowView, alignment: .topLeading
-        )
         .sheet(isPresented: $showMeteoriteDetail) {
             meteoriteInfoModalView
         }
     }
 }
 
-// TODO: -- calculate my distance from this meteorite
 private extension MeteoriteDetailView {
-    var actionRowView: some View {
-        HStack {
-            actionCircleButton("arrow.left") {
-                nav.goBack()
-            }
-            Spacer()
-            Text("Meteorite \(viewModel.meteorite.name)")
-                .font(Fonts.headline2)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, Padding.standard)
-            Spacer()
-            actionCircleButton("location") {
-                debugPrint("Show my location")
-            }
-        }
-        .padding()
-    }
     @ViewBuilder
     var mapView: some View {
         if let geolocation = viewModel.meteorite.geolocation {
-            let mapViewModel = MapViewModel(geolocation: geolocation)
+            let mapViewModel = MapViewModel(
+                title: viewModel.meteorite.name,
+                geolocation: geolocation,
+                goBackAction: { nav.goBack() }
+            )
                 MapView(viewModel: mapViewModel)
         }
     }
@@ -70,19 +52,6 @@ private extension MeteoriteDetailView {
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
         .interactiveDismissDisabled()
         .presentationDragIndicator(.automatic)
-    }
-    func actionCircleButton(_ icon: String, _ action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Circle()
-                .fill(Color.white)
-                .frame(width: 50, height: 50)
-                .shadow(color: Colors.black.opacity(0.1), radius: 2, x: 0, y: 2)
-                .overlay(
-                    Image(systemName: icon)
-                        .imageScale(.large)
-                        .foregroundColor(Color.accentColor)
-                )
-        }
     }
 }
 

@@ -73,7 +73,7 @@ private extension MeteoriteInfoModalView {
             }
             Divider()
             VStack(spacing: Spacing.small) {
-                detailInfoRow("Vzdálenost od místa dopadu", "520 km")
+                detailInfoRow("Vzdálenost od místa dopadu", viewModel.getUserDistanceFromMeteorite())
                 detailInfoRow("Hmotnost", viewModel.formattedMass(viewModel.meteorite.mass))
                 detailInfoRow("Datum dopadu", viewModel.meteorite.year?.toFormattedDate(outputFormat: "d. MMMM yyyy"))
                 detailInfoRow("Přesné souřadnice", viewModel.getCoordinates())

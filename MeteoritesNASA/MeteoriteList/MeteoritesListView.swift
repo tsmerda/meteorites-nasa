@@ -22,6 +22,7 @@ struct MeteoritesListView: View {
             VStack {
                 list
             }
+            .navigationTitle("Meteorites")
             .padding()
             .navigationDestination(for: Meteorite.self) { meteorite in
                 MeteoriteDetailView(
@@ -29,6 +30,9 @@ struct MeteoritesListView: View {
                         meteorite: meteorite
                     )
                 )
+            }
+            .onAppear {
+                LocationManager.shared.requestLocationPermission()
             }
         }
         .environmentObject(nav)
