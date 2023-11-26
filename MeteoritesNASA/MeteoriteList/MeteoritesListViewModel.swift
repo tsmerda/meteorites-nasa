@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class MeteoritesListViewModel: ObservableObject {
     @Published var meteoritesList: [Meteorite] = []
+    @Published var nearestMeteorites: [Meteorite] = []
+    @Published var showNearest: Bool = false
     @Published private(set) var progressHudState: ProgressHudState = .shouldHideProgress
     
     init() {
@@ -29,6 +32,33 @@ final class MeteoritesListViewModel: ObservableObject {
         } else {
             return "\(Int(massValue)) g"
         }
+    }
+    
+    func findNearestMeteorites() {
+        showNearest.toggle()
+        if showNearest {
+            let sortedByDistance = self.meteoritesList.sorted {
+                self.distanceFromUser(to: $0) < self.distanceFromUser(to: $1)
+            }
+            nearestMeteorites = Array(sortedByDistance.prefix(10))
+        }
+    }
+}
+
+// MARK: -- Private methods
+
+private extension MeteoritesListViewModel {
+    func distanceFromUser(to meteorite: Meteorite) -> Double {
+        guard let userLocation = LocationManager.shared.userLocation,
+              let meteoriteLat = meteorite.geolocation?.coordinates[1],
+              let meteoriteLon = meteorite.geolocation?.coordinates[0] else {
+            return Double.greatestFiniteMagnitude
+        }
+        
+        let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        let meteoriteCLLocation = CLLocation(latitude: meteoriteLat, longitude: meteoriteLon)
+        
+        return userCLLocation.distance(from: meteoriteCLLocation)
     }
 }
 

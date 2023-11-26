@@ -22,7 +22,26 @@ struct MeteoritesListView: View {
             VStack {
                 list
             }
-            .navigationTitle("Meteorites")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button{
+                        viewModel.findNearestMeteorites()
+                    } label: {
+                        HStack {
+                            if !viewModel.showNearest {
+                                Text("Nearest")
+                                Image(systemName: "line.3.horizontal.decrease.circle")
+                                    .imageScale(.large)
+                            } else {
+                                Text("All")
+                                Image(systemName: "line.3.horizontal.decrease.circle")
+                                    .imageScale(.large)
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle(!viewModel.showNearest ? "Všechny meteority" : "Nejbližší meteority")
             .padding()
             .navigationDestination(for: Meteorite.self) { meteorite in
                 MeteoriteDetailView(
@@ -43,7 +62,7 @@ private extension MeteoritesListView {
     var list: some View {
         ScrollView {
             LazyVStack(spacing: Spacing.standard) {
-                ForEach(viewModel.meteoritesList, id: \.id) { meteorite in
+                ForEach(viewModel.showNearest ? viewModel.nearestMeteorites : viewModel.meteoritesList, id: \.id) { meteorite in
                     Button(action: {
                         nav.goToMeteoriteDetail(meteorite)
                     }) {
