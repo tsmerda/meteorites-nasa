@@ -61,10 +61,7 @@ private extension MapView {
                 Spacer()
                 actionCircleButton("scalemass.fill") {
                     position = .item(
-                        viewModel.createMapItemForMeteorite(
-                            latitude: viewModel.geolocation.coordinates[0],
-                            longitude: viewModel.geolocation.coordinates[1]
-                        )
+                        viewModel.getMeteoritePosition()
                     )
                 }
             }
