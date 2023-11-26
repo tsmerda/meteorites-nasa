@@ -22,6 +22,10 @@ class NavigationStateManager: ObservableObject {
         path.append(meteorite)
     }
     
+    func goToNearestMeteoritesDetail(_ meteorites: [Meteorite]) {
+        path.append(meteorites)
+    }
+    
     func errorGoToView(_ view: String) {
         debugPrint("Error go to view: \(view)")
     }

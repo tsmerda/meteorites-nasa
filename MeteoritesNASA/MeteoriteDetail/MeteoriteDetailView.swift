@@ -37,7 +37,8 @@ private extension MeteoriteDetailView {
             let mapViewModel = MapViewModel(
                 title: viewModel.meteorite.name,
                 geolocation: geolocation,
-                goBackAction: { nav.goBack() }
+                goBackAction: { nav.goBack() },
+                onSelectMeteoriteAction: nil
             )
                 MapView(viewModel: mapViewModel)
         }

@@ -20,16 +20,42 @@ struct MapView: View {
     var body: some View {
         ZStack {
             Map(position: $position) {
-                Annotation(
-                    "",
-                    coordinate: CLLocationCoordinate2D(
-                        latitude: viewModel.geolocation.coordinates[1],
-                        longitude: viewModel.geolocation.coordinates[0]
-                    )
-                ) {
-                    meteoritePoint
+                if let latitude = viewModel.geolocation?.coordinates[1],
+                   let longitude = viewModel.geolocation?.coordinates[0] {
+                    Annotation(
+                        "",
+                        coordinate: CLLocationCoordinate2D(
+                            latitude: latitude,
+                            longitude: longitude
+                        )
+                    ) {
+                        meteoritePoint
+                    }
                 }
+                
                 UserAnnotation()
+                
+                if let nearestMeteorites = viewModel.nearestMeteorites {
+                    ForEach(nearestMeteorites, id: \.id) { meteorite in
+                        if let latitude = meteorite.geolocation?.coordinates[1],
+                           let longitude = meteorite.geolocation?.coordinates[0] {
+                            Annotation(
+                                "Meteorit \(meteorite.name)",
+                                coordinate: CLLocationCoordinate2D(
+                                    latitude: latitude,
+                                    longitude: longitude
+                                )
+                            ) {
+                                Button(action: {
+                                    // TODO: -- fix optional
+                                    viewModel.onSelectMeteoriteAction!(meteorite)
+                                }) {
+                                    meteoritePoint
+                                }
+                            }
+                        }
+                    }
+                }
             }
             .edgesIgnoringSafeArea(.all)
             .mapControlVisibility(.hidden)
@@ -48,7 +74,7 @@ private extension MapView {
                     viewModel.goBackAction()
                 }
                 Spacer()
-                Text("Meteorite \(viewModel.title)")
+                Text(viewModel.title)
                     .font(Fonts.headline2)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, Padding.standard)
@@ -57,12 +83,16 @@ private extension MapView {
                     position = .userLocation(fallback: .automatic)
                 }
             }
-            HStack {
-                Spacer()
-                actionCircleButton("scalemass.fill") {
-                    position = .item(
-                        viewModel.getMeteoritePosition()
-                    )
+            if viewModel.nearestMeteorites == nil {
+                HStack {
+                    Spacer()
+                    actionCircleButton("scalemass.fill") {
+                        if let meteoritePosition = viewModel.getMeteoritePosition() {
+                            position = .item(
+                                meteoritePosition
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -118,6 +148,8 @@ private extension MapView {
         viewModel: MapViewModel(
             title: "Title",
             geolocation: Geolocation.example,
-            goBackAction: {})
+            goBackAction: {},
+            onSelectMeteoriteAction: { _ in }
+        )
     )
 }

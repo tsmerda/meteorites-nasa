@@ -16,7 +16,7 @@ enum Padding {
 }
 
 enum Spacing {
-    static let small: CGFloat = 8.0
+    static let small: CGFloat = 6.0
     static let standard: CGFloat = 16.0
     static let medium: CGFloat = 24.0
     static let big: CGFloat = 32.0

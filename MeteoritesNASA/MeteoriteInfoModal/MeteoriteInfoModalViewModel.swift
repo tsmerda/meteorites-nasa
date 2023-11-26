@@ -9,10 +9,15 @@ import Foundation
 import CoreLocation
 
 final class MeteoriteInfoModalViewModel: ObservableObject {
-    let meteorite: Meteorite
+    let meteorite: Meteorite?
+    let withRouteButton: Bool
     
-    init(meteorite: Meteorite) {
+    init(
+        meteorite: Meteorite?,
+        withRouteButton: Bool = false
+    ) {
         self.meteorite = meteorite
+        self.withRouteButton = withRouteButton
     }
     
     func formattedMass(_ mass: String?) -> String? {
@@ -32,8 +37,8 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
     }
     
     func getCoordinates() -> String? {
-        if let latitude = meteorite.reclat,
-           let longitude = meteorite.reclong {
+        if let latitude = meteorite?.reclat,
+           let longitude = meteorite?.reclong {
             return "\(latitude), \(longitude)"
         } else {
             return nil
@@ -42,7 +47,7 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
     
     func getUserDistanceFromMeteorite() -> String {
         guard let userCoordinates = LocationManager.shared.userLocation,
-              let meteoriteCoordinates = meteorite.geolocation?.coordinates else {
+              let meteoriteCoordinates = meteorite?.geolocation?.coordinates else {
             return "Unknown distance"
         }
         

@@ -18,6 +18,10 @@ struct MeteoriteInfoModalView: View {
         VStack {
             topLabelView
             meteoriteDetailView
+            Spacer()
+            if viewModel.withRouteButton {
+                routeButton
+            }
         }
         .padding(
             EdgeInsets(
@@ -42,13 +46,15 @@ private extension MeteoriteInfoModalView {
                         .foregroundColor(Colors.textDark)
                 )
             VStack(alignment: .leading, spacing: Spacing.small) {
-                Text(viewModel.meteorite.name)
+                Text(viewModel.meteorite?.name ?? "")
                     .font(Fonts.headline1)
                     .foregroundStyle(Colors.textDark)
-                Text("Třída \(viewModel.meteorite.recclass)")
+                Text("Třída \(viewModel.meteorite?.recclass ?? "")")
+                    .font(Fonts.captions)
                     .foregroundStyle(Colors.textLight)
             }
             Spacer()
+            // TODO: -- open Apple maps with coordinates
             Circle()
                 .fill(Color.accentColor)
                 .frame(width: 44, height: 44)
@@ -67,22 +73,21 @@ private extension MeteoriteInfoModalView {
                     .font(Fonts.body1)
                     .foregroundStyle(Colors.textDark)
                 Spacer()
-                Text("ID: \(viewModel.meteorite.id)")
+                Text("ID: \(viewModel.meteorite?.id ?? "Unknown")")
                     .font(Fonts.body1)
                     .foregroundStyle(Colors.textLight)
             }
             Divider()
             VStack(spacing: Spacing.small) {
                 detailInfoRow("Vzdálenost od místa dopadu", viewModel.getUserDistanceFromMeteorite())
-                detailInfoRow("Hmotnost", viewModel.formattedMass(viewModel.meteorite.mass))
-                detailInfoRow("Datum dopadu", viewModel.meteorite.year?.toFormattedDate(outputFormat: "d. MMMM yyyy"))
+                detailInfoRow("Hmotnost", viewModel.formattedMass(viewModel.meteorite?.mass))
+                detailInfoRow("Datum dopadu", viewModel.meteorite?.year?.toFormattedDate(outputFormat: "d. MMMM yyyy"))
                 detailInfoRow("Přesné souřadnice", viewModel.getCoordinates())
             }
             .padding(.top, Padding.small)
-            Spacer()
         }
+        .padding(.bottom, Padding.standard)
     }
-    
     func detailInfoRow(_ label: String, _ value: String?) -> some View {
         HStack {
             Text(label)
@@ -91,6 +96,15 @@ private extension MeteoriteInfoModalView {
         }
         .foregroundStyle(Colors.textDark)
         .font(Fonts.captions)
+    }
+    var routeButton: PrimaryButton {
+        PrimaryButton(
+            icon: "location.north.circle",
+            title: "Navigovat k meteoritu",
+            action: {
+                // TODO: -- route to meteorite
+            }
+        )
     }
 }
 
