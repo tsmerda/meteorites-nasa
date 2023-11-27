@@ -36,7 +36,7 @@ private extension NearestMeteoritesDetailView {
     @ViewBuilder
     var mapView: some View {
             let mapViewModel = MapViewModel(
-                title: "Nearest meteorites",
+                title: L.NearestMeteoritesDetail.nearestMeteorites,
                 nearestMeteorites: viewModel.meteorites,
                 goBackAction: { nav.goBack() },
                 onSelectMeteoriteAction: {

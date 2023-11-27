@@ -22,7 +22,7 @@ struct MeteoritesListView: View {
             VStack {
                 list
             }
-            .navigationTitle(!viewModel.showNearest ? "Všechny meteority" : "Nejbližší meteority")
+            .navigationTitle(!viewModel.showNearest ? L.MeteoriteList.allMeteorites : L.MeteoriteList.nearestMeteorites)
             .padding()
             .navigationDestination(for: Meteorite.self) { meteorite in
                 MeteoriteDetailView(
@@ -52,7 +52,7 @@ private extension MeteoritesListView {
         if viewModel.nearestMeteorites != [] || viewModel.meteoritesList != [] {
             PrimaryButton(
                 icon: "mappin.and.ellipse",
-                title: "Show nearest meteorites",
+                title: L.MeteoriteList.showNearestMeteorites,
                 action: {
                     viewModel.findNearestMeteorites()
                     nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)

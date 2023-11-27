@@ -49,7 +49,7 @@ private extension MeteoriteInfoModalView {
                 Text(viewModel.meteorite?.name ?? "")
                     .font(Fonts.headline1)
                     .foregroundStyle(Colors.textDark)
-                Text("Třída \(viewModel.meteorite?.recclass ?? "")")
+                Text("\(L.MeteoriteInfoModal.recclass) \(viewModel.meteorite?.recclass ?? "")")
                     .font(Fonts.captions)
                     .foregroundStyle(Colors.textLight)
             }
@@ -69,20 +69,20 @@ private extension MeteoriteInfoModalView {
     var meteoriteDetailView: some View {
         VStack {
             HStack {
-                Text("Detailní informace")
+                Text(L.MeteoriteInfoModal.detailInfo)
                     .font(Fonts.body1)
                     .foregroundStyle(Colors.textDark)
                 Spacer()
-                Text("ID: \(viewModel.meteorite?.id ?? "Unknown")")
+                Text("\(L.MeteoriteInfoModal.id): \(viewModel.meteorite?.id ?? L.Generic.unknown)")
                     .font(Fonts.body1)
                     .foregroundStyle(Colors.textLight)
             }
             Divider()
             VStack(spacing: Spacing.small) {
-                detailInfoRow("Vzdálenost od místa dopadu", viewModel.getUserDistanceFromMeteorite())
-                detailInfoRow("Hmotnost", viewModel.formattedMass(viewModel.meteorite?.mass))
-                detailInfoRow("Datum dopadu", viewModel.meteorite?.year?.toFormattedDate(outputFormat: "d. MMMM yyyy"))
-                detailInfoRow("Přesné souřadnice", viewModel.getCoordinates())
+                detailInfoRow(L.MeteoriteInfoModal.distance, viewModel.getUserDistanceFromMeteorite())
+                detailInfoRow(L.MeteoriteInfoModal.mass, viewModel.formattedMass(viewModel.meteorite?.mass))
+                detailInfoRow(L.MeteoriteInfoModal.date, viewModel.meteorite?.year?.toFormattedDate(outputFormat: "d. MMMM yyyy"))
+                detailInfoRow(L.MeteoriteInfoModal.coordinates, viewModel.getCoordinates())
             }
             .padding(.top, Padding.small)
         }
@@ -92,7 +92,7 @@ private extension MeteoriteInfoModalView {
         HStack {
             Text(label)
             Spacer()
-            Text(value ?? "Unknown info")
+            Text(value ?? L.Generic.unknown)
         }
         .foregroundStyle(Colors.textDark)
         .font(Fonts.captions)
@@ -100,7 +100,7 @@ private extension MeteoriteInfoModalView {
     var routeButton: PrimaryButton {
         PrimaryButton(
             icon: "location.north.circle",
-            title: "Navigovat k meteoritu",
+            title: L.MeteoriteInfoModal.navigateToMeteorite,
             action: {
                 // TODO: -- route to meteorite
             }

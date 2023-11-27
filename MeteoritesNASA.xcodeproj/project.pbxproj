@@ -18,6 +18,8 @@
 		B521119A2B122C7300D957BB /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B52111912B122C7300D957BB /* Montserrat-Thin.ttf */; };
 		B521119D2B12362300D957BB /* MeteoriteInfoModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521119C2B12362300D957BB /* MeteoriteInfoModalView.swift */; };
 		B52111A02B12365B00D957BB /* MeteoriteInfoModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B521119F2B12365B00D957BB /* MeteoriteInfoModalViewModel.swift */; };
+		B52416632B14E82400ED4866 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52416622B14E82400ED4866 /* Localization.swift */; };
+		B52416662B14E9BA00ED4866 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B52416682B14E9BA00ED4866 /* Localizable.strings */; };
 		B527BF422B10EDD300806578 /* MeteoritesNASAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */; };
 		B527BF442B10EDD300806578 /* MeteoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF432B10EDD300806578 /* MeteoritesListView.swift */; };
 		B527BF462B10EDD400806578 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B527BF452B10EDD400806578 /* Assets.xcassets */; };
@@ -58,6 +60,9 @@
 		B521119B2B122CC500D957BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B521119C2B12362300D957BB /* MeteoriteInfoModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteInfoModalView.swift; sourceTree = "<group>"; };
 		B521119F2B12365B00D957BB /* MeteoriteInfoModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteInfoModalViewModel.swift; sourceTree = "<group>"; };
+		B52416622B14E82400ED4866 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		B52416672B14E9BA00ED4866 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B52416692B14E9BB00ED4866 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B527BF3E2B10EDD300806578 /* MeteoritesNASA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeteoritesNASA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesNASAApp.swift; sourceTree = "<group>"; };
 		B527BF432B10EDD300806578 /* MeteoritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesListView.swift; sourceTree = "<group>"; };
@@ -131,6 +136,15 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
+		B52416612B14E75C00ED4866 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				B52416622B14E82400ED4866 /* Localization.swift */,
+				B52416682B14E9BA00ED4866 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		B527BF352B10EDD300806578 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +212,7 @@
 		B527BF532B110BEF00806578 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B52416612B14E75C00ED4866 /* Localization */,
 				B527BF5A2B110ECB00806578 /* ProgressHUDHelper.swift */,
 				B527BF622B11141C00806578 /* Constraints.swift */,
 				B527BF682B1121A000806578 /* Fonts.swift */,
@@ -308,11 +323,12 @@
 			};
 			buildConfigurationList = B527BF392B10EDD300806578 /* Build configuration list for PBXProject "MeteoritesNASA" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = cs;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				cs,
 			);
 			mainGroup = B527BF352B10EDD300806578;
 			packageReferences = (
@@ -333,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B52111992B122C7300D957BB /* Montserrat-Bold.ttf in Resources */,
+				B52416662B14E9BA00ED4866 /* Localizable.strings in Resources */,
 				B52111942B122C7300D957BB /* Montserrat-Light.ttf in Resources */,
 				B52111972B122C7300D957BB /* Montserrat-Black.ttf in Resources */,
 				B52111952B122C7300D957BB /* Montserrat-ExtraBold.ttf in Resources */,
@@ -359,6 +376,7 @@
 				B527BF612B110FD100806578 /* NetworkError.swift in Sources */,
 				B527BF702B112C2D00806578 /* String+Ext.swift in Sources */,
 				B527BF552B110C7300806578 /* Meteorite.swift in Sources */,
+				B52416632B14E82400ED4866 /* Localization.swift in Sources */,
 				B59A16A62B139C2E005BA2FF /* PrimaryButton.swift in Sources */,
 				B527BF442B10EDD300806578 /* MeteoritesListView.swift in Sources */,
 				B527BF632B11141C00806578 /* Constraints.swift in Sources */,
@@ -381,6 +399,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B52416682B14E9BA00ED4866 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B52416672B14E9BA00ED4866 /* cs */,
+				B52416692B14E9BB00ED4866 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B527BF4A2B10EDD400806578 /* Debug */ = {

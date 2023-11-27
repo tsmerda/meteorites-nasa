@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  MeteoritesNASA
+
+  Created by Tomáš Šmerda on 27.11.2023.
+  
+*/
+
+// MARK: - Generic
+"generic_unknown" = "Neznámá hodnota";
+
+// MARK: - MeteoriteList
+"meteorite_list_all_meteorites" = "Všechny meteority";
+"meteorite_list_nearest_meteorites" = "Nejbližší meteority";
+"meteorite_list_show_nearest_meteorites" = "Zobrazit nejbližší meteority";
+
+// MARK: - NearestMeteoritesDetail
+"nearest_meteorites_detail_nearest_meteorites" = "Nejbližší meteority";
+
+// MARK: - Map
+"map_alert_title" = "Upozornění";
+"map_alert_text" = "Nejsou k dispozici žádné meteority.";
+"map_alert_dismiss" = "OK";
+
+// MARK: - MeteoriteInfoModal
+"meteorite_info_modal_recclass" = "Třída";
+"meteorite_info_modal_detail_info" = "Detailní informace";
+"meteorite_info_modal_distance" = "Vzdálenost od místa dopadu";
+"meteorite_info_modal_mass" = "Hmotnost";
+"meteorite_info_modal_date" = "Datum dopadu";
+"meteorite_info_modal_coordinates" = "Souřadnice";
+"meteorite_info_modal_id" = "ID";
+"meteorite_info_modal_navigate_to_meteorite" = "Navigovat k meteoritu";
+"meteorite_info_modal_kilograms" = "kilogramů";
+"meteorite_info_modal_grams" = "gramů";
+"meteorite_info_modal_kilometers" = "kilometrů";

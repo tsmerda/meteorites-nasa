@@ -53,7 +53,7 @@ private extension MeteoriteRowView {
             Text(recclass)
                 .font(Fonts.captions)
                 .foregroundStyle(Colors.textLight)
-            Text(name ?? "Unknown name")
+            Text(name ?? L.Generic.unknown)
                 .font(Fonts.headline1)
                 .foregroundStyle(Colors.textDark)
             HStack {
@@ -64,7 +64,7 @@ private extension MeteoriteRowView {
                 }
                 Spacer()
                 Image(systemName: "clock")
-                Text(year?.toFormattedDate() ?? "Unknown date")
+                Text(year?.toFormattedDate() ?? L.Generic.unknown)
                     .font(Fonts.body1)
             }
             .foregroundStyle(Colors.textDark)

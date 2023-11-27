@@ -67,9 +67,9 @@ struct MapView: View {
             .mapControlVisibility(.hidden)
             .alert(isPresented: $showNoMeteoritesAlert) {
                 Alert(
-                    title: Text("Upozornění"),
-                    message: Text("Nejsou k dispozici žádné meteority."),
-                    dismissButton: .default(Text("OK"))
+                    title: Text(L.Map.alertTitle),
+                    message: Text(L.Map.alertText),
+                    dismissButton: .default(Text(L.Map.alertDismiss))
                 )
             }
         }

@@ -27,12 +27,12 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
         if massValue >= 1000 {
             let kgValue = massValue / 1000.0
             if floor(kgValue) == kgValue {
-                return "\(Int(kgValue)) kilogramů"
+                return "\(Int(kgValue)) \(L.MeteoriteInfoModal.kilograms)"
             } else {
-                return String(format: "%.2f kilogramů", kgValue)
+                return String(format: "%.2f \(L.MeteoriteInfoModal.kilograms)", kgValue)
             }
         } else {
-            return "\(Int(massValue)) gramů"
+            return "\(Int(massValue)) \(L.MeteoriteInfoModal.grams)"
         }
     }
     
@@ -48,13 +48,13 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
     func getUserDistanceFromMeteorite() -> String {
         guard let userCoordinates = LocationManager.shared.userLocation,
               let meteoriteCoordinates = meteorite?.geolocation?.coordinates else {
-            return "Unknown distance"
+            return L.Generic.unknown
         }
         
         let userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
         let meteoriteLocation = CLLocation(latitude: meteoriteCoordinates[1], longitude: meteoriteCoordinates[0])
         
         let distanceInKilometers = userLocation.distance(from: meteoriteLocation) / 1000
-        return String(format: "%.2f kilometrů", distanceInKilometers)
+        return String(format: "%.2f \(L.MeteoriteInfoModal.kilometers)", distanceInKilometers)
     }
 }
