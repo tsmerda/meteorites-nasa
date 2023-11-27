@@ -16,7 +16,7 @@ struct MeteoritesListView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.progressHudBinding = ProgressHudBinding(state: viewModel.$progressHudState)
     }
-
+    
     var body: some View {
         NavigationStack(path: $nav.path) {
             VStack {
@@ -47,15 +47,18 @@ struct MeteoritesListView: View {
 }
 
 private extension MeteoritesListView {
-    var showNearestButton: PrimaryButton {
-        PrimaryButton(
-            icon: "mappin.and.ellipse",
-            title: "Show nearest meteorites",
-            action: {
-                viewModel.findNearestMeteorites()
-                nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
-            }
-        )
+    @ViewBuilder
+    var showNearestButton: PrimaryButton? {
+        if viewModel.nearestMeteorites != [] || viewModel.meteoritesList != [] {
+            PrimaryButton(
+                icon: "mappin.and.ellipse",
+                title: "Show nearest meteorites",
+                action: {
+                    viewModel.findNearestMeteorites()
+                    nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
+                }
+            )
+        }
     }
     var list: some View {
         ScrollView {
@@ -81,8 +84,6 @@ private extension MeteoritesListView {
 
 #Preview {
     MeteoritesListView(
-        viewModel: MeteoritesListViewModel(
-            
-        )
+        viewModel: MeteoritesListViewModel()
     )
 }
