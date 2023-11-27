@@ -12,9 +12,15 @@ struct MapView: View {
     @StateObject private var viewModel: MapViewModel
     @State private var animationScale = 1.0
     @State private var position: MapCameraPosition = .automatic
+    @State private var showNoMeteoritesAlert = false
     
     init(viewModel: MapViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
+        self._showNoMeteoritesAlert = State(
+            initialValue: viewModel.geolocation?.coordinates[1] == 0 &&
+            viewModel.geolocation?.coordinates[0] == 0 &&
+            viewModel.nearestMeteorites == nil
+        )
     }
     
     var body: some View {
@@ -59,10 +65,22 @@ struct MapView: View {
             }
             .edgesIgnoringSafeArea(.all)
             .mapControlVisibility(.hidden)
+            .alert(isPresented: $showNoMeteoritesAlert) {
+                Alert(
+                    title: Text("Upozornění"),
+                    message: Text("Nejsou k dispozici žádné meteority."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
         .overlay(
             actionRowView, alignment: .topLeading
         )
+        .onAppear {
+            if showNoMeteoritesAlert {
+                position = .userLocation(fallback: .automatic)
+            }
+        }
     }
 }
 

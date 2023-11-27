@@ -20,7 +20,6 @@ struct MeteoritesListView: View {
     var body: some View {
         NavigationStack(path: $nav.path) {
             VStack {
-                showNearestButton
                 list
             }
             .navigationTitle(!viewModel.showNearest ? "Všechny meteority" : "Nejbližší meteority")
@@ -60,6 +59,7 @@ private extension MeteoritesListView {
     }
     var list: some View {
         ScrollView {
+            showNearestButton
             LazyVStack(spacing: Spacing.standard) {
                 ForEach(viewModel.showNearest ? viewModel.nearestMeteorites : viewModel.meteoritesList, id: \.id) { meteorite in
                     Button(action: {
