@@ -49,22 +49,20 @@ struct MeteoritesListView: View {
 private extension MeteoritesListView {
     @ViewBuilder
     var showNearestButton: PrimaryButton? {
-        if viewModel.nearestMeteorites != [] || viewModel.meteoritesList != [] {
-            PrimaryButton(
-                icon: "mappin.and.ellipse",
-                title: L.MeteoriteList.showNearestMeteorites,
-                action: {
-                    viewModel.findNearestMeteorites()
-                    nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
-                }
-            )
-        }
+        PrimaryButton(
+            icon: "mappin.and.ellipse",
+            title: L.MeteoriteList.showNearestMeteorites,
+            action: {
+                viewModel.findNearestMeteorites()
+                nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
+            }
+        )
     }
     var list: some View {
         ScrollView {
             showNearestButton
             LazyVStack(spacing: Spacing.standard) {
-                ForEach(viewModel.showNearest ? viewModel.nearestMeteorites : viewModel.meteoritesList, id: \.id) { meteorite in
+                ForEach(viewModel.meteoritesList, id: \.id) { meteorite in
                     Button(action: {
                         nav.goToMeteoriteDetail(meteorite)
                     }) {

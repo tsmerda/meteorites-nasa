@@ -7,7 +7,7 @@
 */
 
 // MARK: - Generic
-"generic_unknown" = "Neznámá hodnota";
+"generic_unknown" = "N/A";
 
 // MARK: - MeteoriteList
 "meteorite_list_all_meteorites" = "Všechny meteority";

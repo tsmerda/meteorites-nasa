@@ -49,7 +49,7 @@ struct PrimaryButtonStyle: ButtonStyle {
         configuration.label
             .padding(.vertical, Padding.standard)
             .background(configuration.isPressed ? color.opacity(0.8) : color)
-            .foregroundColor(Colors.textDark)
+            .foregroundColor(Colors.black)
             .font(Fonts.body1)
             .cornerRadius(CornerRadius.big)
     }

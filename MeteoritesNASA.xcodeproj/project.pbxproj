@@ -51,6 +51,7 @@
 		B5E3E0A32B1618880057CB04 /* MeteoriteListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0A22B1618880057CB04 /* MeteoriteListTests.swift */; };
 		B5E3E0A52B161A0F0057CB04 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0A42B161A0F0057CB04 /* GlobalConstants.swift */; };
 		B5E3E0AF2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0AE2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift */; };
+		B5E3E0B82B1628BF0057CB04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E3E0B72B1628BF0057CB04 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		B5E3E0A42B161A0F0057CB04 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		B5E3E0AA2B1621A80057CB04 /* MeteoritesNASAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeteoritesNASAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E3E0AE2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesNASAUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B5E3E0B72B1628BF0057CB04 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				B521119B2B122CC500D957BB /* Info.plist */,
 				B527BF452B10EDD400806578 /* Assets.xcassets */,
 				B527BF472B10EDD400806578 /* Preview Content */,
+				B5E3E0B72B1628BF0057CB04 /* LaunchScreen.storyboard */,
 			);
 			path = MeteoritesNASA;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				B52111952B122C7300D957BB /* Montserrat-ExtraBold.ttf in Resources */,
 				B52111932B122C7300D957BB /* Montserrat-Regular.ttf in Resources */,
 				B52111982B122C7300D957BB /* Montserrat-ExtraLight.ttf in Resources */,
+				B5E3E0B82B1628BF0057CB04 /* LaunchScreen.storyboard in Resources */,
 				B52111962B122C7300D957BB /* Montserrat-Medium.ttf in Resources */,
 				B521119A2B122C7300D957BB /* Montserrat-Thin.ttf in Resources */,
 				B52111922B122C7300D957BB /* Montserrat-SemiBold.ttf in Resources */,
@@ -710,6 +714,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -740,6 +745,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

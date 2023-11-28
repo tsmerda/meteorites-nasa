@@ -59,11 +59,9 @@ private extension MeteoriteRowView {
                 .font(Fonts.headline1)
                 .foregroundStyle(Colors.textDark)
             HStack {
-                if let massText = mass {
-                    Image(systemName: "scalemass")
-                    Text(massText)
-                        .font(Fonts.body1)
-                }
+                Image(systemName: "scalemass")
+                Text(mass ?? L.Generic.unknown)
+                    .font(Fonts.body1)
                 Spacer()
                 Image(systemName: "clock")
                 Text(year?.toFormattedDate() ?? L.Generic.unknown)
