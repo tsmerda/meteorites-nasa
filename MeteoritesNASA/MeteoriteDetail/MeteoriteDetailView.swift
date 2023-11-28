@@ -12,11 +12,9 @@ struct MeteoriteDetailView: View {
     @StateObject private var viewModel: MeteoriteDetailViewModel
     @EnvironmentObject var nav: NavigationStateManager
     @State private var showMeteoriteDetail: Bool = true
-    private let progressHudBinding: ProgressHudBinding
     
     init(viewModel: MeteoriteDetailViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.progressHudBinding = ProgressHudBinding(state: viewModel.$progressHudState)
     }
     
     var body: some View {
