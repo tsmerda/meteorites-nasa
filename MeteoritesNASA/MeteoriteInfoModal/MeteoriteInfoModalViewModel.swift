@@ -52,7 +52,6 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
     }
     
     func getFormattedYear() -> String? {
-        debugPrint(meteorite?.year ?? "nil")
         return meteorite?.year?.toFormattedDate(outputFormat: "d. MMMM yyyy")
     }
     

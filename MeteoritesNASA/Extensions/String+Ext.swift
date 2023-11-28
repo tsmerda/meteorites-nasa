@@ -10,10 +10,11 @@ import Foundation
 extension String {
     func toFormattedDate(
         inputFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSS",
-        outputFormat: String = "d. MMM yyyy"
+        outputFormat: String = "d. MMM yyyy",
+        locale: String = Locale.current.identifier
     ) -> String? {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: Locale.current.identifier)
+        dateFormatter.locale = Locale(identifier: locale)
         dateFormatter.dateFormat = inputFormat
         guard let date = dateFormatter.date(from: self) else {
             return nil

@@ -10,14 +10,38 @@ import Foundation
 struct Meteorite: Identifiable, Codable, Hashable {
     let name: String
     let id: String
-    let nametype: String
-    let recclass: String
+    let nametype: String?
+    let recclass: String?
     let mass: String?
-    let fall: String
+    let fall: String?
     let year: String?
     let reclat: String?
     let reclong: String?
     let geolocation: Geolocation?
+    
+    public init(
+        name: String,
+        id: String,
+        nametype: String? = "",
+        recclass: String? = "",
+        mass: String? = "",
+        fall: String? = "",
+        year: String? = "",
+        reclat: String? = "",
+        reclong: String? = "",
+        geolocation: Geolocation? = nil
+    ) {
+        self.name = name
+        self.id = id
+        self.nametype = nametype
+        self.recclass = recclass
+        self.mass = mass
+        self.fall = fall
+        self.year = year
+        self.reclat = reclat
+        self.reclong = reclong
+        self.geolocation = geolocation
+    }
 }
 
 // MARK: - Meteorite example

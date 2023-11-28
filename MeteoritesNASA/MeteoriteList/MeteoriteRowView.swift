@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MeteoriteRowView: View {
-    let recclass: String
+    let recclass: String?
     let name: String?
     let year: String?
     let mass: String?
     
     init(
-        recclass: String = "",
+        recclass: String? = "",
         name: String? = "",
         year: String? = "",
         mass: String? = ""
@@ -50,9 +50,11 @@ private extension MeteoriteRowView {
     }
     var infoView: some View {
         VStack(alignment: .leading, spacing: Spacing.small) {
-            Text(recclass)
-                .font(Fonts.captions)
-                .foregroundStyle(Colors.textLight)
+            if let recclass = recclass {
+                Text(recclass)
+                    .font(Fonts.captions)
+                    .foregroundStyle(Colors.textLight)
+            }
             Text(name ?? L.Generic.unknown)
                 .font(Fonts.headline1)
                 .foregroundStyle(Colors.textDark)

@@ -46,7 +46,29 @@
 		B59A169E2B137C05005BA2FF /* NearestMeteoritesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */; };
 		B59A16A62B139C2E005BA2FF /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A16A52B139C2E005BA2FF /* PrimaryButton.swift */; };
 		B5E3E08E2B15FBA70057CB04 /* ButtonIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */; };
+		B5E3E09D2B1605680057CB04 /* FormattedMassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E09C2B1605680057CB04 /* FormattedMassTests.swift */; };
+		B5E3E0A12B160E270057CB04 /* DateFormatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0A02B160E270057CB04 /* DateFormatExtensionTests.swift */; };
+		B5E3E0A32B1618880057CB04 /* MeteoriteListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0A22B1618880057CB04 /* MeteoriteListTests.swift */; };
+		B5E3E0A52B161A0F0057CB04 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0A42B161A0F0057CB04 /* GlobalConstants.swift */; };
+		B5E3E0AF2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0AE2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5E3E0972B1601290057CB04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B527BF362B10EDD300806578 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B527BF3D2B10EDD300806578;
+			remoteInfo = MeteoritesNASA;
+		};
+		B5E3E0B02B1621A80057CB04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B527BF362B10EDD300806578 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B527BF3D2B10EDD300806578;
+			remoteInfo = MeteoritesNASA;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B52111892B122C7200D957BB /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -90,6 +112,13 @@
 		B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestMeteoritesDetailView.swift; sourceTree = "<group>"; };
 		B59A16A52B139C2E005BA2FF /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonIconType.swift; sourceTree = "<group>"; };
+		B5E3E0932B1601290057CB04 /* MeteoritesNASATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeteoritesNASATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5E3E09C2B1605680057CB04 /* FormattedMassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedMassTests.swift; sourceTree = "<group>"; };
+		B5E3E0A02B160E270057CB04 /* DateFormatExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatExtensionTests.swift; sourceTree = "<group>"; };
+		B5E3E0A22B1618880057CB04 /* MeteoriteListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoriteListTests.swift; sourceTree = "<group>"; };
+		B5E3E0A42B161A0F0057CB04 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		B5E3E0AA2B1621A80057CB04 /* MeteoritesNASAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeteoritesNASAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5E3E0AE2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoritesNASAUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +127,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				B527BF592B110E4400806578 /* ProgressHUD in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5E3E0902B1601290057CB04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5E3E0A72B1621A80057CB04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				B527BF402B10EDD300806578 /* MeteoritesNASA */,
+				B5E3E0942B1601290057CB04 /* MeteoritesNASATests */,
+				B5E3E0AB2B1621A80057CB04 /* MeteoritesNASAUITests */,
 				B527BF3F2B10EDD300806578 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				B527BF3E2B10EDD300806578 /* MeteoritesNASA.app */,
+				B5E3E0932B1601290057CB04 /* MeteoritesNASATests.xctest */,
+				B5E3E0AA2B1621A80057CB04 /* MeteoritesNASAUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +267,7 @@
 				B527BF682B1121A000806578 /* Fonts.swift */,
 				B527BF6A2B11238600806578 /* Colors.swift */,
 				B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */,
+				B5E3E0A42B161A0F0057CB04 /* GlobalConstants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -286,6 +334,24 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		B5E3E0942B1601290057CB04 /* MeteoritesNASATests */ = {
+			isa = PBXGroup;
+			children = (
+				B5E3E0A22B1618880057CB04 /* MeteoriteListTests.swift */,
+				B5E3E0A02B160E270057CB04 /* DateFormatExtensionTests.swift */,
+				B5E3E09C2B1605680057CB04 /* FormattedMassTests.swift */,
+			);
+			path = MeteoritesNASATests;
+			sourceTree = "<group>";
+		};
+		B5E3E0AB2B1621A80057CB04 /* MeteoritesNASAUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B5E3E0AE2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift */,
+			);
+			path = MeteoritesNASAUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,6 +375,42 @@
 			productReference = B527BF3E2B10EDD300806578 /* MeteoritesNASA.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B5E3E0922B1601290057CB04 /* MeteoritesNASATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5E3E0992B1601290057CB04 /* Build configuration list for PBXNativeTarget "MeteoritesNASATests" */;
+			buildPhases = (
+				B5E3E08F2B1601290057CB04 /* Sources */,
+				B5E3E0902B1601290057CB04 /* Frameworks */,
+				B5E3E0912B1601290057CB04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5E3E0982B1601290057CB04 /* PBXTargetDependency */,
+			);
+			name = MeteoritesNASATests;
+			productName = MeteoritesNASATests;
+			productReference = B5E3E0932B1601290057CB04 /* MeteoritesNASATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B5E3E0A92B1621A80057CB04 /* MeteoritesNASAUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5E3E0B22B1621A80057CB04 /* Build configuration list for PBXNativeTarget "MeteoritesNASAUITests" */;
+			buildPhases = (
+				B5E3E0A62B1621A80057CB04 /* Sources */,
+				B5E3E0A72B1621A80057CB04 /* Frameworks */,
+				B5E3E0A82B1621A80057CB04 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5E3E0B12B1621A80057CB04 /* PBXTargetDependency */,
+			);
+			name = MeteoritesNASAUITests;
+			productName = MeteoritesNASAUITests;
+			productReference = B5E3E0AA2B1621A80057CB04 /* MeteoritesNASAUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -321,6 +423,14 @@
 				TargetAttributes = {
 					B527BF3D2B10EDD300806578 = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					B5E3E0922B1601290057CB04 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = B527BF3D2B10EDD300806578;
+					};
+					B5E3E0A92B1621A80057CB04 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = B527BF3D2B10EDD300806578;
 					};
 				};
 			};
@@ -342,6 +452,8 @@
 			projectRoot = "";
 			targets = (
 				B527BF3D2B10EDD300806578 /* MeteoritesNASA */,
+				B5E3E0922B1601290057CB04 /* MeteoritesNASATests */,
+				B5E3E0A92B1621A80057CB04 /* MeteoritesNASAUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -366,6 +478,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5E3E0912B1601290057CB04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5E3E0A82B1621A80057CB04 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -374,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B527BF762B11DA7B00806578 /* MeteoriteDetailViewModel.swift in Sources */,
+				B5E3E0A52B161A0F0057CB04 /* GlobalConstants.swift in Sources */,
 				B527BF5D2B110F5800806578 /* NetworkManager.swift in Sources */,
 				B527BF6B2B11238600806578 /* Colors.swift in Sources */,
 				B527BF612B110FD100806578 /* NetworkError.swift in Sources */,
@@ -402,7 +529,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5E3E08F2B1601290057CB04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E3E0A32B1618880057CB04 /* MeteoriteListTests.swift in Sources */,
+				B5E3E0A12B160E270057CB04 /* DateFormatExtensionTests.swift in Sources */,
+				B5E3E09D2B1605680057CB04 /* FormattedMassTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5E3E0A62B1621A80057CB04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E3E0AF2B1621A80057CB04 /* MeteoritesNASAUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5E3E0982B1601290057CB04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B527BF3D2B10EDD300806578 /* MeteoritesNASA */;
+			targetProxy = B5E3E0972B1601290057CB04 /* PBXContainerItemProxy */;
+		};
+		B5E3E0B12B1621A80057CB04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B527BF3D2B10EDD300806578 /* MeteoritesNASA */;
+			targetProxy = B5E3E0B02B1621A80057CB04 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B52416682B14E9BA00ED4866 /* Localizable.strings */ = {
@@ -552,8 +710,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -583,8 +740,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -595,6 +751,84 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B5E3E09A2B1601290057CB04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 925K52UM4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomassmerda.MeteoritesNASATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeteoritesNASA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeteoritesNASA";
+			};
+			name = Debug;
+		};
+		B5E3E09B2B1601290057CB04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 925K52UM4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomassmerda.MeteoritesNASATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeteoritesNASA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeteoritesNASA";
+			};
+			name = Release;
+		};
+		B5E3E0B32B1621A80057CB04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 925K52UM4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomassmerda.MeteoritesNASAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MeteoritesNASA;
+			};
+			name = Debug;
+		};
+		B5E3E0B42B1621A80057CB04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 925K52UM4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomassmerda.MeteoritesNASAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MeteoritesNASA;
 			};
 			name = Release;
 		};
@@ -615,6 +849,24 @@
 			buildConfigurations = (
 				B527BF4D2B10EDD400806578 /* Debug */,
 				B527BF4E2B10EDD400806578 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5E3E0992B1601290057CB04 /* Build configuration list for PBXNativeTarget "MeteoritesNASATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5E3E09A2B1601290057CB04 /* Debug */,
+				B5E3E09B2B1601290057CB04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5E3E0B22B1621A80057CB04 /* Build configuration list for PBXNativeTarget "MeteoritesNASAUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5E3E0B32B1621A80057CB04 /* Debug */,
+				B5E3E0B42B1621A80057CB04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -16,8 +16,8 @@ final class MeteoritesListViewModel: ObservableObject {
     @Published private(set) var progressHudState: ProgressHudState = .shouldHideProgress
     
     private let fileManager = FileManager.default
-    private let localDataFile = "meteoritesData.json"
-    private let lastUpdateKey = "LastUpdateDate"
+    private let localDataFile = GlobalConstants.localDataFile
+    private let lastUpdateKey = GlobalConstants.lastUpdateKey
     private let networkMonitor = NWPathMonitor()
     private var isInternetAvailable: Bool = false
     
@@ -54,6 +54,24 @@ final class MeteoritesListViewModel: ObservableObject {
             nearestMeteorites = Array(sortedByDistance.prefix(10))
         }
     }
+    
+    func shouldUpdateData() -> Bool {
+        guard let lastUpdate = UserDefaults.standard.object(forKey: lastUpdateKey) as? Date else {
+            return true
+        }
+        return !Calendar.current.isDateInToday(lastUpdate)
+    }
+    
+    func saveDataToLocalStorage(_ data: [Meteorite]) async throws {
+        let url = getDocumentsDirectory().appendingPathComponent(localDataFile)
+        let data = try JSONEncoder().encode(data)
+        try data.write(to: url)
+        UserDefaults.standard.set(Date(), forKey: lastUpdateKey)
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
 }
 
 // MARK: -- Private methods
@@ -71,14 +89,7 @@ private extension MeteoritesListViewModel {
         }
     }
     
-    func shouldUpdateData() -> Bool {
-        guard let lastUpdate = UserDefaults.standard.object(forKey: lastUpdateKey) as? Date else {
-            return true
-        }
-        return !Calendar.current.isDateInToday(lastUpdate)
-    }
-    
-    private func startNetworkMonitoring() {
+    func startNetworkMonitoring() {
         networkMonitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
                 self?.isInternetAvailable = path.status == .satisfied
@@ -88,17 +99,6 @@ private extension MeteoritesListViewModel {
         
         let queue = DispatchQueue(label: "NetworkMonitor")
         networkMonitor.start(queue: queue)
-    }
-    
-    func saveDataToLocalStorage(_ data: [Meteorite]) async throws {
-        let url = getDocumentsDirectory().appendingPathComponent(localDataFile)
-        let data = try JSONEncoder().encode(data)
-        try data.write(to: url)
-        UserDefaults.standard.set(Date(), forKey: lastUpdateKey)
-    }
-    
-    func getDocumentsDirectory() -> URL {
-        fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
     func loadDataFromLocalStorage() {
