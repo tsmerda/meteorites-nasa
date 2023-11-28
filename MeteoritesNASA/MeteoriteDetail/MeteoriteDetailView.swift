@@ -46,10 +46,12 @@ private extension MeteoriteDetailView {
     var meteoriteInfoModalView: some View {
         MeteoriteInfoModalView(
             viewModel: MeteoriteInfoModalViewModel(
-                meteorite: viewModel.meteorite
+                meteorite: viewModel.meteorite,
+                onNavigateAction: nil,
+                onCancelNavigationAction: nil
             )
         )
-        .presentationDetents([.height(230), .medium])
+        .presentationDetents([.height(240), .medium])
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
         .interactiveDismissDisabled()
         .presentationDragIndicator(.automatic)

@@ -45,6 +45,7 @@
 		B59A169C2B137BCE005BA2FF /* NearestMeteoritesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */; };
 		B59A169E2B137C05005BA2FF /* NearestMeteoritesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */; };
 		B59A16A62B139C2E005BA2FF /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A16A52B139C2E005BA2FF /* PrimaryButton.swift */; };
+		B5E3E08E2B15FBA70057CB04 /* ButtonIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestMeteoritesDetailViewModel.swift; sourceTree = "<group>"; };
 		B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestMeteoritesDetailView.swift; sourceTree = "<group>"; };
 		B59A16A52B139C2E005BA2FF /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonIconType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				B527BF622B11141C00806578 /* Constraints.swift */,
 				B527BF682B1121A000806578 /* Fonts.swift */,
 				B527BF6A2B11238600806578 /* Colors.swift */,
+				B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -269,8 +272,8 @@
 		B59A169A2B137B84005BA2FF /* NearestMeteoritesDetail */ = {
 			isa = PBXGroup;
 			children = (
-				B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */,
 				B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */,
+				B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */,
 			);
 			path = NearestMeteoritesDetail;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				B527BF5D2B110F5800806578 /* NetworkManager.swift in Sources */,
 				B527BF6B2B11238600806578 /* Colors.swift in Sources */,
 				B527BF612B110FD100806578 /* NetworkError.swift in Sources */,
+				B5E3E08E2B15FBA70057CB04 /* ButtonIconType.swift in Sources */,
 				B527BF702B112C2D00806578 /* String+Ext.swift in Sources */,
 				B527BF552B110C7300806578 /* Meteorite.swift in Sources */,
 				B52416632B14E82400ED4866 /* Localization.swift in Sources */,

@@ -13,4 +13,5 @@ enum Colors {
     static let textDark = Color("TextDark")
     static let textLight = Color("TextLight")
     static let disabled = Color("Disabled")
+    static let warning = Color("Warning")
 }

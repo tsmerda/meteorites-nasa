@@ -38,12 +38,15 @@ enum LocalizedString {
     
     enum NearestMeteoritesDetail {
         static let nearestMeteorites = "nearest_meteorites_detail_nearest_meteorites".tr
+        static let infoLabel = "nearest_meteorites_detail_info_label".tr
     }
     
     enum Map {
         static let alertTitle = "map_alert_title".tr
         static let alertText = "map_alert_text".tr
         static let alertDismiss = "map_alert_dismiss".tr
+        static let travelTime = "map_travel_time".tr
+        static let meteorite = "map_meteorite".tr
     }
     
     enum MeteoriteInfoModal {
@@ -55,8 +58,10 @@ enum LocalizedString {
         static let coordinates = "meteorite_info_modal_coordinates".tr
         static let id = "meteorite_info_modal_id".tr
         static let navigateToMeteorite = "meteorite_info_modal_navigate_to_meteorite".tr
+        static let cancelNavigation = "meteorite_info_modal_cancel_navigation".tr
         static let kilograms = "meteorite_info_modal_kilograms".tr
         static let grams = "meteorite_info_modal_grams".tr
         static let kilometers = "meteorite_info_modal_kilometers".tr
+        static let openInMaps = "meteorite_info_modal_open_in_maps".tr
     }
 }

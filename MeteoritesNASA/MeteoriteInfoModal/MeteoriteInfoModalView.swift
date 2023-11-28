@@ -9,9 +9,14 @@ import SwiftUI
 
 struct MeteoriteInfoModalView: View {
     @StateObject private var viewModel: MeteoriteInfoModalViewModel
+    var isNavigationOn: Bool
     
-    init(viewModel: MeteoriteInfoModalViewModel) {
+    init(
+        viewModel: MeteoriteInfoModalViewModel,
+        isNavigationOn: Bool = false
+    ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
+        self.isNavigationOn = isNavigationOn
     }
     
     var body: some View {
@@ -54,15 +59,25 @@ private extension MeteoriteInfoModalView {
                     .foregroundStyle(Colors.textLight)
             }
             Spacer()
-            // TODO: -- open Apple maps with coordinates
-            Circle()
-                .fill(Color.accentColor)
-                .frame(width: 44, height: 44)
-                .overlay(
-                    Image(systemName: "map")
-                        .imageScale(.large)
-                        .foregroundColor(Colors.white)
-                )
+            Button(action: {
+                viewModel.openInMaps()
+            }) {
+                HStack{
+                    Text(L.MeteoriteInfoModal.openInMaps)
+                        .foregroundStyle(Colors.textLight)
+                        .font(Fonts.captions)
+                        .frame(width: 60)
+                        .multilineTextAlignment(.leading)
+                    Circle()
+                        .fill(Color.accentColor)
+                        .frame(width: 44, height: 44)
+                        .overlay(
+                            Image(systemName: "map")
+                                .imageScale(.large)
+                                .foregroundColor(Colors.black)
+                        )
+                }
+            }
         }
         .padding(.bottom, Padding.standard)
     }
@@ -80,8 +95,8 @@ private extension MeteoriteInfoModalView {
             Divider()
             VStack(spacing: Spacing.small) {
                 detailInfoRow(L.MeteoriteInfoModal.distance, viewModel.getUserDistanceFromMeteorite())
-                detailInfoRow(L.MeteoriteInfoModal.mass, viewModel.formattedMass(viewModel.meteorite?.mass))
-                detailInfoRow(L.MeteoriteInfoModal.date, viewModel.meteorite?.year?.toFormattedDate(outputFormat: "d. MMMM yyyy"))
+                detailInfoRow(L.MeteoriteInfoModal.mass, viewModel.getFormattedMass())
+                detailInfoRow(L.MeteoriteInfoModal.date, viewModel.getFormattedYear())
                 detailInfoRow(L.MeteoriteInfoModal.coordinates, viewModel.getCoordinates())
             }
             .padding(.top, Padding.small)
@@ -99,11 +114,12 @@ private extension MeteoriteInfoModalView {
     }
     var routeButton: PrimaryButton {
         PrimaryButton(
-            icon: "location.north.circle",
-            title: L.MeteoriteInfoModal.navigateToMeteorite,
+            icon: !isNavigationOn ? "location.north.circle" : "location.slash.circle",
+            title: !isNavigationOn ? L.MeteoriteInfoModal.navigateToMeteorite : L.MeteoriteInfoModal.cancelNavigation,
             action: {
-                // TODO: -- route to meteorite
-            }
+                !isNavigationOn ? viewModel.onNavigate() : viewModel.onCancelNavigation()
+            },
+            color: !isNavigationOn ? Color.accentColor : Colors.warning
         )
     }
 }
@@ -111,7 +127,9 @@ private extension MeteoriteInfoModalView {
 #Preview {
     MeteoriteInfoModalView(
         viewModel: MeteoriteInfoModalViewModel(
-            meteorite: Meteorite.example
+            meteorite: Meteorite.example,
+            onNavigateAction: {},
+            onCancelNavigationAction: {}
         )
     )
 }

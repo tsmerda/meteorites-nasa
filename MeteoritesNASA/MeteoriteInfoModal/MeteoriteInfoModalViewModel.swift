@@ -7,21 +7,36 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 final class MeteoriteInfoModalViewModel: ObservableObject {
     let meteorite: Meteorite?
     let withRouteButton: Bool
+    private let onNavigateAction: (() -> Void)?
+    private let onCancelNavigationAction: (() -> Void)?
     
     init(
         meteorite: Meteorite?,
-        withRouteButton: Bool = false
+        withRouteButton: Bool = false,
+        onNavigateAction: (() -> Void)?,
+        onCancelNavigationAction: (() -> Void)?
     ) {
         self.meteorite = meteorite
         self.withRouteButton = withRouteButton
+        self.onNavigateAction = onNavigateAction
+        self.onCancelNavigationAction = onCancelNavigationAction
     }
     
-    func formattedMass(_ mass: String?) -> String? {
-        guard let massStr = mass, let massValue = Double(massStr) else {
+    func onNavigate() {
+        onNavigateAction?()
+    }
+    
+    func onCancelNavigation() {
+        onCancelNavigationAction?()
+    }
+    
+    func getFormattedMass() -> String? {        
+        guard let massStr = meteorite?.mass, let massValue = Double(massStr) else {
             return nil
         }
         if massValue >= 1000 {
@@ -34,6 +49,11 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
         } else {
             return "\(Int(massValue)) \(L.MeteoriteInfoModal.grams)"
         }
+    }
+    
+    func getFormattedYear() -> String? {
+        debugPrint(meteorite?.year ?? "nil")
+        return meteorite?.year?.toFormattedDate(outputFormat: "d. MMMM yyyy")
     }
     
     func getCoordinates() -> String? {
@@ -56,5 +76,16 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
         
         let distanceInKilometers = userLocation.distance(from: meteoriteLocation) / 1000
         return String(format: "%.2f \(L.MeteoriteInfoModal.kilometers)", distanceInKilometers)
+    }
+    
+    func openInMaps() {
+        guard let latitude = meteorite?.reclat, let longitude = meteorite?.reclong,
+              let lat = Double(latitude), let lon = Double(longitude) else {
+            return
+        }
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+        mapItem.name = meteorite?.name
+        mapItem.openInMaps(launchOptions: nil)
     }
 }

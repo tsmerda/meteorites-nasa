@@ -14,8 +14,17 @@ struct MapView: View {
     @State private var position: MapCameraPosition = .automatic
     @State private var showNoMeteoritesAlert = false
     
-    init(viewModel: MapViewModel) {
+    var route: MKRoute?
+    var travelTime: String?
+    
+    init(
+        viewModel: MapViewModel,
+        route: MKRoute? = nil,
+        travelTime: String? = nil
+    ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
+        self.route = route
+        self.travelTime = travelTime
         self._showNoMeteoritesAlert = State(
             initialValue: viewModel.geolocation?.coordinates[1] == 0 &&
             viewModel.geolocation?.coordinates[0] == 0 &&
@@ -35,7 +44,7 @@ struct MapView: View {
                             longitude: longitude
                         )
                     ) {
-                        meteoritePoint
+                        meteoritePoint()
                     }
                 }
                 
@@ -46,21 +55,25 @@ struct MapView: View {
                         if let latitude = meteorite.geolocation?.coordinates[1],
                            let longitude = meteorite.geolocation?.coordinates[0] {
                             Annotation(
-                                "Meteorit \(meteorite.name)",
+                                "\(L.Map.meteorite) \(meteorite.name)",
                                 coordinate: CLLocationCoordinate2D(
                                     latitude: latitude,
                                     longitude: longitude
                                 )
                             ) {
                                 Button(action: {
-                                    // TODO: -- fix optional
-                                    viewModel.onSelectMeteoriteAction!(meteorite)
+                                    viewModel.onSelectMeteorite(meteorite)
                                 }) {
-                                    meteoritePoint
+                                    meteoritePoint(meteorite)
                                 }
                             }
                         }
                     }
+                }
+                
+                if let route {
+                    MapPolyline(route.polyline)
+                        .stroke(.blue, lineWidth: 7)
                 }
             }
             .edgesIgnoringSafeArea(.all)
@@ -72,9 +85,12 @@ struct MapView: View {
                     dismissButton: .default(Text(L.Map.alertDismiss))
                 )
             }
+            .overlay(alignment: .top, content: {
+                travelTimeLabel
+            })
         }
         .overlay(
-            actionRowView, alignment: .topLeading
+            actionRowView, alignment: .top
         )
         .onAppear {
             if showNoMeteoritesAlert {
@@ -85,10 +101,24 @@ struct MapView: View {
 }
 
 private extension MapView {
+    @ViewBuilder
+    var travelTimeLabel: some View {
+        if let travelTime {
+            HStack {
+                Text("\(L.Map.travelTime): \(travelTime)")
+                    .font(Fonts.body1)
+                    .foregroundStyle(Colors.black)
+            }
+            .padding()
+            .background(.ultraThinMaterial)
+            .cornerRadius(CornerRadius.medium)
+            .padding(.top, UIScreen.main.bounds.height / 10)
+        }
+    }
     var actionRowView: some View {
         VStack {
             HStack {
-                actionCircleButton("arrow.left") {
+                actionCircleButton(.systemName("arrow.left")) {
                     viewModel.goBackAction()
                 }
                 Spacer()
@@ -97,14 +127,14 @@ private extension MapView {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, Padding.standard)
                 Spacer()
-                actionCircleButton("location.fill") {
+                actionCircleButton(.systemName("location.fill")) {
                     position = .userLocation(fallback: .automatic)
                 }
             }
             if viewModel.nearestMeteorites == nil {
                 HStack {
                     Spacer()
-                    actionCircleButton("scalemass.fill") {
+                    actionCircleButton(.assetName("meteorite-icon")) {
                         if let meteoritePosition = viewModel.getMeteoritePosition() {
                             position = .item(
                                 meteoritePosition
@@ -116,20 +146,30 @@ private extension MapView {
         }
         .padding()
     }
-    func actionCircleButton(_ icon: String, _ action: @escaping () -> Void) -> some View {
+    func actionCircleButton(_ iconType: ButtonIconType, _ action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Circle()
                 .fill(Color.white)
                 .frame(width: 50, height: 50)
                 .shadow(color: Colors.black.opacity(0.1), radius: 2, x: 0, y: 2)
                 .overlay(
-                    Image(systemName: icon)
-                        .imageScale(.large)
-                        .foregroundColor(Color.accentColor)
+                    Group {
+                        switch iconType {
+                        case .systemName(let name):
+                            Image(systemName: name)
+                                .imageScale(.large)
+                                .foregroundColor(Color.black)
+                        case .assetName(let name):
+                            Image(name)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 35)
+                        }
+                    }
                 )
         }
     }
-    var meteoritePoint: some View {
+    func meteoritePoint(_ meteorite: Meteorite? = nil) -> some View {
         ZStack {
             Circle()
                 .stroke(Color.accentColor.opacity(0.4), lineWidth: 2)
@@ -146,7 +186,7 @@ private extension MapView {
             
             Circle()
                 .stroke(Color.accentColor, lineWidth: 4)
-                .fill(Color.white)
+                .fill(meteorite != nil && viewModel.selectedMeteorite?.id == meteorite?.id ? Color.accentColor : Color.white)
                 .frame(width: 50, height: 50)
                 .overlay(
                     Image("meteorite-icon")
@@ -166,6 +206,7 @@ private extension MapView {
         viewModel: MapViewModel(
             title: "Title",
             geolocation: Geolocation.example,
+            // nearestMeteorites: Meteorite.exampleList,
             goBackAction: {},
             onSelectMeteoriteAction: { _ in }
         )

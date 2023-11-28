@@ -12,15 +12,18 @@ struct PrimaryButton: View {
     private let icon: String?
     private let title: String
     private let action: () -> Void
+    private let color: Color
     
     init(
         icon: String? = nil,
         title: String,
-        action: @escaping () -> Void
+        action: @escaping () -> Void,
+        color: Color = Color.accentColor
     ) {
         self.icon = icon
         self.title = title
         self.action = action
+        self.color = color
     }
     
     var body: some View {
@@ -35,15 +38,17 @@ struct PrimaryButton: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(PrimaryButtonStyle())
+        .buttonStyle(PrimaryButtonStyle(color: color))
     }
 }
 
 struct PrimaryButtonStyle: ButtonStyle {
+    var color: Color
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(.vertical, Padding.standard)
-            .background(configuration.isPressed ? Color.accentColor.opacity(0.8) : Color.accentColor)
+            .background(configuration.isPressed ? color.opacity(0.8) : color)
             .foregroundColor(Colors.textDark)
             .font(Fonts.body1)
             .cornerRadius(CornerRadius.big)
@@ -56,5 +61,6 @@ struct PrimaryButtonStyle: ButtonStyle {
         icon: "mappin.and.ellipse",
         title: "Primary Button",
         action: {}
+        // color: Colors.warning
     )
 }

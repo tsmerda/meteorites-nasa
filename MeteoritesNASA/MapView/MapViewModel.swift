@@ -13,7 +13,9 @@ final class MapViewModel: ObservableObject {
     let geolocation: Geolocation?
     let nearestMeteorites: [Meteorite]?
     let goBackAction: () -> Void
-    let onSelectMeteoriteAction: ((Meteorite) -> Void)?
+    private let onSelectMeteoriteAction: ((Meteorite) -> Void)?
+    
+    var selectedMeteorite: Meteorite? = nil
     
     init(
         title: String,
@@ -37,5 +39,10 @@ final class MapViewModel: ObservableObject {
             return MKMapItem(placemark: placemark)
         }
         return nil
+    }
+    
+    func onSelectMeteorite(_ meteorite: Meteorite) {
+        selectedMeteorite = meteorite
+        onSelectMeteoriteAction?(meteorite)
     }
 }

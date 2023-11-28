@@ -16,11 +16,14 @@
 
 // MARK: - NearestMeteoritesDetail
 "nearest_meteorites_detail_nearest_meteorites" = "Nejbližší meteority";
+"nearest_meteorites_detail_info_label" = "Vyberte některý z meteoritů na mapě";
 
 // MARK: - Map
 "map_alert_title" = "Upozornění";
 "map_alert_text" = "Nejsou k dispozici žádné meteority.";
 "map_alert_dismiss" = "OK";
+"map_travel_time" = "Doba cesty";
+"map_meteorite" = "Meteorit";
 
 // MARK: - MeteoriteInfoModal
 "meteorite_info_modal_recclass" = "Třída";
@@ -31,6 +34,8 @@
 "meteorite_info_modal_coordinates" = "Souřadnice";
 "meteorite_info_modal_id" = "ID";
 "meteorite_info_modal_navigate_to_meteorite" = "Navigovat k meteoritu";
+"meteorite_info_modal_cancel_navigation" = "Zrušit navigaci";
 "meteorite_info_modal_kilograms" = "kilogramů";
 "meteorite_info_modal_grams" = "gramů";
 "meteorite_info_modal_kilometers" = "kilometrů";
+"meteorite_info_modal_open_in_maps" = "Otevřít v mapách";

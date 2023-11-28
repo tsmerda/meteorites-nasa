@@ -9,12 +9,16 @@ import Foundation
 
 extension String {
     func toFormattedDate(
-        outputFormat: String = "d. MMM yyyy",
-        localeIdentifier: String = "en_US"
+        inputFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSS",
+        outputFormat: String = "d. MMM yyyy"
     ) -> String? {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: localeIdentifier)
+        dateFormatter.locale = Locale(identifier: Locale.current.identifier)
+        dateFormatter.dateFormat = inputFormat
+        guard let date = dateFormatter.date(from: self) else {
+            return nil
+        }
         dateFormatter.dateFormat = outputFormat
-        return dateFormatter.string(from: Date())
+        return dateFormatter.string(from: date)
     }
 }
