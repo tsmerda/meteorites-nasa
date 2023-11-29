@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PrimaryButton: View {
-    
     private let icon: String?
     private let title: String
     private let action: () -> Void

@@ -38,7 +38,7 @@ private extension MeteoriteDetailView {
                 goBackAction: { nav.goBack() },
                 onSelectMeteoriteAction: nil
             )
-                MapView(viewModel: mapViewModel)
+            MapView(viewModel: mapViewModel)
         }
     }
     var meteoriteInfoModalView: some View {

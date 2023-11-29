@@ -24,9 +24,7 @@ struct MeteoriteInfoModalView: View {
             topLabelView
             meteoriteDetailView
             Spacer()
-            if viewModel.withRouteButton {
-                routeButton
-            }
+            routeButton
         }
         .padding(
             EdgeInsets(
@@ -112,15 +110,18 @@ private extension MeteoriteInfoModalView {
         .foregroundStyle(Colors.textDark)
         .font(Fonts.captions)
     }
-    var routeButton: PrimaryButton {
-        PrimaryButton(
-            icon: !isNavigationOn ? "location.north.circle" : "location.slash.circle",
-            title: !isNavigationOn ? L.MeteoriteInfoModal.navigateToMeteorite : L.MeteoriteInfoModal.cancelNavigation,
-            action: {
-                !isNavigationOn ? viewModel.onNavigate() : viewModel.onCancelNavigation()
-            },
-            color: !isNavigationOn ? Color.accentColor : Colors.warning
-        )
+    @ViewBuilder
+    var routeButton: PrimaryButton? {
+        if viewModel.withRouteButton {
+            PrimaryButton(
+                icon: !isNavigationOn ? "location.north.circle" : "location.slash.circle",
+                title: !isNavigationOn ? L.MeteoriteInfoModal.navigateToMeteorite : L.MeteoriteInfoModal.cancelNavigation,
+                action: {
+                    !isNavigationOn ? viewModel.onNavigate() : viewModel.onCancelNavigation()
+                },
+                color: !isNavigationOn ? Color.accentColor : Colors.warning
+            )
+        }
     }
 }
 

@@ -25,18 +25,10 @@ struct MeteoritesListView: View {
             .navigationTitle(!viewModel.showNearest ? L.MeteoriteList.allMeteorites : L.MeteoriteList.nearestMeteorites)
             .padding()
             .navigationDestination(for: Meteorite.self) { meteorite in
-                MeteoriteDetailView(
-                    viewModel: MeteoriteDetailViewModel(
-                        meteorite: meteorite
-                    )
-                )
+                meteoriteDetailView(meteorite)
             }
             .navigationDestination(for: [Meteorite].self) { meteorites in
-                NearestMeteoritesDetailView(
-                    viewModel: NearestMeteoritesDetailViewModel(
-                        meteorites: meteorites
-                    )
-                )
+                nearestMeteoritesDetailView(meteorites)
             }
             .onAppear {
                 LocationManager.shared.requestLocationPermission()
@@ -47,6 +39,20 @@ struct MeteoritesListView: View {
 }
 
 private extension MeteoritesListView {
+    func meteoriteDetailView(_ meteorite: Meteorite) -> MeteoriteDetailView {
+        MeteoriteDetailView(
+            viewModel: MeteoriteDetailViewModel(
+                meteorite: meteorite
+            )
+        )
+    }
+    func nearestMeteoritesDetailView(_ meteorites: [Meteorite]) -> NearestMeteoritesDetailView {
+        NearestMeteoritesDetailView(
+            viewModel: NearestMeteoritesDetailViewModel(
+                meteorites: meteorites
+            )
+        )
+    }
     @ViewBuilder
     var showNearestButton: PrimaryButton? {
         PrimaryButton(

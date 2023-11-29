@@ -26,23 +26,23 @@ struct NearestMeteoritesDetailView: View {
         VStack {
             mapView
         }
-        .overlay(
-            infoLabel, alignment: .bottom
-        )
+        .overlay(infoLabel, alignment: .bottom)
         .navigationBarBackButtonHidden()
-        .sheet(isPresented: $showMeteoriteDetail, onDismiss: {
-            viewModel.selectedMeteorite = nil
-            withAnimation(.linear(duration: 0.5)) {
-                isAnimating = true
+        .sheet(
+            isPresented: $showMeteoriteDetail,
+            onDismiss: {
+                viewModel.selectedMeteorite = nil
+                withAnimation(.linear(duration: 0.5)) {
+                    isAnimating = true
+                }
+            }) {
+                meteoriteInfoModalView
             }
-        }) {
-            meteoriteInfoModalView
-        }
-        .onAppear(perform: {
-            withAnimation(.linear(duration: 0.5)) {
-                isAnimating = true
-            }
-        })
+            .onAppear(perform: {
+                withAnimation(.linear(duration: 0.5)) {
+                    isAnimating = true
+                }
+            })
     }
 }
 
