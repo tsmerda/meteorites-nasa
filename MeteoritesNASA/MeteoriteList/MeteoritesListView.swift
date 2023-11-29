@@ -39,6 +39,7 @@ struct MeteoritesListView: View {
                 LocationManager.shared.requestLocationPermission()
             }
         }
+        .searchable(text: $viewModel.searchText, isPresented: $viewModel.searchIsActive)
         .environmentObject(nav)
     }
 }
@@ -81,7 +82,7 @@ private extension MeteoritesListView {
         ScrollView {
             showNearestButton
             LazyVStack(spacing: Spacing.standard) {
-                ForEach(viewModel.meteoritesList, id: \.id) { meteorite in
+                ForEach(viewModel.searchResults, id: \.id) { meteorite in
                     Button(action: {
                         nav.goToMeteoriteDetail(meteorite)
                     }) {

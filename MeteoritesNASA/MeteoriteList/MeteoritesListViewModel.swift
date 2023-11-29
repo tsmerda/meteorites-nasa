@@ -14,12 +14,22 @@ final class MeteoritesListViewModel: ObservableObject {
     @Published var nearestMeteorites: [Meteorite] = []
     @Published var showNearest: Bool = false
     @Published private(set) var progressHudState: ProgressHudState = .shouldHideProgress
+    @Published var searchText: String = ""
+    @Published var searchIsActive: Bool = false
     
     private let fileManager = FileManager.default
     private let localDataFile = GlobalConstants.localDataFile
     private let lastUpdateKey = GlobalConstants.lastUpdateKey
     private let networkMonitor = NWPathMonitor()
     private var isInternetAvailable: Bool = false
+    
+    var searchResults: [Meteorite] {
+        if searchText.isEmpty {
+            return meteoritesList
+        } else {
+            return meteoritesList.filter { $0.name.contains(searchText) }
+        }
+    }
     
     init() {
         handleInitialData()
