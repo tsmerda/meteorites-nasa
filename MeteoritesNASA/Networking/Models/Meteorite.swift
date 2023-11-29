@@ -73,11 +73,8 @@ extension Meteorite {
             reclat: "50.775000",
             reclong: "6.083330",
             geolocation: Geolocation(
-                type: "Point",
-                coordinates: [
-                    6.08333,
-                    50.775
-                ]
+                latitude: "50.775000",
+                longitude: "6.083330"
             )
         ),
         Meteorite(
@@ -91,11 +88,8 @@ extension Meteorite {
             reclat: "56.183330",
             reclong: "10.233330",
             geolocation: Geolocation(
-                type: "Point",
-                coordinates: [
-                    10.23333,
-                    56.18333
-                ]
+                latitude: "56.18333",
+                longitude: "10.23333"
             )
         ),
         Meteorite(
@@ -109,11 +103,8 @@ extension Meteorite {
             reclat: "54.216670",
             reclong: "-113.000000",
             geolocation: Geolocation(
-                type: "Point",
-                coordinates: [
-                    -113,
-                     54.21667
-                ]
+                latitude: "54.21667",
+                longitude: "-113"
             )
         ),
         Meteorite(
@@ -127,11 +118,8 @@ extension Meteorite {
             reclat: "39.916670",
             reclong: "42.816670",
             geolocation: Geolocation(
-                type: "Point",
-                coordinates: [
-                    42.81667,
-                    39.91667
-                ]
+                latitude: "39.91667",
+                longitude: "42.81667"
             )
         )
     ]}

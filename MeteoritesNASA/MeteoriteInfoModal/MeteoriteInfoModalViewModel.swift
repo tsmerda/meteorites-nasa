@@ -66,12 +66,15 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
     
     func getUserDistanceFromMeteorite() -> String {
         guard let userCoordinates = LocationManager.shared.userLocation,
-              let meteoriteCoordinates = meteorite?.geolocation?.coordinates else {
+              let latitudeString = meteorite?.geolocation?.latitude,
+              let longitudeString = meteorite?.geolocation?.longitude,
+              let latitude = Double(latitudeString),
+              let longitude = Double(longitudeString) else {
             return L.Generic.unknown
         }
         
         let userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
-        let meteoriteLocation = CLLocation(latitude: meteoriteCoordinates[1], longitude: meteoriteCoordinates[0])
+        let meteoriteLocation = CLLocation(latitude: latitude, longitude: longitude)
         
         let distanceInKilometers = userLocation.distance(from: meteoriteLocation) / 1000
         return String(format: "%.2f \(L.MeteoriteInfoModal.kilometers)", distanceInKilometers)

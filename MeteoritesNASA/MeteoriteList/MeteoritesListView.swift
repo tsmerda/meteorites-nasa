@@ -22,6 +22,11 @@ struct MeteoritesListView: View {
             VStack {
                 list
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    refreshButton
+                }
+            }
             .navigationTitle(!viewModel.showNearest ? L.MeteoriteList.allMeteorites : L.MeteoriteList.nearestMeteorites)
             .padding()
             .navigationDestination(for: Meteorite.self) { meteorite in
@@ -39,6 +44,12 @@ struct MeteoritesListView: View {
 }
 
 private extension MeteoritesListView {
+    var refreshButton: some View {
+        Button(action: { viewModel.refreshData() }) {
+            Image(systemName: "arrow.clockwise")
+                .foregroundColor(.accentColor)
+        }
+    }
     func meteoriteDetailView(_ meteorite: Meteorite) -> MeteoriteDetailView {
         MeteoriteDetailView(
             viewModel: MeteoriteDetailViewModel(
@@ -55,14 +66,16 @@ private extension MeteoritesListView {
     }
     @ViewBuilder
     var showNearestButton: PrimaryButton? {
-        PrimaryButton(
-            icon: "mappin.and.ellipse",
-            title: L.MeteoriteList.showNearestMeteorites,
-            action: {
-                viewModel.findNearestMeteorites()
-                nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
-            }
-        )
+        if !viewModel.meteoritesList.isEmpty {
+            PrimaryButton(
+                icon: "mappin.and.ellipse",
+                title: L.MeteoriteList.showNearestMeteorites,
+                action: {
+                    viewModel.findNearestMeteorites()
+                    nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
+                }
+            )
+        }
     }
     var list: some View {
         ScrollView {

@@ -72,6 +72,10 @@ final class MeteoritesListViewModel: ObservableObject {
     func getDocumentsDirectory() -> URL {
         fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
+    
+    func refreshData() {
+        getAllMeteorites()
+    }
 }
 
 // MARK: -- Private methods
@@ -106,7 +110,11 @@ private extension MeteoritesListViewModel {
             progressHudState = .shouldShowProgress
             let url = getDocumentsDirectory().appendingPathComponent(localDataFile)
             if let data = try? Data(contentsOf: url) {
-                meteoritesList = (try? JSONDecoder().decode([Meteorite].self, from: data)) ?? []
+                do {
+                    meteoritesList = try JSONDecoder().decode([Meteorite].self, from: data)
+                } catch {
+                    progressHudState = .shouldShowFail(message: error.localizedDescription)
+                }
             }
             progressHudState = .shouldHideProgress
         }
@@ -114,13 +122,15 @@ private extension MeteoritesListViewModel {
     
     func distanceFromUser(to meteorite: Meteorite) -> Double {
         guard let userLocation = LocationManager.shared.userLocation,
-              let meteoriteLat = meteorite.geolocation?.coordinates[1],
-              let meteoriteLon = meteorite.geolocation?.coordinates[0] else {
+              let latitudeString = meteorite.geolocation?.latitude,
+              let longitudeString = meteorite.geolocation?.longitude,
+              let latitude = Double(latitudeString),
+              let longitude = Double(longitudeString) else {
             return Double.greatestFiniteMagnitude
         }
         
         let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        let meteoriteCLLocation = CLLocation(latitude: meteoriteLat, longitude: meteoriteLon)
+        let meteoriteCLLocation = CLLocation(latitude: latitude, longitude: longitude)
         
         return userCLLocation.distance(from: meteoriteCLLocation)
     }

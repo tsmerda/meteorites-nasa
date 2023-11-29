@@ -32,8 +32,10 @@ final class MapViewModel: ObservableObject {
     }
     
     func getMeteoritePosition() -> MKMapItem? {
-        if let latitude = geolocation?.coordinates[1],
-           let longitude = geolocation?.coordinates[0] {
+        if let latitudeString = geolocation?.latitude,
+           let longitudeString = geolocation?.longitude,
+           let latitude = Double(latitudeString),
+           let longitude = Double(longitudeString) {
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             let placemark = MKPlacemark(coordinate: coordinate)
             return MKMapItem(placemark: placemark)

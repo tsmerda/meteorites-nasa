@@ -60,7 +60,7 @@ private extension MeteoriteRowView {
                 .foregroundStyle(Colors.textDark)
             HStack {
                 Image(systemName: "scalemass")
-                Text(mass ?? L.Generic.unknown)
+                Text(mass != nil ? "\(mass!) \(L.MeteoriteInfoModal.grams)" : L.Generic.unknown)
                     .font(Fonts.body1)
                 Spacer()
                 Image(systemName: "clock")

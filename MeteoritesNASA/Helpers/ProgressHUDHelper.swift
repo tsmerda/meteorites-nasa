@@ -10,7 +10,7 @@ import Combine
 import ProgressHUD
 
 enum ProgressHudHelper {
-    static func dismiss(deadline: Double = 0.4) {
+    static func dismiss(deadline: Double = 0.6) {
         DispatchQueue.main.asyncAfter(deadline: .now() + deadline) {
             ProgressHUD.dismiss()
         }

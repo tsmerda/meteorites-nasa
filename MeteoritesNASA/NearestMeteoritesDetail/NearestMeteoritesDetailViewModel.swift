@@ -23,13 +23,14 @@ final class NearestMeteoritesDetailViewModel: ObservableObject {
         self.travelTime = nil
     }
 }
-
 extension NearestMeteoritesDetailViewModel {
     func fetchRoute() {
         var source = CLLocationCoordinate2D()
         var destination = CLLocationCoordinate2D()
-        if let latitude = selectedMeteorite?.geolocation?.coordinates[1],
-           let longitude = selectedMeteorite?.geolocation?.coordinates[0] {
+        if let latitudeString = selectedMeteorite?.geolocation?.latitude,
+           let longitudeString = selectedMeteorite?.geolocation?.longitude,
+           let latitude = Double(latitudeString),
+           let longitude = Double(longitudeString) {
             destination = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
         if let userCoordinates = LocationManager.shared.userLocation {

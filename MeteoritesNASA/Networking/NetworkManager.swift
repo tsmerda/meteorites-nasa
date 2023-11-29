@@ -14,17 +14,22 @@ protocol NetworkManagerProtocol {
 class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
     private let baseURL = "https://data.nasa.gov"
+    private let appToken = "pGOI9Jlx6iopTchXLBfJBzrce"
     
     // MARK: - Get all meteorites
     func getAllMeteorites() async throws -> [Meteorite] {
-        guard let url  = URL(string: baseURL + "/resource/y77d-th95.json") else {
+        guard let url = URL(string: baseURL + "/resource/gh4g-9sfh.json") else {
             throw NetworkError.invalidURL
         }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(appToken, forHTTPHeaderField: "X-App-Token")
         
         let config = URLSession.shared.configuration
         config.waitsForConnectivity = true
         
-        let (data, response) = try await URLSession(configuration: config).data(from: url)
+        let (data, response) = try await URLSession(configuration: config).data(for: request)
         // print(String(decoding: data, as: UTF8.self))
         
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {

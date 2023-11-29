@@ -26,8 +26,8 @@ struct MapView: View {
         self.route = route
         self.travelTime = travelTime
         self._showNoMeteoritesAlert = State(
-            initialValue: viewModel.geolocation?.coordinates[1] == 0 &&
-            viewModel.geolocation?.coordinates[0] == 0 &&
+            initialValue: viewModel.geolocation?.latitude == "0.0" &&
+            viewModel.geolocation?.longitude == "0.0" &&
             viewModel.nearestMeteorites == nil
         )
     }
@@ -35,8 +35,10 @@ struct MapView: View {
     var body: some View {
         ZStack {
             Map(position: $position) {
-                if let latitude = viewModel.geolocation?.coordinates[1],
-                   let longitude = viewModel.geolocation?.coordinates[0] {
+                if let latitudeString = viewModel.geolocation?.latitude,
+                   let longitudeString = viewModel.geolocation?.longitude,
+                   let latitude = Double(latitudeString),
+                   let longitude = Double(longitudeString) {
                     Annotation(
                         "",
                         coordinate: CLLocationCoordinate2D(
@@ -52,8 +54,10 @@ struct MapView: View {
                 
                 if let nearestMeteorites = viewModel.nearestMeteorites {
                     ForEach(nearestMeteorites, id: \.id) { meteorite in
-                        if let latitude = meteorite.geolocation?.coordinates[1],
-                           let longitude = meteorite.geolocation?.coordinates[0] {
+                        if let latitudeString = meteorite.geolocation?.latitude,
+                           let longitudeString = meteorite.geolocation?.longitude,
+                           let latitude = Double(latitudeString),
+                           let longitude = Double(longitudeString) {
                             Annotation(
                                 "\(L.Map.meteorite) \(meteorite.name)",
                                 coordinate: CLLocationCoordinate2D(
