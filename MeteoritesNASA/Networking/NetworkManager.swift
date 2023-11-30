@@ -12,7 +12,6 @@ protocol NetworkManagerProtocol {
 }
 
 class NetworkManager: NetworkManagerProtocol {
-    static let shared = NetworkManager()
     private let baseURL = "https://data.nasa.gov"
     private let appToken = "pGOI9Jlx6iopTchXLBfJBzrce"
     
@@ -30,7 +29,6 @@ class NetworkManager: NetworkManagerProtocol {
         config.waitsForConnectivity = true
         
         let (data, response) = try await URLSession(configuration: config).data(for: request)
-        // print(String(decoding: data, as: UTF8.self))
         
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
             throw NetworkError.serverError

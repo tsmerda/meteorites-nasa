@@ -102,6 +102,8 @@ private extension MeteoritesListView {
 
 #Preview {
     MeteoritesListView(
-        viewModel: MeteoritesListViewModel()
+        viewModel: MeteoritesListViewModel(
+            networkManager: MockNetworkManager()
+        )
     )
 }

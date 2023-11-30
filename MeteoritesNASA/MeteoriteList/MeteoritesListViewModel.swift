@@ -17,6 +17,7 @@ final class MeteoritesListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var searchIsActive: Bool = false
     
+    private let networkManager: NetworkManagerProtocol
     private let fileManager = FileManager.default
     private let localDataFile = GlobalConstants.localDataFile
     private let lastUpdateKey = GlobalConstants.lastUpdateKey
@@ -31,7 +32,8 @@ final class MeteoritesListViewModel: ObservableObject {
         }
     }
     
-    init() {
+    init(networkManager: NetworkManagerProtocol) {
+        self.networkManager = networkManager
         handleInitialData()
     }
     
@@ -153,7 +155,7 @@ private extension MeteoritesListViewModel {
         Task { @MainActor in
             progressHudState = .shouldShowProgress
             do {
-                let data = try await NetworkManager.shared.getAllMeteorites()
+                let data = try await networkManager.getAllMeteorites()
                 meteoritesList = data
                 try await saveDataToLocalStorage(data)
                 progressHudState = .shouldHideProgress

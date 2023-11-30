@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "8729875C-F62D-4AA0-9CF6-A08B25C69A52",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MeteoritesNASA.xcodeproj",
+      "identifier" : "B527BF3D2B10EDD300806578",
+      "name" : "MeteoritesNASA"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MeteoritesNASA.xcodeproj",
+        "identifier" : "B5E3E0922B1601290057CB04",
+        "name" : "MeteoritesNASATests"
+      }
+    }
+  ],
+  "version" : 1
+}
