@@ -35,11 +35,10 @@ struct PrimaryButton: View {
     
     var body: some View {
         Button(action: config.action) {
-            HStack {
+            HStack(spacing: Spacing.small) {
                 if let iconName = config.icon {
                     iconName
                         .imageScale(.large)
-                        .padding(.trailing, 4)
                 }
                 Text(config.title)
             }

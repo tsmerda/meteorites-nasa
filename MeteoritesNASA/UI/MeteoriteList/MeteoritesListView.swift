@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MeteoritesListView: View {
     @StateObject private var viewModel: MeteoritesListViewModel
-    @EnvironmentObject var nav: NavigationStateManager
+    @StateObject var nav = NavigationStateManager()
     private let progressHudBinding: ProgressHudBinding
     
     init(viewModel: MeteoritesListViewModel) {
@@ -22,13 +22,8 @@ struct MeteoritesListView: View {
             VStack {
                 list
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    refreshButton
-                }
-            }
+            .edgesIgnoringSafeArea(.bottom)
             .navigationTitle(!viewModel.showNearest ? L.MeteoriteList.allMeteorites : L.MeteoriteList.nearestMeteorites)
-            .padding()
             .navigationDestination(for: Meteorite.self) { meteorite in
                 meteoriteDetailView(meteorite)
             }
@@ -36,17 +31,13 @@ struct MeteoritesListView: View {
                 nearestMeteoritesDetailView(meteorites)
             }
         }
+        .dynamicTypeSize(.medium ... .xxxLarge)
+        .environmentObject(nav)
         .searchable(text: $viewModel.searchText, isPresented: $viewModel.searchIsActive)
     }
 }
 
 private extension MeteoritesListView {
-    var refreshButton: some View {
-        Button(action: { viewModel.refreshData() }) {
-            Icons.refresh
-                .foregroundColor(Color.accentColor)
-        }
-    }
     func meteoriteDetailView(_ meteorite: Meteorite) -> MeteoriteDetailView {
         MeteoriteDetailView(
             viewModel: MeteoriteDetailViewModel(
@@ -64,7 +55,7 @@ private extension MeteoritesListView {
         )
     }
     @ViewBuilder
-    var showNearestButton: PrimaryButton? {
+    var showNearestButton: some View {
         if !viewModel.meteoritesList.isEmpty {
             let config = PrimaryButtonConfig(
                 icon: Icons.mapPin,
@@ -75,26 +66,37 @@ private extension MeteoritesListView {
                 }
             )
             PrimaryButton(config: config)
+                .padding(.horizontal)
         }
     }
     var list: some View {
         ScrollView {
             showNearestButton
-            LazyVStack(spacing: Spacing.standard) {
-                ForEach(viewModel.searchResults, id: \.id) { meteorite in
-                    Button(action: {
-                        nav.goToMeteoriteDetail(meteorite)
-                    }) {
-                        MeteoriteRowView(
-                            recclass: meteorite.recclass,
-                            name: meteorite.name,
-                            year: meteorite.year,
-                            mass: viewModel.formattedMass(meteorite.mass)
-                        )
+            if viewModel.searchResults.isEmpty {
+                Text(L.MeteoriteList.noSearchResults)
+                    .font(Fonts.body1)
+                    .foregroundColor(Colors.textLight)
+                    .padding()
+            } else {
+                LazyVStack(spacing: Spacing.standard) {
+                    ForEach(viewModel.searchResults, id: \.id) { meteorite in
+                        Button(action: {
+                            nav.goToMeteoriteDetail(meteorite)
+                        }) {
+                            MeteoriteRowView(
+                                recclass: meteorite.recclass,
+                                name: meteorite.name,
+                                year: meteorite.year,
+                                mass: viewModel.formattedMass(meteorite.mass)
+                            )
+                        }
                     }
                 }
+                .padding()
             }
-            .padding(.vertical, Padding.standard)
+        }
+        .refreshable {
+            viewModel.refreshData()
         }
     }
 }

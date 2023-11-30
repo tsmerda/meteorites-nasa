@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct MeteoritesNASAApp: App {
-    @StateObject var nav = NavigationStateManager()
-    
     var body: some Scene {
         WindowGroup {
             MeteoritesListView(
@@ -19,7 +17,6 @@ struct MeteoritesNASAApp: App {
                     locationManager: LocationManager()
                 )
             )
-            .environmentObject(nav)
         }
     }
 }

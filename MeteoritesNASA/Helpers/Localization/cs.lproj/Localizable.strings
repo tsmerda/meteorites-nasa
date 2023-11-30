@@ -13,6 +13,7 @@
 "meteorite_list_all_meteorites" = "Všechny meteority";
 "meteorite_list_nearest_meteorites" = "Nejbližší meteority";
 "meteorite_list_show_nearest_meteorites" = "Zobrazit nejbližší meteority";
+"meteorite_list_no_search_results" = "Pro hledaný výraz nebylo nic nalezeno";
 
 // MARK: - NearestMeteoritesDetail
 "nearest_meteorites_detail_nearest_meteorites" = "Nejbližší meteority";

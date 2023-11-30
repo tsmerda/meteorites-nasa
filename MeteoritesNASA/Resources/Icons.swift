@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 enum Icons {
-    static let refresh = Image(systemName: "arrow.clockwise")
     static let mass = Image(systemName: "scalemass")
     static let clock = Image(systemName: "clock")
     static let dotCircleAndHand = Image(systemName: "dot.circle.and.hand.point.up.left.fill")

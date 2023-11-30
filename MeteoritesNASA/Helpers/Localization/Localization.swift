@@ -11,7 +11,7 @@ typealias L = LocalizedString
 
 extension String {
     var tr: String { tr() }
-
+    
     func tr(withComment comment: String = "") -> String {
         NSLocalizedString(self, comment: comment)
     }
@@ -26,6 +26,7 @@ enum LocalizedString {
         static let allMeteorites = "meteorite_list_all_meteorites".tr
         static let nearestMeteorites = "meteorite_list_nearest_meteorites".tr
         static let showNearestMeteorites = "meteorite_list_show_nearest_meteorites".tr
+        static let noSearchResults = "meteorite_list_no_search_results".tr
     }
     
     enum NearestMeteoritesDetail {

@@ -13,6 +13,7 @@
 "meteorite_list_all_meteorites" = "All meteorites";
 "meteorite_list_nearest_meteorites" = "Nearest meteorites";
 "meteorite_list_show_nearest_meteorites" = "Show nearest meteorites";
+"meteorite_list_no_search_results" = "No results found for the search term";
 
 // MARK: - NearestMeteoritesDetail
 "nearest_meteorites_detail_nearest_meteorites" = "Nearest meteorites";
