@@ -68,7 +68,7 @@ private extension MeteoritesListView {
     @ViewBuilder
     var showNearestButton: PrimaryButton? {
         if !viewModel.meteoritesList.isEmpty {
-            PrimaryButton(
+            let config = PrimaryButtonConfig(
                 icon: Icons.mapPin,
                 title: L.MeteoriteList.showNearestMeteorites,
                 action: {
@@ -76,6 +76,7 @@ private extension MeteoritesListView {
                     nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
                 }
             )
+            PrimaryButton(config: config)
         }
     }
     var list: some View {

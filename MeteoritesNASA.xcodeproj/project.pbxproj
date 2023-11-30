@@ -137,7 +137,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B52111882B122C4A00D957BB /* CustomFont */ = {
+		B52111882B122C4A00D957BB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				B521118E2B122C7200D957BB /* Montserrat-Black.ttf */,
@@ -150,7 +150,7 @@
 				B52111892B122C7200D957BB /* Montserrat-SemiBold.ttf */,
 				B52111912B122C7300D957BB /* Montserrat-Thin.ttf */,
 			);
-			path = CustomFont;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B521119E2B12363600D957BB /* MeteoriteInfoModal */ = {
@@ -203,21 +203,17 @@
 			isa = PBXGroup;
 			children = (
 				B527BF412B10EDD300806578 /* MeteoritesNASAApp.swift */,
-				B544EFA12B187124004DAC86 /* MockData */,
+				B544EFA12B187124004DAC86 /* Mocks */,
 				B527BF6E2B112AE800806578 /* Extensions */,
-				B52111882B122C4A00D957BB /* CustomFont */,
 				B527BF792B11E49800806578 /* Utilities */,
 				B527BF532B110BEF00806578 /* Helpers */,
 				B527BF522B110BD800806578 /* Errors */,
+				B527BF562B110C8300806578 /* Models */,
 				B527BF512B110BC200806578 /* Networking */,
-				B527BF712B11D90000806578 /* MeteoriteList */,
-				B527BF722B11D91200806578 /* MeteoriteDetail */,
-				B59A169A2B137B84005BA2FF /* NearestMeteoritesDetail */,
-				B52111A12B12369300D957BB /* MapView */,
-				B521119E2B12363600D957BB /* MeteoriteInfoModal */,
-				B59A16A42B139C1E005BA2FF /* UI */,
+				B544EFA92B188BFC004DAC86 /* UI */,
+				B59A16A42B139C1E005BA2FF /* Components */,
+				B544EFA82B188B35004DAC86 /* Resources */,
 				B521119B2B122CC500D957BB /* Info.plist */,
-				B527BF452B10EDD400806578 /* Assets.xcassets */,
 				B527BF472B10EDD400806578 /* Preview Content */,
 				B5E3E0B72B1628BF0057CB04 /* LaunchScreen.storyboard */,
 			);
@@ -235,7 +231,6 @@
 		B527BF512B110BC200806578 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				B527BF562B110C8300806578 /* Models */,
 				B527BF5C2B110F5800806578 /* NetworkManager.swift */,
 			);
 			path = Networking;
@@ -254,10 +249,7 @@
 			children = (
 				B52416612B14E75C00ED4866 /* Localization */,
 				B527BF5A2B110ECB00806578 /* ProgressHUDHelper.swift */,
-				B544EFA42B187B88004DAC86 /* Icons.swift */,
 				B527BF622B11141C00806578 /* Constraints.swift */,
-				B527BF682B1121A000806578 /* Fonts.swift */,
-				B527BF6A2B11238600806578 /* Colors.swift */,
 				B5E3E0A42B161A0F0057CB04 /* GlobalConstants.swift */,
 				B544EFA62B187F89004DAC86 /* ButtonIconType.swift */,
 			);
@@ -309,12 +301,36 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		B544EFA12B187124004DAC86 /* MockData */ = {
+		B544EFA12B187124004DAC86 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				B544EFA22B18713E004DAC86 /* MockNetworkManager.swift */,
 			);
-			path = MockData;
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		B544EFA82B188B35004DAC86 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B527BF6A2B11238600806578 /* Colors.swift */,
+				B544EFA42B187B88004DAC86 /* Icons.swift */,
+				B527BF682B1121A000806578 /* Fonts.swift */,
+				B52111882B122C4A00D957BB /* Fonts */,
+				B527BF452B10EDD400806578 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B544EFA92B188BFC004DAC86 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B527BF712B11D90000806578 /* MeteoriteList */,
+				B527BF722B11D91200806578 /* MeteoriteDetail */,
+				B59A169A2B137B84005BA2FF /* NearestMeteoritesDetail */,
+				B52111A12B12369300D957BB /* MapView */,
+				B521119E2B12363600D957BB /* MeteoriteInfoModal */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		B59A169A2B137B84005BA2FF /* NearestMeteoritesDetail */ = {
@@ -326,12 +342,12 @@
 			path = NearestMeteoritesDetail;
 			sourceTree = "<group>";
 		};
-		B59A16A42B139C1E005BA2FF /* UI */ = {
+		B59A16A42B139C1E005BA2FF /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				B59A16A52B139C2E005BA2FF /* PrimaryButton.swift */,
 			);
-			path = UI;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		B5E3E0942B1601290057CB04 /* MeteoritesNASATests */ = {

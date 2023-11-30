@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct PrimaryButton: View {
-    private let icon: Image?
-    private let title: String
-    private let action: () -> Void
-    private let color: Color
+struct PrimaryButtonConfig {
+    let icon: Image?
+    let title: String
+    let action: () -> Void
+    let color: Color
     
     init(
         icon: Image? = nil,
@@ -24,20 +24,28 @@ struct PrimaryButton: View {
         self.action = action
         self.color = color
     }
+}
+
+struct PrimaryButton: View {
+    let config: PrimaryButtonConfig
+    
+    init(config: PrimaryButtonConfig) {
+        self.config = config
+    }
     
     var body: some View {
-        Button(action: action) {
+        Button(action: config.action) {
             HStack {
-                if let iconName = icon {
-                    icon
+                if let iconName = config.icon {
+                    iconName
                         .imageScale(.large)
                         .padding(.trailing, 4)
                 }
-                Text(title)
+                Text(config.title)
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(PrimaryButtonStyle(color: color))
+        .buttonStyle(PrimaryButtonStyle(color: config.color))
     }
 }
 
@@ -54,12 +62,13 @@ struct PrimaryButtonStyle: ButtonStyle {
     }
 }
 
-
 #Preview {
     PrimaryButton(
-        icon: Icons.mapPin,
-        title: "Primary Button",
-        action: {}
-        // color: Colors.warning
+        config: PrimaryButtonConfig(
+            icon: Icons.mapPin,
+            title: "Primary Button",
+            action: {}
+            // color: Colors.warning
+        )
     )
 }

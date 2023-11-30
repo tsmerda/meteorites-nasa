@@ -113,7 +113,7 @@ private extension MeteoriteInfoModalView {
     @ViewBuilder
     var routeButton: PrimaryButton? {
         if viewModel.withRouteButton {
-            PrimaryButton(
+            let config = PrimaryButtonConfig(
                 icon: !isNavigationOn ? Icons.locationOn : Icons.locationOff,
                 title: !isNavigationOn ? L.MeteoriteInfoModal.navigateToMeteorite : L.MeteoriteInfoModal.cancelNavigation,
                 action: {
@@ -121,6 +121,7 @@ private extension MeteoriteInfoModalView {
                 },
                 color: !isNavigationOn ? Color.accentColor : Colors.warning
             )
+            PrimaryButton(config: config)
         }
     }
 }
