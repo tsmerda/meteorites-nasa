@@ -30,6 +30,7 @@ final class NearestMeteoritesDetailViewModel: ObservableObject {
 }
 extension NearestMeteoritesDetailViewModel {
     func fetchRoute() {
+        progressHudState = .shouldShowProgress
         var source = CLLocationCoordinate2D()
         var destination = CLLocationCoordinate2D()
         if let latitudeString = selectedMeteorite?.geolocation?.latitude,
@@ -48,7 +49,6 @@ extension NearestMeteoritesDetailViewModel {
         request.transportType = .automobile
         
         Task {
-            progressHudState = .shouldShowProgress
             let result = try? await MKDirections(request: request).calculate()
             route = result?.routes.first
             getTravelTime()

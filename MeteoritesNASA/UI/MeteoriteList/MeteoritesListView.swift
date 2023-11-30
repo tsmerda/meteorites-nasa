@@ -72,7 +72,7 @@ private extension MeteoritesListView {
     var list: some View {
         ScrollView {
             showNearestButton
-            if viewModel.searchResults.isEmpty {
+            if viewModel.progressHudState != .shouldShowProgress && viewModel.searchResults.isEmpty {
                 Text(L.MeteoriteList.noSearchResults)
                     .font(Fonts.body1)
                     .foregroundColor(Colors.textLight)

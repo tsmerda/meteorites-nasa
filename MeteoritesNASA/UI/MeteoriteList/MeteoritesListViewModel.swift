@@ -18,13 +18,13 @@ final class MeteoritesListViewModel: ObservableObject {
     @Published var searchIsActive: Bool = false
     
     let locationManager: LocationManager
-    
     private let networkManager: NetworkManagerProtocol
     private let fileManager = FileManager.default
     private let localDataFile = GlobalConstants.localDataFile
     private let lastUpdateKey = GlobalConstants.lastUpdateKey
     private let networkMonitor = NWPathMonitor()
     private var isInternetAvailable: Bool = false
+    private var isInitialLoad = true
     
     var searchResults: [Meteorite] {
         if searchText.isEmpty {
@@ -93,7 +93,7 @@ final class MeteoritesListViewModel: ObservableObject {
     }
     
     func refreshData() {
-        getAllMeteorites()
+        getAllMeteorites(showProgress: false)
     }
 }
 
@@ -106,7 +106,7 @@ private extension MeteoritesListViewModel {
     
     func loadMeteoritesData() {
         if shouldUpdateData() && isInternetAvailable {
-            getAllMeteorites()
+            getAllMeteorites(showProgress: true)
         } else {
             loadDataFromLocalStorage()
         }
@@ -125,17 +125,17 @@ private extension MeteoritesListViewModel {
     }
     
     func loadDataFromLocalStorage() {
+        progressHudState = .shouldShowProgress
         Task { @MainActor in
-            progressHudState = .shouldShowProgress
             let url = getDocumentsDirectory().appendingPathComponent(localDataFile)
             if let data = try? Data(contentsOf: url) {
                 do {
                     meteoritesList = try JSONDecoder().decode([Meteorite].self, from: data)
+                    progressHudState = .shouldHideProgress
                 } catch {
                     progressHudState = .shouldShowFail(message: error.localizedDescription)
                 }
             }
-            progressHudState = .shouldHideProgress
         }
     }
     
@@ -158,13 +158,14 @@ private extension MeteoritesListViewModel {
 // MARK: -- Network methods
 
 private extension MeteoritesListViewModel {
-    func getAllMeteorites() {
-        Task { @MainActor in
+    private func getAllMeteorites(showProgress: Bool) {
+        if showProgress {
             progressHudState = .shouldShowProgress
+        }
+        Task { @MainActor in
             do {
                 let data = try await networkManager.getAllMeteorites()
                 meteoritesList = data
-                try await saveDataToLocalStorage(data)
                 progressHudState = .shouldHideProgress
             } catch {
                 progressHudState = .shouldShowFail(message: error.localizedDescription)
