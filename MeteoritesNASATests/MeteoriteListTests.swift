@@ -6,11 +6,13 @@
 //
 
 import XCTest
+import Combine
 @testable import MeteoritesNASA
 
 final class MeteoriteListTests: XCTestCase {
     var viewModel: MeteoritesListViewModel!
     var mockNetworkManager: MockNetworkManager!
+    var subscriptions: Set<AnyCancellable> = []
     
     override func setUp() {
         super.setUp()
@@ -38,42 +40,49 @@ final class MeteoriteListTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Data is loaded")
         viewModel = MeteoritesListViewModel(networkManager: MockNetworkManager())
         
-        viewModel.refreshData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            XCTAssertFalse(self.viewModel.meteoritesList.isEmpty, "Meteorites list should not be empty")
-            expectation.fulfill()
-        }
+        viewModel.$meteoritesList
+            .dropFirst()
+            .sink { meteorites in
+                XCTAssertFalse(meteorites.isEmpty, "Meteorites list should not be empty")
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
         
-        wait(for: [expectation], timeout: 2.0)
+        viewModel.refreshData()
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testLoadDataWithEmptyData() {
         let expectation = XCTestExpectation(description: "Data is empty")
         viewModel = MeteoritesListViewModel(networkManager: MockNetworkManagerEmpty())
         
-        viewModel.refreshData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            XCTAssertTrue(self.viewModel.meteoritesList.isEmpty, "Meteorites list should be empty")
-            expectation.fulfill()
-        }
+        viewModel.$meteoritesList
+            .dropFirst()
+            .sink { meteorites in
+                XCTAssertTrue(meteorites.isEmpty, "Meteorites list should be empty")
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
         
-        wait(for: [expectation], timeout: 2.0)
+        viewModel.refreshData()
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func testLoadDataWithError() {
         let expectation = XCTestExpectation(description: "Data loading failed")
         viewModel = MeteoritesListViewModel(networkManager: MockNetworkManagerFailure())
         
-        viewModel.refreshData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            if case .shouldShowFail(let message) = self.viewModel.progressHudState {
-                XCTAssertNotNil(message, "Error message should be present")
-                expectation.fulfill()
-            } else {
-                XCTFail("Expected failure state not reached")
+        viewModel.$progressHudState
+            .dropFirst()
+            .sink { state in
+                if case .shouldShowFail(let message) = state {
+                    XCTAssertNotNil(message)
+                    expectation.fulfill()
+                }
             }
-        }
+            .store(in: &subscriptions)
         
-        wait(for: [expectation], timeout: 2.0)
+        viewModel.refreshData()
+        wait(for: [expectation], timeout: 1.0)
     }
 }

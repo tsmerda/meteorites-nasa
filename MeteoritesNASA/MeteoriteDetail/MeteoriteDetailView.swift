@@ -49,10 +49,10 @@ private extension MeteoriteDetailView {
                 onCancelNavigationAction: nil
             )
         )
-        .presentationDetents([.height(240), .medium])
-        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+        .presentationDetents([.height(250)])
+        .presentationBackgroundInteraction(.enabled(upThrough: .height(250)))
         .interactiveDismissDisabled()
-        .presentationDragIndicator(.automatic)
+        .presentationDragIndicator(.hidden)
     }
 }
 

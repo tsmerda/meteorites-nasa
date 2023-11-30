@@ -11,7 +11,6 @@ class MockNetworkManager: NetworkManagerProtocol {
     func getAllMeteorites() async throws -> [Meteorite] {
         Meteorite.exampleList
     }
-    
 }
 
 class MockNetworkManagerEmpty: NetworkManagerProtocol {
