@@ -36,7 +36,7 @@ struct MeteoriteRowView: View {
 private extension MeteoriteRowView {
     @ViewBuilder
     var imageView: some View {
-        Image("meteorite-icon")
+        Icons.meteorite
             .resizable()
             .scaledToFit()
             .frame(width: 60, height: 60)
@@ -59,11 +59,11 @@ private extension MeteoriteRowView {
                 .font(Fonts.headline1)
                 .foregroundStyle(Colors.textDark)
             HStack {
-                Image(systemName: "scalemass")
+                Icons.mass
                 Text(mass != nil ? "\(mass!) \(L.MeteoriteInfoModal.grams)" : L.Generic.unknown)
                     .font(Fonts.body1)
                 Spacer()
-                Image(systemName: "clock")
+                Icons.clock
                 Text(year?.toFormattedDate() ?? L.Generic.unknown)
                     .font(Fonts.body1)
             }

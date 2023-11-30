@@ -47,8 +47,8 @@ struct MeteoritesListView: View {
 private extension MeteoritesListView {
     var refreshButton: some View {
         Button(action: { viewModel.refreshData() }) {
-            Image(systemName: "arrow.clockwise")
-                .foregroundColor(.accentColor)
+            Icons.refresh
+                .foregroundColor(Color.accentColor)
         }
     }
     func meteoriteDetailView(_ meteorite: Meteorite) -> MeteoriteDetailView {
@@ -69,7 +69,7 @@ private extension MeteoritesListView {
     var showNearestButton: PrimaryButton? {
         if !viewModel.meteoritesList.isEmpty {
             PrimaryButton(
-                icon: "mappin.and.ellipse",
+                icon: Icons.mapPin,
                 title: L.MeteoriteList.showNearestMeteorites,
                 action: {
                     viewModel.findNearestMeteorites()

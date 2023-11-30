@@ -51,7 +51,7 @@ private extension NearestMeteoritesDetailView {
     var infoLabel: some View {
         if viewModel.selectedMeteorite == nil {
             HStack(spacing: Spacing.small) {
-                Image(systemName: "dot.circle.and.hand.point.up.left.fill")
+                Icons.dotCircleAndHand
                     .foregroundColor(Colors.black)
                 Text(L.NearestMeteoritesDetail.infoLabel)
                     .font(Fonts.body1)

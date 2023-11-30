@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct PrimaryButton: View {
-    private let icon: String?
+    private let icon: Image?
     private let title: String
     private let action: () -> Void
     private let color: Color
     
     init(
-        icon: String? = nil,
+        icon: Image? = nil,
         title: String,
         action: @escaping () -> Void,
         color: Color = Color.accentColor
@@ -29,7 +29,7 @@ struct PrimaryButton: View {
         Button(action: action) {
             HStack {
                 if let iconName = icon {
-                    Image(systemName: iconName)
+                    icon
                         .imageScale(.large)
                         .padding(.trailing, 4)
                 }
@@ -57,7 +57,7 @@ struct PrimaryButtonStyle: ButtonStyle {
 
 #Preview {
     PrimaryButton(
-        icon: "mappin.and.ellipse",
+        icon: Icons.mapPin,
         title: "Primary Button",
         action: {}
         // color: Colors.warning

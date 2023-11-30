@@ -122,7 +122,9 @@ private extension MapView {
     var actionRowView: some View {
         VStack {
             HStack {
-                actionCircleButton(.systemName("arrow.left")) {
+                actionCircleButton(
+                    .systemName(Icons.arrowLeft)
+                ) {
                     viewModel.goBackAction()
                 }
                 Spacer()
@@ -131,14 +133,18 @@ private extension MapView {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, Padding.standard)
                 Spacer()
-                actionCircleButton(.systemName("location.fill")) {
+                actionCircleButton(
+                    .systemName(Icons.location)
+                ) {
                     position = .userLocation(fallback: .automatic)
                 }
             }
             if viewModel.nearestMeteorites == nil {
                 HStack {
                     Spacer()
-                    actionCircleButton(.assetName("meteorite-icon")) {
+                    actionCircleButton(
+                        .assetName(Icons.meteorite)
+                    ) {
                         if let meteoritePosition = viewModel.getMeteoritePosition() {
                             position = .item(
                                 meteoritePosition
@@ -159,12 +165,12 @@ private extension MapView {
                 .overlay(
                     Group {
                         switch iconType {
-                        case .systemName(let name):
-                            Image(systemName: name)
+                        case .systemName(let image):
+                            image
                                 .imageScale(.large)
                                 .foregroundColor(Color.black)
-                        case .assetName(let name):
-                            Image(name)
+                        case .assetName(let image):
+                            image
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 35)
@@ -193,7 +199,7 @@ private extension MapView {
                 .fill(meteorite != nil && viewModel.selectedMeteorite?.id == meteorite?.id ? Color.accentColor : Color.white)
                 .frame(width: 50, height: 50)
                 .overlay(
-                    Image("meteorite-icon")
+                    Icons.meteorite
                         .resizable()
                         .scaledToFit()
                         .frame(width: 35)

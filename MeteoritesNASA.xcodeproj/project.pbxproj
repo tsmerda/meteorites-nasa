@@ -42,11 +42,12 @@
 		B527BF7D2B11EC3E00806578 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7C2B11EC3E00806578 /* MapView.swift */; };
 		B527BF7F2B11EC6800806578 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527BF7E2B11EC6800806578 /* MapViewModel.swift */; };
 		B544EFA32B18713E004DAC86 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544EFA22B18713E004DAC86 /* MockNetworkManager.swift */; };
+		B544EFA52B187B88004DAC86 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544EFA42B187B88004DAC86 /* Icons.swift */; };
+		B544EFA72B187F8A004DAC86 /* ButtonIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544EFA62B187F89004DAC86 /* ButtonIconType.swift */; };
 		B59A16992B13365B005BA2FF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A16982B13365B005BA2FF /* LocationManager.swift */; };
 		B59A169C2B137BCE005BA2FF /* NearestMeteoritesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */; };
 		B59A169E2B137C05005BA2FF /* NearestMeteoritesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */; };
 		B59A16A62B139C2E005BA2FF /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A16A52B139C2E005BA2FF /* PrimaryButton.swift */; };
-		B5E3E08E2B15FBA70057CB04 /* ButtonIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */; };
 		B5E3E09D2B1605680057CB04 /* FormattedMassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E09C2B1605680057CB04 /* FormattedMassTests.swift */; };
 		B5E3E0A12B160E270057CB04 /* DateFormatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0A02B160E270057CB04 /* DateFormatExtensionTests.swift */; };
 		B5E3E0A32B1618880057CB04 /* MeteoriteListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3E0A22B1618880057CB04 /* MeteoriteListTests.swift */; };
@@ -103,11 +104,12 @@
 		B527BF7E2B11EC6800806578 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		B544EFA02B186DC9004DAC86 /* MeteoritesNASA.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MeteoritesNASA.xctestplan; sourceTree = "<group>"; };
 		B544EFA22B18713E004DAC86 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		B544EFA42B187B88004DAC86 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		B544EFA62B187F89004DAC86 /* ButtonIconType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonIconType.swift; sourceTree = "<group>"; };
 		B59A16982B13365B005BA2FF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestMeteoritesDetailViewModel.swift; sourceTree = "<group>"; };
 		B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestMeteoritesDetailView.swift; sourceTree = "<group>"; };
 		B59A16A52B139C2E005BA2FF /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonIconType.swift; sourceTree = "<group>"; };
 		B5E3E0932B1601290057CB04 /* MeteoritesNASATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeteoritesNASATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E3E09C2B1605680057CB04 /* FormattedMassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedMassTests.swift; sourceTree = "<group>"; };
 		B5E3E0A02B160E270057CB04 /* DateFormatExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatExtensionTests.swift; sourceTree = "<group>"; };
@@ -252,11 +254,12 @@
 			children = (
 				B52416612B14E75C00ED4866 /* Localization */,
 				B527BF5A2B110ECB00806578 /* ProgressHUDHelper.swift */,
+				B544EFA42B187B88004DAC86 /* Icons.swift */,
 				B527BF622B11141C00806578 /* Constraints.swift */,
 				B527BF682B1121A000806578 /* Fonts.swift */,
 				B527BF6A2B11238600806578 /* Colors.swift */,
-				B5E3E08D2B15FBA70057CB04 /* ButtonIconType.swift */,
 				B5E3E0A42B161A0F0057CB04 /* GlobalConstants.swift */,
+				B544EFA62B187F89004DAC86 /* ButtonIconType.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -464,12 +467,13 @@
 				B527BF5D2B110F5800806578 /* NetworkManager.swift in Sources */,
 				B527BF6B2B11238600806578 /* Colors.swift in Sources */,
 				B527BF612B110FD100806578 /* NetworkError.swift in Sources */,
-				B5E3E08E2B15FBA70057CB04 /* ButtonIconType.swift in Sources */,
+				B544EFA72B187F8A004DAC86 /* ButtonIconType.swift in Sources */,
 				B527BF702B112C2D00806578 /* String+Ext.swift in Sources */,
 				B527BF552B110C7300806578 /* Meteorite.swift in Sources */,
 				B52416632B14E82400ED4866 /* Localization.swift in Sources */,
 				B59A16A62B139C2E005BA2FF /* PrimaryButton.swift in Sources */,
 				B527BF442B10EDD300806578 /* MeteoritesListView.swift in Sources */,
+				B544EFA52B187B88004DAC86 /* Icons.swift in Sources */,
 				B527BF632B11141C00806578 /* Constraints.swift in Sources */,
 				B527BF422B10EDD300806578 /* MeteoritesNASAApp.swift in Sources */,
 				B52111A02B12365B00D957BB /* MeteoriteInfoModalViewModel.swift in Sources */,

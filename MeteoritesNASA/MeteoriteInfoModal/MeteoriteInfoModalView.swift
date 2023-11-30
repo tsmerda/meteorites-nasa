@@ -44,7 +44,7 @@ private extension MeteoriteInfoModalView {
                 .fill(Color.disabled)
                 .frame(width: 44, height: 44)
                 .overlay(
-                    Image(systemName: "photo")
+                    Icons.photo
                         .imageScale(.large)
                         .foregroundColor(Colors.textDark)
                 )
@@ -52,7 +52,7 @@ private extension MeteoriteInfoModalView {
                 Text(viewModel.meteorite?.name ?? "")
                     .font(Fonts.headline1)
                     .foregroundStyle(Colors.textDark)
-                Text("\(L.MeteoriteInfoModal.recclass) \(viewModel.meteorite?.recclass ?? "")")
+                Text(L.MeteoriteInfoModal.recclass + ": " + (viewModel.meteorite?.recclass ?? L.Generic.unknown))
                     .font(Fonts.captions)
                     .foregroundStyle(Colors.textLight)
             }
@@ -70,7 +70,7 @@ private extension MeteoriteInfoModalView {
                         .fill(Color.accentColor)
                         .frame(width: 44, height: 44)
                         .overlay(
-                            Image(systemName: "map")
+                            Icons.map
                                 .imageScale(.large)
                                 .foregroundColor(Colors.black)
                         )
@@ -114,7 +114,7 @@ private extension MeteoriteInfoModalView {
     var routeButton: PrimaryButton? {
         if viewModel.withRouteButton {
             PrimaryButton(
-                icon: !isNavigationOn ? "location.north.circle" : "location.slash.circle",
+                icon: !isNavigationOn ? Icons.locationOn : Icons.locationOff,
                 title: !isNavigationOn ? L.MeteoriteInfoModal.navigateToMeteorite : L.MeteoriteInfoModal.cancelNavigation,
                 action: {
                     !isNavigationOn ? viewModel.onNavigate() : viewModel.onCancelNavigation()
