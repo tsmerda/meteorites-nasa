@@ -24,6 +24,8 @@
 "map_alert_dismiss" = "OK";
 "map_travel_time" = "Doba cesty";
 "map_meteorite" = "Meteorit";
+"map_request_permission_alert_title" = "Upozornění";
+"map_request_permission_alert_message" = "Pro zobrazení Vaší polohy musíte povolit polohové služby v nastavení";
 
 // MARK: - MeteoriteInfoModal
 "meteorite_info_modal_recclass" = "Třída";

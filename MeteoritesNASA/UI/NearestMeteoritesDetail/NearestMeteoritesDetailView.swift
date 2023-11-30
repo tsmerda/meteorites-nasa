@@ -78,7 +78,8 @@ private extension NearestMeteoritesDetailView {
                 }
                 viewModel.selectedMeteorite = $0
                 showMeteoriteDetail = true
-            }
+            },
+            locationManager: viewModel.locationManager
         )
         MapView(
             viewModel: mapViewModel,
@@ -96,7 +97,8 @@ private extension NearestMeteoritesDetailView {
                 },
                 onCancelNavigationAction: {
                     viewModel.cancelRoute()
-                }
+                },
+                locationManager: viewModel.locationManager
             ),
             isNavigationOn: viewModel.route != nil
         )
@@ -110,7 +112,8 @@ private extension NearestMeteoritesDetailView {
 #Preview {
     NearestMeteoritesDetailView(
         viewModel: NearestMeteoritesDetailViewModel(
-            meteorites: Meteorite.exampleList
+            meteorites: Meteorite.exampleList,
+            locationManager: MockLocationManager()
         )
     )
 }

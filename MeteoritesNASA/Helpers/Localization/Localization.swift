@@ -12,14 +12,6 @@ typealias L = LocalizedString
 extension String {
     var tr: String { tr() }
 
-    private func tr(_ stringValue: String) -> String {
-        String(format: self.tr, stringValue)
-    }
-
-    func tr(_ stringValues: [String]) -> String {
-        String(format: self.tr, arguments: stringValues)
-    }
-
     func tr(withComment comment: String = "") -> String {
         NSLocalizedString(self, comment: comment)
     }
@@ -47,6 +39,8 @@ enum LocalizedString {
         static let alertDismiss = "map_alert_dismiss".tr
         static let travelTime = "map_travel_time".tr
         static let meteorite = "map_meteorite".tr
+        static let requestPermissionAlertTitle = "map_request_permission_alert_title".tr
+        static let requestPermissionAlertMessage = "map_request_permission_alert_message".tr
     }
     
     enum MeteoriteInfoModal {

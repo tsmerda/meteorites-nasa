@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MeteoritesListView: View {
     @StateObject private var viewModel: MeteoritesListViewModel
-    @StateObject var nav = NavigationStateManager()
+    @EnvironmentObject var nav: NavigationStateManager
     private let progressHudBinding: ProgressHudBinding
     
     init(viewModel: MeteoritesListViewModel) {
@@ -35,12 +35,8 @@ struct MeteoritesListView: View {
             .navigationDestination(for: [Meteorite].self) { meteorites in
                 nearestMeteoritesDetailView(meteorites)
             }
-            .onAppear {
-                LocationManager.shared.requestLocationPermission()
-            }
         }
         .searchable(text: $viewModel.searchText, isPresented: $viewModel.searchIsActive)
-        .environmentObject(nav)
     }
 }
 
@@ -54,14 +50,16 @@ private extension MeteoritesListView {
     func meteoriteDetailView(_ meteorite: Meteorite) -> MeteoriteDetailView {
         MeteoriteDetailView(
             viewModel: MeteoriteDetailViewModel(
-                meteorite: meteorite
+                meteorite: meteorite,
+                locationManager: viewModel.locationManager
             )
         )
     }
     func nearestMeteoritesDetailView(_ meteorites: [Meteorite]) -> NearestMeteoritesDetailView {
         NearestMeteoritesDetailView(
             viewModel: NearestMeteoritesDetailViewModel(
-                meteorites: meteorites
+                meteorites: meteorites,
+                locationManager: viewModel.locationManager
             )
         )
     }
@@ -104,7 +102,8 @@ private extension MeteoritesListView {
 #Preview {
     MeteoritesListView(
         viewModel: MeteoritesListViewModel(
-            networkManager: MockNetworkManager()
+            networkManager: MockNetworkManager(),
+            locationManager: MockLocationManager()
         )
     )
 }

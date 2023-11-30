@@ -24,6 +24,8 @@
 "map_view_alert_dismiss" = "OK";
 "map_travel_time" = "Travel time";
 "map_meteorite" = "Meteorite";
+"map_request_permission_alert_title" = "Warning";
+"map_request_permission_alert_message" = "To see your location, you need to enable location services in the settings";
 
 // MARK: - MeteoriteInfoModal
 "meteorite_info_modal_recclass" = "Class";

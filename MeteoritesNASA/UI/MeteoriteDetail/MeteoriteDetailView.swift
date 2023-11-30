@@ -36,7 +36,8 @@ private extension MeteoriteDetailView {
                 title: viewModel.meteorite.name,
                 geolocation: geolocation,
                 goBackAction: { nav.goBack() },
-                onSelectMeteoriteAction: nil
+                onSelectMeteoriteAction: nil,
+                locationManager: viewModel.locationManager
             )
             MapView(viewModel: mapViewModel)
         }
@@ -46,7 +47,8 @@ private extension MeteoriteDetailView {
             viewModel: MeteoriteInfoModalViewModel(
                 meteorite: viewModel.meteorite,
                 onNavigateAction: nil,
-                onCancelNavigationAction: nil
+                onCancelNavigationAction: nil,
+                locationManager: viewModel.locationManager
             )
         )
         .presentationDetents([.height(250)])
@@ -59,7 +61,8 @@ private extension MeteoriteDetailView {
 #Preview {
     MeteoriteDetailView(
         viewModel: MeteoriteDetailViewModel(
-            meteorite: Meteorite.example
+            meteorite: Meteorite.example,
+            locationManager: MockLocationManager()
         )
     )
 }

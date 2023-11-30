@@ -9,8 +9,13 @@ import Foundation
 
 final class MeteoriteDetailViewModel: ObservableObject {
     let meteorite: Meteorite
+    let locationManager: LocationManager
     
-    init(meteorite: Meteorite) {
+    init(
+        meteorite: Meteorite,
+        locationManager: LocationManager
+    ) {
         self.meteorite = meteorite
+        self.locationManager = locationManager
     }
 }

@@ -17,6 +17,8 @@ final class MeteoritesListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var searchIsActive: Bool = false
     
+    let locationManager: LocationManager
+    
     private let networkManager: NetworkManagerProtocol
     private let fileManager = FileManager.default
     private let localDataFile = GlobalConstants.localDataFile
@@ -32,9 +34,14 @@ final class MeteoritesListViewModel: ObservableObject {
         }
     }
     
-    init(networkManager: NetworkManagerProtocol) {
+    init(
+        networkManager: NetworkManagerProtocol,
+        locationManager: LocationManager
+    ) {
         self.networkManager = networkManager
+        self.locationManager = locationManager
         handleInitialData()
+        locationManager.requestLocationPermission()
     }
     
     deinit {
@@ -133,7 +140,7 @@ private extension MeteoritesListViewModel {
     }
     
     func distanceFromUser(to meteorite: Meteorite) -> Double {
-        guard let userLocation = LocationManager.shared.userLocation,
+        guard let userLocation = locationManager.userLocation,
               let latitudeString = meteorite.geolocation?.latitude,
               let longitudeString = meteorite.geolocation?.longitude,
               let latitude = Double(latitudeString),

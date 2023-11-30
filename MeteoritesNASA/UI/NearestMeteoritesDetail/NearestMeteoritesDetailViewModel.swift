@@ -10,14 +10,19 @@ import MapKit
 
 final class NearestMeteoritesDetailViewModel: ObservableObject {
     let meteorites: [Meteorite]
+    let locationManager: LocationManager
+    
     @Published private(set) var progressHudState: ProgressHudState = .shouldHideProgress
     @Published var selectedMeteorite: Meteorite?
-    
     @Published var route: MKRoute?
     @Published var travelTime: String?
     
-    init(meteorites: [Meteorite]) {
+    init(
+        meteorites: [Meteorite],
+        locationManager: LocationManager
+    ) {
         self.meteorites = meteorites
+        self.locationManager = locationManager
         self.selectedMeteorite = nil
         self.route = nil
         self.travelTime = nil
@@ -33,7 +38,7 @@ extension NearestMeteoritesDetailViewModel {
            let longitude = Double(longitudeString) {
             destination = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
-        if let userCoordinates = LocationManager.shared.userLocation {
+        if let userCoordinates = locationManager.userLocation {
             source = CLLocationCoordinate2D(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
         }
         

@@ -131,7 +131,8 @@ private extension MeteoriteInfoModalView {
         viewModel: MeteoriteInfoModalViewModel(
             meteorite: Meteorite.example,
             onNavigateAction: {},
-            onCancelNavigationAction: {}
+            onCancelNavigationAction: {},
+            locationManager: MockLocationManager()
         )
     )
 }

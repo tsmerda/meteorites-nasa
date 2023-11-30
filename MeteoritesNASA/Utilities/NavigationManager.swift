@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class NavigationStateManager: ObservableObject {
+final class NavigationStateManager: ObservableObject {
     @Published var path = NavigationPath()
     
     func goBack() {

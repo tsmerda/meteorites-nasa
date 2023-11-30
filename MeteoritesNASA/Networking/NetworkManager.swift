@@ -11,7 +11,7 @@ protocol NetworkManagerProtocol {
     func getAllMeteorites() async throws -> [Meteorite]
 }
 
-class NetworkManager: NetworkManagerProtocol {
+final class NetworkManager: NetworkManagerProtocol {
     private let baseURL = "https://data.nasa.gov"
     private let appToken = "pGOI9Jlx6iopTchXLBfJBzrce"
     

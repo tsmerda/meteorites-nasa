@@ -13,6 +13,7 @@ struct MapView: View {
     @State private var animationScale = 1.0
     @State private var position: MapCameraPosition = .automatic
     @State private var showNoMeteoritesAlert = false
+    @State private var showLocationPermissionAlert = false
     
     var route: MKRoute?
     var travelTime: String?
@@ -89,6 +90,13 @@ struct MapView: View {
                     dismissButton: .default(Text(L.Map.alertDismiss))
                 )
             }
+            .alert(isPresented: $showLocationPermissionAlert) {
+                Alert(
+                    title: Text(L.Map.requestPermissionAlertTitle),
+                    message: Text(L.Map.requestPermissionAlertMessage),
+                    dismissButton: .default(Text(L.Map.alertDismiss))
+                )
+            }
             .overlay(alignment: .top, content: {
                 travelTimeLabel
             })
@@ -136,7 +144,11 @@ private extension MapView {
                 actionCircleButton(
                     .systemName(Icons.location)
                 ) {
-                    position = .userLocation(fallback: .automatic)
+                    if viewModel.handleUserLocation() == true {
+                        position = .userLocation(fallback: .automatic)
+                    } else {
+                        showLocationPermissionAlert = true
+                    }
                 }
             }
             if viewModel.nearestMeteorites == nil {
@@ -218,7 +230,8 @@ private extension MapView {
             geolocation: Geolocation.example,
             // nearestMeteorites: Meteorite.exampleList,
             goBackAction: {},
-            onSelectMeteoriteAction: { _ in }
+            onSelectMeteoriteAction: { _ in },
+            locationManager: MockLocationManager()
         )
     )
 }

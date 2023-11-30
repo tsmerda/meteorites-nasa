@@ -14,17 +14,20 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
     let withRouteButton: Bool
     private let onNavigateAction: (() -> Void)?
     private let onCancelNavigationAction: (() -> Void)?
+    private let locationManager: LocationManager
     
     init(
         meteorite: Meteorite?,
         withRouteButton: Bool = false,
         onNavigateAction: (() -> Void)?,
-        onCancelNavigationAction: (() -> Void)?
+        onCancelNavigationAction: (() -> Void)?,
+        locationManager: LocationManager
     ) {
         self.meteorite = meteorite
         self.withRouteButton = withRouteButton
         self.onNavigateAction = onNavigateAction
         self.onCancelNavigationAction = onCancelNavigationAction
+        self.locationManager = locationManager
     }
     
     func onNavigate() {
@@ -65,7 +68,7 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
     }
     
     func getUserDistanceFromMeteorite() -> String {
-        guard let userCoordinates = LocationManager.shared.userLocation,
+        guard let userCoordinates = locationManager.userLocation,
               let latitudeString = meteorite?.geolocation?.latitude,
               let longitudeString = meteorite?.geolocation?.longitude,
               let latitude = Double(latitudeString),

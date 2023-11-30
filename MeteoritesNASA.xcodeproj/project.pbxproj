@@ -44,6 +44,7 @@
 		B544EFA32B18713E004DAC86 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544EFA22B18713E004DAC86 /* MockNetworkManager.swift */; };
 		B544EFA52B187B88004DAC86 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544EFA42B187B88004DAC86 /* Icons.swift */; };
 		B544EFA72B187F8A004DAC86 /* ButtonIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544EFA62B187F89004DAC86 /* ButtonIconType.swift */; };
+		B544EFAB2B18986D004DAC86 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B544EFAA2B18986D004DAC86 /* MockLocationManager.swift */; };
 		B59A16992B13365B005BA2FF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A16982B13365B005BA2FF /* LocationManager.swift */; };
 		B59A169C2B137BCE005BA2FF /* NearestMeteoritesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */; };
 		B59A169E2B137C05005BA2FF /* NearestMeteoritesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */; };
@@ -106,6 +107,7 @@
 		B544EFA22B18713E004DAC86 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		B544EFA42B187B88004DAC86 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		B544EFA62B187F89004DAC86 /* ButtonIconType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonIconType.swift; sourceTree = "<group>"; };
+		B544EFAA2B18986D004DAC86 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		B59A16982B13365B005BA2FF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B59A169B2B137BCD005BA2FF /* NearestMeteoritesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestMeteoritesDetailViewModel.swift; sourceTree = "<group>"; };
 		B59A169D2B137C05005BA2FF /* NearestMeteoritesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestMeteoritesDetailView.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				B544EFA22B18713E004DAC86 /* MockNetworkManager.swift */,
+				B544EFAA2B18986D004DAC86 /* MockLocationManager.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				B527BF742B11DA7100806578 /* MeteoriteDetailView.swift in Sources */,
 				B527BF7B2B11E4AB00806578 /* NavigationManager.swift in Sources */,
 				B527BF502B11099400806578 /* MeteoritesListViewModel.swift in Sources */,
+				B544EFAB2B18986D004DAC86 /* MockLocationManager.swift in Sources */,
 				B59A169C2B137BCE005BA2FF /* NearestMeteoritesDetailViewModel.swift in Sources */,
 				B527BF652B11169600806578 /* Geolocation.swift in Sources */,
 				B527BF692B1121A000806578 /* Fonts.swift in Sources */,
