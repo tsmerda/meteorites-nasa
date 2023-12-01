@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum ButtonIconType {
-    case systemName(String)
-    case assetName(String)
+    case systemName(Image)
+    case assetName(Image)
 }

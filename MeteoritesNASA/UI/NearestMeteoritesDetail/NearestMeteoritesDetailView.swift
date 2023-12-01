@@ -10,6 +10,7 @@ import MapKit
 
 struct NearestMeteoritesDetailView: View {
     @StateObject private var viewModel: NearestMeteoritesDetailViewModel
+    
     @EnvironmentObject var nav: NavigationStateManager
     
     @State private var showMeteoriteDetail: Bool = false
@@ -19,7 +20,9 @@ struct NearestMeteoritesDetailView: View {
     
     init(viewModel: NearestMeteoritesDetailViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.progressHudBinding = ProgressHudBinding(state: viewModel.$progressHudState)
+        self.progressHudBinding = ProgressHudBinding(
+            state: viewModel.$progressHudState
+        )
     }
     
     var body: some View {
@@ -51,11 +54,11 @@ private extension NearestMeteoritesDetailView {
     var infoLabel: some View {
         if viewModel.selectedMeteorite == nil {
             HStack(spacing: Spacing.small) {
-                Image(systemName: "dot.circle.and.hand.point.up.left.fill")
-                    .foregroundColor(Colors.black)
+                Icons.dotCircleAndHand
+                    .foregroundColor(Colors.textDark)
                 Text(L.NearestMeteoritesDetail.infoLabel)
                     .font(Fonts.body1)
-                    .foregroundStyle(Colors.black)
+                    .foregroundStyle(Colors.textDark)
             }
             .padding()
             .background(.ultraThinMaterial)
@@ -78,7 +81,8 @@ private extension NearestMeteoritesDetailView {
                 }
                 viewModel.selectedMeteorite = $0
                 showMeteoriteDetail = true
-            }
+            },
+            locationManager: viewModel.locationManager
         )
         MapView(
             viewModel: mapViewModel,
@@ -92,11 +96,14 @@ private extension NearestMeteoritesDetailView {
                 meteorite: viewModel.selectedMeteorite,
                 withRouteButton: true,
                 onNavigateAction: {
-                    viewModel.fetchRoute()
+                    Task {
+                        await viewModel.fetchRoute()
+                    }
                 },
                 onCancelNavigationAction: {
                     viewModel.cancelRoute()
-                }
+                },
+                locationManager: viewModel.locationManager
             ),
             isNavigationOn: viewModel.route != nil
         )
@@ -110,7 +117,8 @@ private extension NearestMeteoritesDetailView {
 #Preview {
     NearestMeteoritesDetailView(
         viewModel: NearestMeteoritesDetailViewModel(
-            meteorites: Meteorite.exampleList
+            meteorites: Meteorite.exampleList,
+            locationManager: MockLocationManager()
         )
     )
 }

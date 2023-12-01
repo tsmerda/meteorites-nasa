@@ -13,6 +13,7 @@
 "meteorite_list_all_meteorites" = "Všechny meteority";
 "meteorite_list_nearest_meteorites" = "Nejbližší meteority";
 "meteorite_list_show_nearest_meteorites" = "Zobrazit nejbližší meteority";
+"meteorite_list_no_search_results" = "Pro hledaný výraz nebylo nic nalezeno";
 
 // MARK: - NearestMeteoritesDetail
 "nearest_meteorites_detail_nearest_meteorites" = "Nejbližší meteority";
@@ -24,6 +25,8 @@
 "map_alert_dismiss" = "OK";
 "map_travel_time" = "Doba cesty";
 "map_meteorite" = "Meteorit";
+"map_request_permission_alert_title" = "Upozornění";
+"map_request_permission_alert_message" = "Pro zobrazení Vaší polohy musíte povolit polohové služby v nastavení";
 
 // MARK: - MeteoriteInfoModal
 "meteorite_info_modal_recclass" = "Třída";
@@ -39,3 +42,8 @@
 "meteorite_info_modal_grams" = "gramů";
 "meteorite_info_modal_kilometers" = "kilometrů";
 "meteorite_info_modal_open_in_maps" = "Otevřít v mapách";
+
+// MARK: - Error
+"error_invalid_url" = "Neplatná adresa URL. Zkontrolujte prosím URL adresu a zkuste to znovu.";
+"error_server_error" = "Na serveru došlo k chybě. Zkuste to prosím později.";
+"error_invalid_data" = "Neplatná data přijatá ze serveru. Zkuste to prosím znovu.";

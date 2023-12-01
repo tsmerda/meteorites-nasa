@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-class NavigationStateManager: ObservableObject {
+final class NavigationStateManager: ObservableObject {
     @Published var path = NavigationPath()
-    
-    func popToRoot() {
-        path.removeLast(path.count)
-    }
     
     func goBack() {
         path.removeLast()
@@ -24,9 +20,5 @@ class NavigationStateManager: ObservableObject {
     
     func goToNearestMeteoritesDetail(_ meteorites: [Meteorite]) {
         path.append(meteorites)
-    }
-    
-    func errorGoToView(_ view: String) {
-        debugPrint("Error go to view: \(view)")
     }
 }

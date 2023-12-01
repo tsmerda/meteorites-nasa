@@ -11,15 +11,7 @@ typealias L = LocalizedString
 
 extension String {
     var tr: String { tr() }
-
-    private func tr(_ stringValue: String) -> String {
-        String(format: self.tr, stringValue)
-    }
-
-    func tr(_ stringValues: [String]) -> String {
-        String(format: self.tr, arguments: stringValues)
-    }
-
+    
     func tr(withComment comment: String = "") -> String {
         NSLocalizedString(self, comment: comment)
     }
@@ -32,8 +24,8 @@ enum LocalizedString {
     
     enum MeteoriteList {
         static let allMeteorites = "meteorite_list_all_meteorites".tr
-        static let nearestMeteorites = "meteorite_list_nearest_meteorites".tr
         static let showNearestMeteorites = "meteorite_list_show_nearest_meteorites".tr
+        static let noSearchResults = "meteorite_list_no_search_results".tr
     }
     
     enum NearestMeteoritesDetail {
@@ -47,6 +39,8 @@ enum LocalizedString {
         static let alertDismiss = "map_alert_dismiss".tr
         static let travelTime = "map_travel_time".tr
         static let meteorite = "map_meteorite".tr
+        static let requestPermissionAlertTitle = "map_request_permission_alert_title".tr
+        static let requestPermissionAlertMessage = "map_request_permission_alert_message".tr
     }
     
     enum MeteoriteInfoModal {
@@ -63,5 +57,11 @@ enum LocalizedString {
         static let grams = "meteorite_info_modal_grams".tr
         static let kilometers = "meteorite_info_modal_kilometers".tr
         static let openInMaps = "meteorite_info_modal_open_in_maps".tr
+    }
+    
+    enum Error {
+        static let invalidUrl = "error_invalid_url".tr
+        static let serverError = "error_server_error".tr
+        static let invalidData = "error_invalid_data".tr
     }
 }

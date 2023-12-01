@@ -13,6 +13,7 @@ struct MapView: View {
     @State private var animationScale = 1.0
     @State private var position: MapCameraPosition = .automatic
     @State private var showNoMeteoritesAlert = false
+    @State private var showLocationPermissionAlert = false
     
     var route: MKRoute?
     var travelTime: String?
@@ -89,6 +90,13 @@ struct MapView: View {
                     dismissButton: .default(Text(L.Map.alertDismiss))
                 )
             }
+            .alert(isPresented: $showLocationPermissionAlert) {
+                Alert(
+                    title: Text(L.Map.requestPermissionAlertTitle),
+                    message: Text(L.Map.requestPermissionAlertMessage),
+                    dismissButton: .default(Text(L.Map.alertDismiss))
+                )
+            }
             .overlay(alignment: .top, content: {
                 travelTimeLabel
             })
@@ -122,7 +130,9 @@ private extension MapView {
     var actionRowView: some View {
         VStack {
             HStack {
-                actionCircleButton(.systemName("arrow.left")) {
+                actionCircleButton(
+                    .systemName(Icons.arrowLeft)
+                ) {
                     viewModel.goBackAction()
                 }
                 Spacer()
@@ -131,14 +141,22 @@ private extension MapView {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, Padding.standard)
                 Spacer()
-                actionCircleButton(.systemName("location.fill")) {
-                    position = .userLocation(fallback: .automatic)
+                actionCircleButton(
+                    .systemName(Icons.location)
+                ) {
+                    if viewModel.handleUserLocation() == true {
+                        position = .userLocation(fallback: .automatic)
+                    } else {
+                        showLocationPermissionAlert = true
+                    }
                 }
             }
             if viewModel.nearestMeteorites == nil {
                 HStack {
                     Spacer()
-                    actionCircleButton(.assetName("meteorite-icon")) {
+                    actionCircleButton(
+                        .assetName(Images.meteorite)
+                    ) {
                         if let meteoritePosition = viewModel.getMeteoritePosition() {
                             position = .item(
                                 meteoritePosition
@@ -159,12 +177,12 @@ private extension MapView {
                 .overlay(
                     Group {
                         switch iconType {
-                        case .systemName(let name):
-                            Image(systemName: name)
+                        case .systemName(let image):
+                            image
                                 .imageScale(.large)
                                 .foregroundColor(Color.black)
-                        case .assetName(let name):
-                            Image(name)
+                        case .assetName(let image):
+                            image
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 35)
@@ -193,7 +211,7 @@ private extension MapView {
                 .fill(meteorite != nil && viewModel.selectedMeteorite?.id == meteorite?.id ? Color.accentColor : Color.white)
                 .frame(width: 50, height: 50)
                 .overlay(
-                    Image("meteorite-icon")
+                    Images.meteorite
                         .resizable()
                         .scaledToFit()
                         .frame(width: 35)
@@ -212,7 +230,8 @@ private extension MapView {
             geolocation: Geolocation.example,
             // nearestMeteorites: Meteorite.exampleList,
             goBackAction: {},
-            onSelectMeteoriteAction: { _ in }
+            onSelectMeteoriteAction: { _ in },
+            locationManager: MockLocationManager()
         )
     )
 }

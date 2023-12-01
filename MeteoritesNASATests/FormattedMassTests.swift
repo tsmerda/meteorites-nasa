@@ -32,7 +32,8 @@ final class FormattedMassTests: XCTestCase {
             meteorite: mockMeteorite,
             withRouteButton: false,
             onNavigateAction: nil,
-            onCancelNavigationAction: nil
+            onCancelNavigationAction: nil,
+            locationManager: MockLocationManager()
         )
         let mass = viewModel.getFormattedMass()
         XCTAssertEqual(mass, "750 \(L.MeteoriteInfoModal.grams)", "Should correctly format mass in grams")
@@ -48,7 +49,8 @@ final class FormattedMassTests: XCTestCase {
             meteorite: mockMeteorite,
             withRouteButton: false,
             onNavigateAction: nil,
-            onCancelNavigationAction: nil
+            onCancelNavigationAction: nil,
+            locationManager: MockLocationManager()
         )
         let mass = viewModel.getFormattedMass()
         XCTAssertEqual(mass, "10.50 \(L.MeteoriteInfoModal.kilograms)", "Should correctly format mass in kilograms")
@@ -64,7 +66,8 @@ final class FormattedMassTests: XCTestCase {
             meteorite: mockMeteorite,
             withRouteButton: false,
             onNavigateAction: nil,
-            onCancelNavigationAction: nil
+            onCancelNavigationAction: nil,
+            locationManager: MockLocationManager()
         )
         let mass = viewModel.getFormattedMass()
         XCTAssertEqual(mass, "1 \(L.MeteoriteInfoModal.kilograms)", "Should correctly format mass as 1 kilogram")

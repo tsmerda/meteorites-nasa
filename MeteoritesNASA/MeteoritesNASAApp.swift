@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct MeteoritesNASAApp: App {
-    private var viewModel = MeteoritesListViewModel()
-    
     var body: some Scene {
         WindowGroup {
-            MeteoritesListView(viewModel: viewModel)
+            MeteoritesListView(
+                viewModel: MeteoritesListViewModel(
+                    networkManager: NetworkManager(),
+                    locationManager: LocationManager()
+                )
+            )
         }
     }
 }

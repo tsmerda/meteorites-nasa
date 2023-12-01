@@ -14,6 +14,7 @@ final class MapViewModel: ObservableObject {
     let nearestMeteorites: [Meteorite]?
     let goBackAction: () -> Void
     private let onSelectMeteoriteAction: ((Meteorite) -> Void)?
+    let locationManager: LocationManager
     
     var selectedMeteorite: Meteorite? = nil
     
@@ -22,13 +23,15 @@ final class MapViewModel: ObservableObject {
         geolocation: Geolocation? = nil,
         nearestMeteorites: [Meteorite]? = nil,
         goBackAction: @escaping () -> Void,
-        onSelectMeteoriteAction: ((Meteorite) -> Void)?
+        onSelectMeteoriteAction: ((Meteorite) -> Void)?,
+        locationManager: LocationManager
     ) {
         self.title = title
         self.geolocation = geolocation
         self.nearestMeteorites = nearestMeteorites
         self.goBackAction = goBackAction
         self.onSelectMeteoriteAction = onSelectMeteoriteAction
+        self.locationManager = locationManager
     }
     
     func getMeteoritePosition() -> MKMapItem? {
@@ -46,5 +49,16 @@ final class MapViewModel: ObservableObject {
     func onSelectMeteorite(_ meteorite: Meteorite) {
         selectedMeteorite = meteorite
         onSelectMeteoriteAction?(meteorite)
+    }
+    
+    func handleUserLocation() -> Bool {
+        switch locationManager.status {
+        case .authorizedWhenInUse, .authorizedAlways:
+            return true
+        case .restricted, .denied, .notDetermined:
+            return false
+        @unknown default:
+            return false
+        }
     }
 }

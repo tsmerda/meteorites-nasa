@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct PrimaryButton: View {
-    private let icon: String?
-    private let title: String
-    private let action: () -> Void
-    private let color: Color
+struct PrimaryButtonConfig {
+    let icon: Image?
+    let title: String
+    let action: () -> Void
+    let color: Color
     
     init(
-        icon: String? = nil,
+        icon: Image? = nil,
         title: String,
         action: @escaping () -> Void,
         color: Color = Color.accentColor
@@ -24,20 +24,27 @@ struct PrimaryButton: View {
         self.action = action
         self.color = color
     }
+}
+
+struct PrimaryButton: View {
+    let config: PrimaryButtonConfig
+    
+    init(config: PrimaryButtonConfig) {
+        self.config = config
+    }
     
     var body: some View {
-        Button(action: action) {
-            HStack {
-                if let iconName = icon {
-                    Image(systemName: iconName)
+        Button(action: config.action) {
+            HStack(spacing: Spacing.small) {
+                if let iconName = config.icon {
+                    iconName
                         .imageScale(.large)
-                        .padding(.trailing, 4)
                 }
-                Text(title)
+                Text(config.title)
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(PrimaryButtonStyle(color: color))
+        .buttonStyle(PrimaryButtonStyle(color: config.color))
     }
 }
 
@@ -54,12 +61,13 @@ struct PrimaryButtonStyle: ButtonStyle {
     }
 }
 
-
 #Preview {
     PrimaryButton(
-        icon: "mappin.and.ellipse",
-        title: "Primary Button",
-        action: {}
-        // color: Colors.warning
+        config: PrimaryButtonConfig(
+            icon: Icons.mapPin,
+            title: "Primary Button",
+            action: {}
+            // color: Colors.warning
+        )
     )
 }

@@ -44,15 +44,16 @@ private extension MeteoriteInfoModalView {
                 .fill(Color.disabled)
                 .frame(width: 44, height: 44)
                 .overlay(
-                    Image(systemName: "photo")
-                        .imageScale(.large)
-                        .foregroundColor(Colors.textDark)
+                    Images.meteorite
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 35)
                 )
             VStack(alignment: .leading, spacing: Spacing.small) {
                 Text(viewModel.meteorite?.name ?? "")
                     .font(Fonts.headline1)
                     .foregroundStyle(Colors.textDark)
-                Text("\(L.MeteoriteInfoModal.recclass) \(viewModel.meteorite?.recclass ?? "")")
+                Text(L.MeteoriteInfoModal.recclass + ": " + (viewModel.meteorite?.recclass ?? L.Generic.unknown))
                     .font(Fonts.captions)
                     .foregroundStyle(Colors.textLight)
             }
@@ -70,7 +71,7 @@ private extension MeteoriteInfoModalView {
                         .fill(Color.accentColor)
                         .frame(width: 44, height: 44)
                         .overlay(
-                            Image(systemName: "map")
+                            Icons.map
                                 .imageScale(.large)
                                 .foregroundColor(Colors.black)
                         )
@@ -92,7 +93,7 @@ private extension MeteoriteInfoModalView {
             }
             Divider()
             VStack(spacing: Spacing.small) {
-                detailInfoRow(L.MeteoriteInfoModal.distance, viewModel.getUserDistanceFromMeteorite())
+                detailInfoRow(L.MeteoriteInfoModal.distance, viewModel.userDistance)
                 detailInfoRow(L.MeteoriteInfoModal.mass, viewModel.getFormattedMass())
                 detailInfoRow(L.MeteoriteInfoModal.date, viewModel.getFormattedYear())
                 detailInfoRow(L.MeteoriteInfoModal.coordinates, viewModel.getCoordinates())
@@ -113,14 +114,15 @@ private extension MeteoriteInfoModalView {
     @ViewBuilder
     var routeButton: PrimaryButton? {
         if viewModel.withRouteButton {
-            PrimaryButton(
-                icon: !isNavigationOn ? "location.north.circle" : "location.slash.circle",
+            let config = PrimaryButtonConfig(
+                icon: !isNavigationOn ? Icons.locationOn : Icons.locationOff,
                 title: !isNavigationOn ? L.MeteoriteInfoModal.navigateToMeteorite : L.MeteoriteInfoModal.cancelNavigation,
                 action: {
                     !isNavigationOn ? viewModel.onNavigate() : viewModel.onCancelNavigation()
                 },
                 color: !isNavigationOn ? Color.accentColor : Colors.warning
             )
+            PrimaryButton(config: config)
         }
     }
 }
@@ -130,7 +132,8 @@ private extension MeteoriteInfoModalView {
         viewModel: MeteoriteInfoModalViewModel(
             meteorite: Meteorite.example,
             onNavigateAction: {},
-            onCancelNavigationAction: {}
+            onCancelNavigationAction: {},
+            locationManager: MockLocationManager()
         )
     )
 }

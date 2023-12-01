@@ -6,62 +6,97 @@
 //
 
 import XCTest
+import Combine
 @testable import MeteoritesNASA
 
-class MeteoriteListTests: XCTestCase {
+final class MeteoriteListTests: XCTestCase {
     var viewModel: MeteoritesListViewModel!
-    var mockMeteorites: [Meteorite]!
+    var mockNetworkManager: MockNetworkManager!
+    var mockLocationManager: MockLocationManager!
+    var subscriptions: Set<AnyCancellable> = []
     
     override func setUp() {
         super.setUp()
-        viewModel = MeteoritesListViewModel()
-        mockMeteorites = [
-            Meteorite(
-                name: "Aachen",
-                id: "1",
-                geolocation: Geolocation(
-                    type: "Point",
-                    coordinates: [
-                        6.08333,
-                        50.775
-                    ]
-                )
-            ),
-            Meteorite(
-                name: "Aarhus",
-                id: "2",
-                geolocation: Geolocation(
-                    type: "Point",
-                    coordinates: [
-                        10.23333,
-                        56.18333
-                    ]
-                )
-            )
-        ]
+        mockNetworkManager = MockNetworkManager()
+        mockLocationManager = MockLocationManager()
+        viewModel = MeteoritesListViewModel(
+            networkManager: mockNetworkManager,
+            locationManager: mockLocationManager
+        )
     }
     
     override func tearDown() {
         UserDefaults.standard.removeObject(forKey: GlobalConstants.lastUpdateKey)
         viewModel = nil
-        mockMeteorites = nil
+        mockNetworkManager = nil
         super.tearDown()
     }
     
-    func testShouldUpdateData() {
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-        UserDefaults.standard.set(yesterday, forKey: GlobalConstants.lastUpdateKey)
-        
-        let shouldUpdate = viewModel.shouldUpdateData()
-        XCTAssertTrue(shouldUpdate)
-    }
-    
     func testSaveDataToLocalStorage() async throws {
-        try await viewModel.saveDataToLocalStorage(mockMeteorites)
+        try await viewModel.saveDataToLocalStorage(Meteorite.exampleList)
         let savedData = try Data(contentsOf: viewModel.getDocumentsDirectory().appendingPathComponent(GlobalConstants.localDataFile))
         let decodedSavedData = try JSONDecoder().decode([Meteorite].self, from: savedData)
-        XCTAssertEqual(decodedSavedData, mockMeteorites, "Saved data should match the mock data")
+        XCTAssertEqual(decodedSavedData, Meteorite.exampleList, "Saved data should match the mock data")
         let lastUpdateDate = UserDefaults.standard.object(forKey: GlobalConstants.lastUpdateKey) as? Date
         XCTAssertNotNil(lastUpdateDate, "Last update date should be set in UserDefaults")
+    }
+    
+    func testLoadDataWithSuccess() {
+        let expectation = XCTestExpectation(description: "Data is loaded")
+        viewModel = MeteoritesListViewModel(
+            networkManager: MockNetworkManager(),
+            locationManager: mockLocationManager
+        )
+        
+        viewModel.$meteoritesList
+            .dropFirst()
+            .sink { meteorites in
+                XCTAssertFalse(meteorites.isEmpty, "Meteorites list should not be empty")
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.refreshData()
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testLoadDataWithEmptyData() {
+        let expectation = XCTestExpectation(description: "Data is empty")
+        viewModel = MeteoritesListViewModel(
+            networkManager: MockNetworkManagerEmpty(),
+            locationManager: mockLocationManager
+        )
+        
+        viewModel.$meteoritesList
+            .dropFirst()
+            .sink { meteorites in
+                XCTAssertTrue(meteorites.isEmpty, "Meteorites list should be empty")
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.refreshData()
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testLoadDataWithError() {
+        let expectation = XCTestExpectation(description: "Data loading failed")
+        viewModel = MeteoritesListViewModel(
+            networkManager: MockNetworkManagerFailure(),
+            locationManager: mockLocationManager
+        )
+        
+        viewModel.$progressHudState
+            .dropFirst()
+            .sink { state in
+                if case .showFailure(let message) = state {
+                    XCTAssertNotNil(message)
+                    expectation.fulfill()
+                }
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.refreshData()
+        wait(for: [expectation], timeout: 1.0)
     }
 }

@@ -7,27 +7,19 @@
 
 import Foundation
 
-import Foundation
-
 enum NetworkError: Error, LocalizedError {
     case invalidURL
     case serverError
     case invalidData
-    case serverResponseError(String)
-    case unknown(Error)
     
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "Invalid URL. Please check the URL and try again."
+            return L.Error.invalidUrl
         case .serverError:
-            return "There was an error with the server. Please try again later."
+            return L.Error.serverError
         case .invalidData:
-            return "Invalid data received from the server. Please try again."
-        case .serverResponseError(let message):
-            return message
-        case .unknown(let error):
-            return error.localizedDescription
+            return L.Error.invalidData
         }
     }
 }

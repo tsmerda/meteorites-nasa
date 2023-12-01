@@ -8,29 +8,32 @@
 import Foundation
 import CoreLocation
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    static let shared = LocationManager()
-    private let locationManager = CLLocationManager()
-    
+class LocationManager: NSObject, CLLocationManagerDelegate {
     @Published var userLocation: CLLocationCoordinate2D?
     
-    private override init() {
+    private let locationManager = CLLocationManager()
+    
+    var status: CLAuthorizationStatus {
+        return locationManager.authorizationStatus
+    }
+    
+    override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if locationManager.authorizationStatus == .authorizedWhenInUse ||
+            locationManager.authorizationStatus == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func requestLocationPermission() {
-          locationManager.requestWhenInUseAuthorization()
-          locationManager.startUpdatingLocation()
-      }
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         self.userLocation = location.coordinate
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed to find user's location: \(error.localizedDescription)")
     }
 }
