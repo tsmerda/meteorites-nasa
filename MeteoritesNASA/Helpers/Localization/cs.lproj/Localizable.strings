@@ -42,3 +42,8 @@
 "meteorite_info_modal_grams" = "gramů";
 "meteorite_info_modal_kilometers" = "kilometrů";
 "meteorite_info_modal_open_in_maps" = "Otevřít v mapách";
+
+// MARK: - Error
+"error_invalid_url" = "Neplatná adresa URL. Zkontrolujte prosím URL adresu a zkuste to znovu.";
+"error_server_error" = "Na serveru došlo k chybě. Zkuste to prosím později.";
+"error_invalid_data" = "Neplatná data přijatá ze serveru. Zkuste to prosím znovu.";

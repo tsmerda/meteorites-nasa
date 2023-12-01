@@ -10,7 +10,7 @@ import Combine
 import ProgressHUD
 
 enum ProgressHudHelper {
-    static func dismiss(deadline: Double = 0.6) {
+    static func dismiss(deadline: Double = 0.35) {
         DispatchQueue.main.asyncAfter(deadline: .now() + deadline) {
             ProgressHUD.dismiss()
         }
@@ -18,10 +18,10 @@ enum ProgressHudHelper {
 }
 
 enum ProgressHudState: Equatable {
-    case shouldShowProgress
-    case shouldShowSuccess(message: String? = nil)
-    case shouldShowFail(message: String? = nil)
-    case shouldHideProgress
+    case showProgress
+    case showSuccess(message: String? = nil)
+    case showFailure(message: String? = nil)
+    case hide
 }
 
 final class ProgressHudBinding {
@@ -32,10 +32,10 @@ final class ProgressHudBinding {
             .receive(on: DispatchQueue.main)
             .sink { state in
                 switch state {
-                case .shouldShowProgress: ProgressHUD.animate(interaction: false)
-                case .shouldShowSuccess(let message): ProgressHUD.succeed(message)
-                case .shouldShowFail(let message): ProgressHUD.failed(message)
-                case .shouldHideProgress: ProgressHudHelper.dismiss()
+                case .showProgress: ProgressHUD.show(interaction: false)
+                case .showSuccess(let message): ProgressHUD.showSucceed(message)
+                case .showFailure(let message): ProgressHUD.showFailed(message)
+                case .hide: ProgressHudHelper.dismiss()
                 }
             }
             .store(in: &subscriptions)

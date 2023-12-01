@@ -8,13 +8,18 @@
 import Foundation
 import CoreLocation
 import MapKit
+import Combine
 
 final class MeteoriteInfoModalViewModel: ObservableObject {
     let meteorite: Meteorite?
     let withRouteButton: Bool
+    
     private let onNavigateAction: (() -> Void)?
     private let onCancelNavigationAction: (() -> Void)?
     private let locationManager: LocationManager
+    private var cancellables: Set<AnyCancellable> = []
+    
+    @Published var userDistance: String = L.Generic.unknown
     
     init(
         meteorite: Meteorite?,
@@ -28,6 +33,12 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
         self.onNavigateAction = onNavigateAction
         self.onCancelNavigationAction = onCancelNavigationAction
         self.locationManager = locationManager
+        
+        locationManager.$userLocation
+            .sink { [weak self] newLocation in
+                self?.updateUserDistance(newLocation: newLocation)
+            }
+            .store(in: &cancellables)
     }
     
     func onNavigate() {
@@ -67,20 +78,21 @@ final class MeteoriteInfoModalViewModel: ObservableObject {
         }
     }
     
-    func getUserDistanceFromMeteorite() -> String {
-        guard let userCoordinates = locationManager.userLocation,
+    private func updateUserDistance(newLocation: CLLocationCoordinate2D?) {
+        guard let userCoordinates = newLocation,
               let latitudeString = meteorite?.geolocation?.latitude,
               let longitudeString = meteorite?.geolocation?.longitude,
               let latitude = Double(latitudeString),
               let longitude = Double(longitudeString) else {
-            return L.Generic.unknown
+            userDistance = L.Generic.unknown
+            return
         }
         
         let userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
         let meteoriteLocation = CLLocation(latitude: latitude, longitude: longitude)
         
         let distanceInKilometers = userLocation.distance(from: meteoriteLocation) / 1000
-        return String(format: "%.2f \(L.MeteoriteInfoModal.kilometers)", distanceInKilometers)
+        userDistance = String(format: "%.2f \(L.MeteoriteInfoModal.kilometers)", distanceInKilometers)
     }
     
     func openInMaps() {

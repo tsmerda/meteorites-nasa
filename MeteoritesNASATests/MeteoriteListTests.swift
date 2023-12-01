@@ -12,12 +12,17 @@ import Combine
 final class MeteoriteListTests: XCTestCase {
     var viewModel: MeteoritesListViewModel!
     var mockNetworkManager: MockNetworkManager!
+    var mockLocationManager: MockLocationManager!
     var subscriptions: Set<AnyCancellable> = []
     
     override func setUp() {
         super.setUp()
         mockNetworkManager = MockNetworkManager()
-        viewModel = MeteoritesListViewModel(networkManager: mockNetworkManager)
+        mockLocationManager = MockLocationManager()
+        viewModel = MeteoritesListViewModel(
+            networkManager: mockNetworkManager,
+            locationManager: mockLocationManager
+        )
     }
     
     override func tearDown() {
@@ -38,7 +43,10 @@ final class MeteoriteListTests: XCTestCase {
     
     func testLoadDataWithSuccess() {
         let expectation = XCTestExpectation(description: "Data is loaded")
-        viewModel = MeteoritesListViewModel(networkManager: MockNetworkManager())
+        viewModel = MeteoritesListViewModel(
+            networkManager: MockNetworkManager(),
+            locationManager: mockLocationManager
+        )
         
         viewModel.$meteoritesList
             .dropFirst()
@@ -54,7 +62,10 @@ final class MeteoriteListTests: XCTestCase {
     
     func testLoadDataWithEmptyData() {
         let expectation = XCTestExpectation(description: "Data is empty")
-        viewModel = MeteoritesListViewModel(networkManager: MockNetworkManagerEmpty())
+        viewModel = MeteoritesListViewModel(
+            networkManager: MockNetworkManagerEmpty(),
+            locationManager: mockLocationManager
+        )
         
         viewModel.$meteoritesList
             .dropFirst()
@@ -70,12 +81,15 @@ final class MeteoriteListTests: XCTestCase {
     
     func testLoadDataWithError() {
         let expectation = XCTestExpectation(description: "Data loading failed")
-        viewModel = MeteoritesListViewModel(networkManager: MockNetworkManagerFailure())
+        viewModel = MeteoritesListViewModel(
+            networkManager: MockNetworkManagerFailure(),
+            locationManager: mockLocationManager
+        )
         
         viewModel.$progressHudState
             .dropFirst()
             .sink { state in
-                if case .shouldShowFail(let message) = state {
+                if case .showFailure(let message) = state {
                     XCTAssertNotNil(message)
                     expectation.fulfill()
                 }

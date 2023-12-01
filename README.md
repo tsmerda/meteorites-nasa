@@ -17,3 +17,7 @@ Meteorites NASA is an informative and engaging iOS application that provides det
 - Official website: [NASA Open Data Portal](https://data.nasa.gov)
 - API Documentation: [NASA API Documentation](https://dev.socrata.com/foundry/data.nasa.gov/y77d-th95)
 - JSON Data: [Meteorite Landings](https://data.nasa.gov/resource/y77d-th95.json)
+
+## API limitations
+
+For this project the number of NASA API requests is sufficient without specifying the X-App-Token. However, the request limit can be increased by registering on the NASA API portal and obtaining an app token. Implementing token management with a keychain wrapper is a secure method for handling API tokens. However, for this specific test application, such an approach was not required.

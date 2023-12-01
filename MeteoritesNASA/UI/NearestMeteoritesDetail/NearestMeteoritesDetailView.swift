@@ -10,6 +10,7 @@ import MapKit
 
 struct NearestMeteoritesDetailView: View {
     @StateObject private var viewModel: NearestMeteoritesDetailViewModel
+    
     @EnvironmentObject var nav: NavigationStateManager
     
     @State private var showMeteoriteDetail: Bool = false
@@ -19,7 +20,9 @@ struct NearestMeteoritesDetailView: View {
     
     init(viewModel: NearestMeteoritesDetailViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.progressHudBinding = ProgressHudBinding(state: viewModel.$progressHudState)
+        self.progressHudBinding = ProgressHudBinding(
+            state: viewModel.$progressHudState
+        )
     }
     
     var body: some View {
@@ -52,10 +55,10 @@ private extension NearestMeteoritesDetailView {
         if viewModel.selectedMeteorite == nil {
             HStack(spacing: Spacing.small) {
                 Icons.dotCircleAndHand
-                    .foregroundColor(Colors.black)
+                    .foregroundColor(Colors.textDark)
                 Text(L.NearestMeteoritesDetail.infoLabel)
                     .font(Fonts.body1)
-                    .foregroundStyle(Colors.black)
+                    .foregroundStyle(Colors.textDark)
             }
             .padding()
             .background(.ultraThinMaterial)
@@ -93,7 +96,9 @@ private extension NearestMeteoritesDetailView {
                 meteorite: viewModel.selectedMeteorite,
                 withRouteButton: true,
                 onNavigateAction: {
-                    viewModel.fetchRoute()
+                    Task {
+                        await viewModel.fetchRoute()
+                    }
                 },
                 onCancelNavigationAction: {
                     viewModel.cancelRoute()

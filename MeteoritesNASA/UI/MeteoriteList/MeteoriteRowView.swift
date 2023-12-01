@@ -36,7 +36,7 @@ struct MeteoriteRowView: View {
 private extension MeteoriteRowView {
     @ViewBuilder
     var imageView: some View {
-        Icons.meteorite
+        Images.meteorite
             .resizable()
             .scaledToFit()
             .frame(width: 60, height: 60)

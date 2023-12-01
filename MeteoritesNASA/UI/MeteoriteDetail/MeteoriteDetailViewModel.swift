@@ -17,5 +17,16 @@ final class MeteoriteDetailViewModel: ObservableObject {
     ) {
         self.meteorite = meteorite
         self.locationManager = locationManager
+        requestLocationIfNeeded()
+    }
+}
+
+// MARK: - Private methods
+
+private extension MeteoriteDetailViewModel {
+    func requestLocationIfNeeded() {
+        if locationManager.status == .notDetermined {
+            locationManager.requestLocationPermission()
+        }
     }
 }

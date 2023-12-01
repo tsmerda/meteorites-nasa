@@ -12,7 +12,7 @@ final class NearestMeteoritesDetailViewModel: ObservableObject {
     let meteorites: [Meteorite]
     let locationManager: LocationManager
     
-    @Published private(set) var progressHudState: ProgressHudState = .shouldHideProgress
+    @Published private(set) var progressHudState: ProgressHudState = .hide
     @Published var selectedMeteorite: Meteorite?
     @Published var route: MKRoute?
     @Published var travelTime: String?
@@ -28,9 +28,15 @@ final class NearestMeteoritesDetailViewModel: ObservableObject {
         self.travelTime = nil
     }
 }
+
+// MARK: - Handle navigation
+
 extension NearestMeteoritesDetailViewModel {
-    func fetchRoute() {
-        progressHudState = .shouldShowProgress
+    func fetchRoute() async {
+        await MainActor.run {
+            self.progressHudState = .showProgress
+        }
+        
         var source = CLLocationCoordinate2D()
         var destination = CLLocationCoordinate2D()
         if let latitudeString = selectedMeteorite?.geolocation?.latitude,
@@ -48,20 +54,23 @@ extension NearestMeteoritesDetailViewModel {
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
         request.transportType = .automobile
         
-        Task {
-            let result = try? await MKDirections(request: request).calculate()
-            route = result?.routes.first
-            getTravelTime()
-            progressHudState = .shouldHideProgress
+        let routeResult = try? await MKDirections(request: request).calculate()
+        let travelTimeResult = await getTravelTime(routeResult?.routes.first)
+        
+        await MainActor.run {
+            route = routeResult?.routes.first
+            travelTime = travelTimeResult
+            self.progressHudState = .hide
         }
+        
     }
     
-    func getTravelTime() {
-        guard let route else { return }
+    func getTravelTime(_ routeResult: MKRoute?) async -> String? {
+        guard let routeResult else { return nil }
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
         formatter.allowedUnits = [.hour, .minute]
-        travelTime = formatter.string(from: route.expectedTravelTime)
+        return formatter.string(from: routeResult.expectedTravelTime) ?? nil
     }
     
     func cancelRoute() {

@@ -13,7 +13,7 @@ final class MeteoritesListViewModel: ObservableObject {
     @Published var meteoritesList: [Meteorite] = []
     @Published var nearestMeteorites: [Meteorite] = []
     @Published var showNearest: Bool = false
-    @Published private(set) var progressHudState: ProgressHudState = .shouldHideProgress
+    @Published private(set) var progressHudState: ProgressHudState = .hide
     @Published var searchText: String = ""
     @Published var searchIsActive: Bool = false
     
@@ -41,7 +41,6 @@ final class MeteoritesListViewModel: ObservableObject {
         self.networkManager = networkManager
         self.locationManager = locationManager
         handleInitialData()
-        locationManager.requestLocationPermission()
     }
     
     deinit {
@@ -64,13 +63,19 @@ final class MeteoritesListViewModel: ObservableObject {
         }
     }
     
-    func findNearestMeteorites() {
-        showNearest.toggle()
-        if showNearest {
-            let sortedByDistance = self.meteoritesList.sorted {
-                self.distanceFromUser(to: $0) < self.distanceFromUser(to: $1)
+    func findNearestMeteorites(completion: @escaping (Result<[Meteorite], LocationError>) -> Void) {
+        switch locationManager.status {
+        case .notDetermined:
+            locationManager.requestLocationPermission()
+            completion(.failure(.permissionNotDetermined))
+        case .authorizedWhenInUse, .authorizedAlways:
+            if let userLocation = locationManager.userLocation {
+                sortAndFindNearestMeteorites(userLocation: userLocation, completion: completion)
+            } else {
+                completion(.failure(.locationUnavailable))
             }
-            nearestMeteorites = Array(sortedByDistance.prefix(10))
+        default:
+            completion(.failure(.permissionDenied))
         }
     }
     
@@ -93,7 +98,9 @@ final class MeteoritesListViewModel: ObservableObject {
     }
     
     func refreshData() {
-        getAllMeteorites(showProgress: false)
+        Task {
+            await getAllMeteorites(showProgress: false)
+        }
     }
 }
 
@@ -105,10 +112,12 @@ private extension MeteoritesListViewModel {
     }
     
     func loadMeteoritesData() {
-        if shouldUpdateData() && isInternetAvailable {
-            getAllMeteorites(showProgress: true)
-        } else {
-            loadDataFromLocalStorage()
+        Task {
+            if shouldUpdateData() && isInternetAvailable {
+                await getAllMeteorites(showProgress: true)
+            } else {
+                await loadDataFromLocalStorage()
+            }
         }
     }
     
@@ -124,51 +133,72 @@ private extension MeteoritesListViewModel {
         networkMonitor.start(queue: queue)
     }
     
-    func loadDataFromLocalStorage() {
-        progressHudState = .shouldShowProgress
-        Task { @MainActor in
-            let url = getDocumentsDirectory().appendingPathComponent(localDataFile)
-            if let data = try? Data(contentsOf: url) {
-                do {
-                    meteoritesList = try JSONDecoder().decode([Meteorite].self, from: data)
-                    progressHudState = .shouldHideProgress
-                } catch {
-                    progressHudState = .shouldShowFail(message: error.localizedDescription)
+    func loadDataFromLocalStorage() async {
+        await MainActor.run {
+            progressHudState = .showProgress
+        }
+        let url = getDocumentsDirectory().appendingPathComponent(localDataFile)
+        if let data = try? Data(contentsOf: url) {
+            do {
+                let meteoritesResponse = try JSONDecoder().decode([Meteorite].self, from: data)
+                await MainActor.run {
+                    meteoritesList = meteoritesResponse
+                    progressHudState = .hide
+                }
+            } catch {
+                await MainActor.run {
+                    progressHudState = .showFailure(message: error.localizedDescription)
                 }
             }
         }
     }
     
-    func distanceFromUser(to meteorite: Meteorite) -> Double {
-        guard let userLocation = locationManager.userLocation,
-              let latitudeString = meteorite.geolocation?.latitude,
+    func sortAndFindNearestMeteorites(
+        userLocation: CLLocationCoordinate2D,
+        completion: (Result<[Meteorite], LocationError>) -> Void
+    ) {
+        let sortedByDistance = meteoritesList.sorted {
+            distanceFromUser(to: $0, userLocation: userLocation) < distanceFromUser(to: $1, userLocation: userLocation)
+        }
+        
+        nearestMeteorites = Array(sortedByDistance.prefix(10))
+        completion(.success(nearestMeteorites))
+    }
+    
+    private func distanceFromUser(to meteorite: Meteorite, userLocation: CLLocationCoordinate2D) -> Double {
+        guard let latitudeString = meteorite.geolocation?.latitude,
               let longitudeString = meteorite.geolocation?.longitude,
               let latitude = Double(latitudeString),
               let longitude = Double(longitudeString) else {
             return Double.greatestFiniteMagnitude
         }
         
+        let meteoriteLocation = CLLocation(latitude: latitude, longitude: longitude)
         let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        let meteoriteCLLocation = CLLocation(latitude: latitude, longitude: longitude)
         
-        return userCLLocation.distance(from: meteoriteCLLocation)
+        return userCLLocation.distance(from: meteoriteLocation)
     }
 }
 
 // MARK: -- Network methods
 
 private extension MeteoritesListViewModel {
-    private func getAllMeteorites(showProgress: Bool) {
-        if showProgress {
-            progressHudState = .shouldShowProgress
+    func getAllMeteorites(showProgress: Bool) async {
+        await MainActor.run {
+            if showProgress {
+                self.progressHudState = .showProgress
+            }
         }
-        Task { @MainActor in
-            do {
-                let data = try await networkManager.getAllMeteorites()
-                meteoritesList = data
-                progressHudState = .shouldHideProgress
-            } catch {
-                progressHudState = .shouldShowFail(message: error.localizedDescription)
+        do {
+            let meteoritesResponse = try await networkManager.getAllMeteorites()
+            try await self.saveDataToLocalStorage(meteoritesResponse)
+            await MainActor.run {
+                self.meteoritesList = meteoritesResponse
+                self.progressHudState = .hide
+            }
+        } catch {
+            await MainActor.run {
+                self.progressHudState = .showFailure(message: error.localizedDescription)
             }
         }
     }

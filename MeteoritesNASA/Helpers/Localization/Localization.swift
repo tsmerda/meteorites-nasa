@@ -24,7 +24,6 @@ enum LocalizedString {
     
     enum MeteoriteList {
         static let allMeteorites = "meteorite_list_all_meteorites".tr
-        static let nearestMeteorites = "meteorite_list_nearest_meteorites".tr
         static let showNearestMeteorites = "meteorite_list_show_nearest_meteorites".tr
         static let noSearchResults = "meteorite_list_no_search_results".tr
     }
@@ -58,5 +57,11 @@ enum LocalizedString {
         static let grams = "meteorite_info_modal_grams".tr
         static let kilometers = "meteorite_info_modal_kilometers".tr
         static let openInMaps = "meteorite_info_modal_open_in_maps".tr
+    }
+    
+    enum Error {
+        static let invalidUrl = "error_invalid_url".tr
+        static let serverError = "error_server_error".tr
+        static let invalidData = "error_invalid_data".tr
     }
 }

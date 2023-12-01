@@ -10,11 +10,16 @@ import SwiftUI
 struct MeteoritesListView: View {
     @StateObject private var viewModel: MeteoritesListViewModel
     @StateObject var nav = NavigationStateManager()
+    
+    @State private var showLocationPermissionAlert = false
+    
     private let progressHudBinding: ProgressHudBinding
     
     init(viewModel: MeteoritesListViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.progressHudBinding = ProgressHudBinding(state: viewModel.$progressHudState)
+        self.progressHudBinding = ProgressHudBinding(
+            state: viewModel.$progressHudState
+        )
     }
     
     var body: some View {
@@ -23,7 +28,14 @@ struct MeteoritesListView: View {
                 list
             }
             .edgesIgnoringSafeArea(.bottom)
-            .navigationTitle(!viewModel.showNearest ? L.MeteoriteList.allMeteorites : L.MeteoriteList.nearestMeteorites)
+            .alert(isPresented: $showLocationPermissionAlert) {
+                Alert(
+                    title: Text(L.Map.requestPermissionAlertTitle),
+                    message: Text(L.Map.requestPermissionAlertMessage),
+                    dismissButton: .default(Text(L.Map.alertDismiss))
+                )
+            }
+            .navigationTitle(L.MeteoriteList.allMeteorites)
             .navigationDestination(for: Meteorite.self) { meteorite in
                 meteoriteDetailView(meteorite)
             }
@@ -61,8 +73,19 @@ private extension MeteoritesListView {
                 icon: Icons.mapPin,
                 title: L.MeteoriteList.showNearestMeteorites,
                 action: {
-                    viewModel.findNearestMeteorites()
-                    nav.goToNearestMeteoritesDetail(viewModel.nearestMeteorites)
+                    viewModel.findNearestMeteorites { result in
+                        switch result {
+                        case .success(let nearestMeteorites):
+                            nav.goToNearestMeteoritesDetail(nearestMeteorites)
+                        case .failure(let error):
+                            switch error {
+                            case .permissionNotDetermined:
+                                break
+                            case .permissionDenied, .locationUnavailable:
+                                showLocationPermissionAlert = true
+                            }
+                        }
+                    }
                 }
             )
             PrimaryButton(config: config)
@@ -72,7 +95,7 @@ private extension MeteoritesListView {
     var list: some View {
         ScrollView {
             showNearestButton
-            if viewModel.progressHudState != .shouldShowProgress && viewModel.searchResults.isEmpty {
+            if viewModel.searchResults.isEmpty && viewModel.searchIsActive {
                 Text(L.MeteoriteList.noSearchResults)
                     .font(Fonts.body1)
                     .foregroundColor(Colors.textLight)

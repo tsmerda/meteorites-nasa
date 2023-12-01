@@ -42,3 +42,8 @@
 "meteorite_info_modal_grams" = "grams";
 "meteorite_info_modal_kilometers" = "kilometers";
 "meteorite_info_modal_open_in_maps" = "Open in maps";
+
+// MARK: - Error
+"error_invalid_url" = "Invalid URL. Please check the URL and try again.";
+"error_server_error" = "There was an error with the server. Please try again later.";
+"error_invalid_data" = "Invalid data received from the server. Please try again.";

@@ -9,18 +9,22 @@ import Foundation
 import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
+    @Published var userLocation: CLLocationCoordinate2D?
+    
     private let locationManager = CLLocationManager()
     
     var status: CLAuthorizationStatus {
         return locationManager.authorizationStatus
     }
     
-    @Published var userLocation: CLLocationCoordinate2D?
-    
     override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if locationManager.authorizationStatus == .authorizedWhenInUse ||
+            locationManager.authorizationStatus == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func requestLocationPermission() {

@@ -44,9 +44,10 @@ private extension MeteoriteInfoModalView {
                 .fill(Color.disabled)
                 .frame(width: 44, height: 44)
                 .overlay(
-                    Icons.photo
-                        .imageScale(.large)
-                        .foregroundColor(Colors.textDark)
+                    Images.meteorite
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 35)
                 )
             VStack(alignment: .leading, spacing: Spacing.small) {
                 Text(viewModel.meteorite?.name ?? "")
@@ -92,7 +93,7 @@ private extension MeteoriteInfoModalView {
             }
             Divider()
             VStack(spacing: Spacing.small) {
-                detailInfoRow(L.MeteoriteInfoModal.distance, viewModel.getUserDistanceFromMeteorite())
+                detailInfoRow(L.MeteoriteInfoModal.distance, viewModel.userDistance)
                 detailInfoRow(L.MeteoriteInfoModal.mass, viewModel.getFormattedMass())
                 detailInfoRow(L.MeteoriteInfoModal.date, viewModel.getFormattedYear())
                 detailInfoRow(L.MeteoriteInfoModal.coordinates, viewModel.getCoordinates())

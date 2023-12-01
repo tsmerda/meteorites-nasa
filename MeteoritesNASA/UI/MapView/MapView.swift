@@ -155,7 +155,7 @@ private extension MapView {
                 HStack {
                     Spacer()
                     actionCircleButton(
-                        .assetName(Icons.meteorite)
+                        .assetName(Images.meteorite)
                     ) {
                         if let meteoritePosition = viewModel.getMeteoritePosition() {
                             position = .item(
@@ -211,7 +211,7 @@ private extension MapView {
                 .fill(meteorite != nil && viewModel.selectedMeteorite?.id == meteorite?.id ? Color.accentColor : Color.white)
                 .frame(width: 50, height: 50)
                 .overlay(
-                    Icons.meteorite
+                    Images.meteorite
                         .resizable()
                         .scaledToFit()
                         .frame(width: 35)
